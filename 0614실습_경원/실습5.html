@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .circle{
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background-color: aliceblue;
+      animation: spin 6s linear infinite;
+    }
+    .square{
+      width: 30px;
+      height: 30px;
+      background-color:reds ;
+      background-color: red;
+      
+    }
+
+    
+
+    @keyframes spin {
+      0%{
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(365deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="circle">
+    <div class="square"></div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  }
+    body{
+      height: 3000px;
+      font-family: 'Pretendard-Regular';
+    }
+    nav{
+      border: 1px solid #000;
+      position: fixed;
+    }
+    ul{
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+      grid-gap: 10px;
+      list-style: none;
+    }
+
+    .logo{
+      background-image: url('sfac.svg');
+      background-repeat: no-repeat;
+    }
+
+    /* table{
+      border: 1px solid #000;
+      padding: 16px 40px;
+      position: absolute;
+      
+    }
+    table tr td:nth-child(1){
+      background-image: url('sfac.svg');
+      background-repeat: no-repeat;  
+    }
+    table tr td{
+      width: 256.094px;
+      margin:0 10px;
+    } */
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class="logo"></li>
+      <li>스펙소개</li>
+      <li>교육과정</li>
+      <li>공지사항</li>
+      <li>수료생 커뮤니티</li>
+      <li>협력사</li>
+      <li>스팩블로그</li>
+    </ul>
+
+  </nav>
+  
+</body>
+</html>
