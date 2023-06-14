@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 1000vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+#education-course {
+  margin: 1em 10em;
+}
+#text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+#text h5 {
+  text-align: right;
+  font-weight: 100;
+  font-size: 12px;
+  margin-right: 25px;
+}
+#contents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.content {
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 20px 20px 0;
+}
+.article-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+.article-img img {
+  width: 300px;
+  height: auto;
+
+  filter: brightness(50%);
+}
+.article-img img:hover {
+  transform: scale(1.1);
+  transition: transform 0.35s;
+  filter: brightness(100%);
+}
+.article-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: auto;
+  height: auto;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #9333ea;
+  background-color: #f3e8ff;
+  padding: 2px 8px;
+}
+.article {
+  padding: 10px;
+}
+.available {
+  width: fit-content;
+  height: auto;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #16a34a;
+  background-color: #dcfce7;
+
+  margin-bottom: 10px;
+  padding: 2px 8px;
+}
+.article h5 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1f2937;
+}
+.article-text {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+.tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.tag-course {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  border-radius: 15px;
+  padding: 2px 5px;
+}
+.year {
+  font-size: 12px;
+  color: #1f2937;
+  margin-left: 140px;
+}
+.rocket-img {
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+}
+.btn-learn-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+  color: #fff;
+  background-color: #3b82f6;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 8px 0;
+}
+.btn-learn-more span {
+  margin-left: 5px;
+  margin-top: 2.5px;
+}
+svg {
+  width: 11px;
+  height: 11px;
+  border: 0.5px solid white;
+  border-radius: 50%;
+  padding: 2px;
+}
