@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+        }
+        header{
+            width: 80%;
+            margin : 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+        }
+        header span:first-child{
+            font-weight: bold;
+            font-size: 25px;
+        }
+        header span:last-child{
+            text-align: right;
+            font-size: 10px;
+        }
+
+
+        main{
+            width: 80%;
+            margin : 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: -100px;
+        }
+        .curriculum{
+            border-radius: 15px;
+           
+            width: 300px;
+            height: 500px;
+        }
+        .wrapper{
+            border-radius:10px 10px 0px 0px;
+            width: 300px;
+            height: 200px;
+           
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+
+            transition : all 0.5s;
+            filter: brightness(0.7);
+        }
+        .wrapper img:hover{
+            transform: scale(1.3);
+            filter: brightness(1);
+        }
+
+        .abc{
+            display: grid;
+            grid-template-columns: 0.5fr 1fr;
+        }
+        .cba{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .more_btn{
+            color: white;
+            font-weight: bold;
+            background-color: #77f;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            height: 30px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>교육 과정</span>
+        <span>과정 전체보기</span>
+    </header>
+    <main>
+        
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+        <div class = "curriculum">
+            <div class = "wrapper"><img src="./img/architecture.png"/></div>
+            <span style = "background-color: #a1e698; font-weight: bolder; color: #164d0e;">신청가능</span>
+            <h3>Flutter 모바일 어플리케이션 개발 부트...</h3>
+            <p>
+                4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다. Flutter와 Dart의 기초부터 심화, 응용까지 배워보고
+            </p>
+            <div class = "abc">
+                <span style = "font-weight: bold; text-align: center; background-color: #cfc7c7; color: #635555;">취업연계과정</span>
+                <span style="text-align: right;">기수 1기 <i class="fa-solid fa-rocket"></i></span>
+            </div>
+            <br>
+            <div class = "cba">
+                <button class = "more_btn">
+                    <i class="fa-regular fa-circle-play"></i> 더 알아보기
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/1d22b5d9e6.js" crossorigin="anonymous"></script>
+</body>
+</html>

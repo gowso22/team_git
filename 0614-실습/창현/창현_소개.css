@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
+
+
+body {
+    margin: 0;
+    padding : 0;
+    font-family: 'Orbit', sans-serif;
+}
+
+
+header{
+    background-image: linear-gradient(to top right, #5f2e5f, #ffffff);
+    color: whitesmoke;
+    padding : 20px;
+    text-align: center;
+    font-size: 30px;
+   
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+main{
+    margin: 15px;
+}
+
+table{
+    width: 100%;
+}
+td:nth-child(1){
+    font-weight: bold;
+}
+td {
+    padding: 20px;
+    text-align: center;
+    font-size: 25px;
+}
+footer{
+    background-image: linear-gradient(to bottom right, #5f2e5f, #ffffff);
+    padding: 20px;
+    text-align: center;
+    background-color: black;
+    color : white;
+}
+
+.show_768{
+    display: none;
+
+}
+@media screen and (max-width : 768px) {
+  .show_768{
+    display: block;
+    font-size: 25px;
+}
+  .none_768{
+    display: none;
+  }
+}
