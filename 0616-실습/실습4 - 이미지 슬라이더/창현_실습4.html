@@ -5,14 +5,14 @@
 </head>
 <body>
     <img 
-    src="./4_img/p_1.jpg"
+    src="./gowso_img/p_1.jpg"
     id = "showImg" 
     width="500px" 
     height="500px" />
     <div>
         <button id = "prev_btn">이전</button>
         <span id = "pageNum">현재 페이지 번호</span>
-        <button id = "next_btn">이후</button>
+        <button id = "next_btn">다음</button>
     </div>
     <script>
         const showImg = document.getElementById("showImg");
@@ -34,7 +34,7 @@
             }
             const imgName = images[index];
             console.log(imgName);
-            showImg.src = `./4_img/${imgName}`
+            showImg.src = `./gowso_img/${imgName}`
             pageNum.innerHTML = ` ${index+1} / ${images.length}`
         })
         next_btn.addEventListener("click", () => {
@@ -45,7 +45,7 @@
             }
             const imgName = images[index];
             console.log(imgName);
-            showImg.src = `./4_img/${imgName}`;
+            showImg.src = `./gowso_img/${imgName}`;
             pageNum.innerHTML = ` ${index+1} / ${images.length}`;
         })
 
