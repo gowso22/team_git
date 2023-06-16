@@ -5,48 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      body {
-        text-align: center;
+      .slider {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
       }
-      img {
-        width: 300px;
-        vertical-align: middle;
-        margin: 1.5em;
+      .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+      }
+      .slider img:not(:first-child) {
+        display: none;
       }
       button {
         background-color: darkblue;
         color: ivory;
         border: none;
         border-radius: 5px;
-
         padding: 1em;
       }
     </style>
   </head>
-  <button id="prev-btn"><</button>
-  <img id="img" src="img/1.png" />
-  <button id="next-btn">></button>
+
   <body>
-    <script>
-      const img = document.getElementById("img");
-      const prevBtn = document.getElementById("prev-btn");
-      prevBtn.addEventListener("click", prev);
-      const nextBtn = document.getElementById("next-btn");
-      nextBtn.addEventListener("click", next);
-
-      const index = 0;
-      const images = ["img/1.png", "img/2.jpg", "img/3jpg", "img/4.jpg"];
-
-      function prev() {
-        if (index == 0) {
-          // index = images.length - 1;
-          console.log(images.length - 1);
-        } else {
-          index--;
-        }
-        img.src = `img/${images[index]}`;
-      }
-      function next() {}
-    </script>
+    <div class="slider">
+      <img src="img/1.png" alt="Image 1" />
+      <img src="img/2.jpg" alt="Image 2" />
+      <img src="img/3.jpg" alt="Image 3" />
+      <img src="img/4.jpg" alt="Image 4" />
+    </div>
+    <button id="prevBtn">&lang;</button>
+    <button id="nextBtn">&rang;</button>
   </body>
+  <script>
+    const slider = document.querySelector(".slider");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const images = slider.getElementsByTagName("img");
+    let currentIndex = 0;
+
+    prevBtn.addEventListener("click", showPrevImage);
+    nextBtn.addEventListener("click", showNextImage);
+
+    function showPrevImage() {
+      images[currentIndex].style.display = "none";
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      images[currentIndex].style.display = "block";
+      console.log(currentIndex);
+    }
+
+    function showNextImage() {
+      images[currentIndex].style.display = "none";
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.display = "block";
+      console.log(currentIndex);
+    }
+  </script>
 </html>
