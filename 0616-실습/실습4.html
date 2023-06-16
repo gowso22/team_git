@@ -23,33 +23,30 @@
       }
     </style>
   </head>
-  <button id="prev" onclick="prevBtn()"><</button>
-  <img id="img" src="img/hellokitty.png" />
-  <button id="next" onclick="nextBtn()">></button>
+  <button id="prev-btn"><</button>
+  <img id="img" src="img/1.png" />
+  <button id="next-btn">></button>
   <body>
     <script>
-      let img = document.getElementById("img");
+      const img = document.getElementById("img");
+      const prevBtn = document.getElementById("prev-btn");
+      prevBtn.addEventListener("click", prev);
+      const nextBtn = document.getElementById("next-btn");
+      nextBtn.addEventListener("click", next);
 
-      let imgNum = 1;
-      let imgArray = [
-        "img/팀장님.jpg",
-        "img/변경원님.jpg",
-        "img/hellokitty.png",
-        "img/박재형.jpg",
-      ];
+      const index = 0;
+      const images = ["img/1.png", "img/2.jpg", "img/3jpg", "img/4.jpg"];
 
-      function prevBtn() {
-        if (imgNum) {
-          if (imgNum == 1) return;
-          i--;
+      function prev() {
+        if (index == 0) {
+          // index = images.length - 1;
+          console.log(images.length - 1);
+        } else {
+          index--;
         }
+        img.src = `img/${images[index]}`;
       }
-      function nextBtn() {
-        if (imgNum) {
-          if (imgNum == 3) return;
-          i++;
-        }
-      }
+      function next() {}
     </script>
   </body>
 </html>
