@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="TimeNow"></h1>
+
+  <script>
+    let TimeNow = document.querySelector('.TimeNow');
+
+    function getTime() {
+      const today = new Date();
+      const hour = today.getHours();
+      const min = today.getMinutes();
+      const seconds = today.getSeconds();
+      TimeNow.innerHTML = hour + ":" + min + ":" + seconds;
+    }
+
+    // 페이지 로드될때 1초마다 getTime함수 호출해서 현재 시간 업데이트
+    getTime();
+    setInterval(getTime, 1000);
+</script>
+</body>
+</html>
