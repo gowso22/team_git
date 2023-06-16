@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="return false;">
+      <input id="p1" type="number" />
+      <input id="p2" type="number" />
+      <input type="submit" value="계산" onclick="divide()" />
+    </form>
+    <p>계산: <span id="result"> </span></p>
+    <script>
+      function divide() {
+        const p1 = document.getElementById("p1").value;
+        const p2 = document.getElementById("p2").value;
+        const result = document.getElementById("result");
+
+        result.innerHTML = p1 / p2;
+      }
+    </script>
+  </body>
+</html>
