@@ -12,10 +12,16 @@
     let TimeNow = document.querySelector('.TimeNow');
 
     function getTime() {
-      const today = new Date();
-      const hour = today.getHours();
-      const min = today.getMinutes();
-      const seconds = today.getSeconds();
+      let today = new Date();
+      let hour = today.getHours();
+      let min = today.getMinutes();
+      let seconds = today.getSeconds();
+
+      //한 자리 숫자일때 앞에 0을 붙임
+      hour = hour.toString().padStart(2, '0');
+      min = min.toString().padStart(2, '0');
+      seconds = seconds.toString().padStart(2, '0');
+
       TimeNow.innerHTML = hour + ":" + min + ":" + seconds;
     }
 
