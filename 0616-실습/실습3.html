@@ -9,13 +9,30 @@
     <h1 id="clock">00:00:00</h1>
     <script>
       const clock = document.getElementById("clock");
-      function currentTime() {
+
+      // function currentTime() {
+      //   const date = new Date();
+      //   clock.innerHTML = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+      //   // 실시간으로 화면이 갱신되도록 setTimeout() 메소드를 사용해 시간을 업데이트
+      //   setTimeout(() => currentTime(), 1000);
+      // }
+      // currentTime();
+
+      function getTime() {
         const date = new Date();
-        clock.innerHTML = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-        // 실시간으로 화면이 갱신되도록 setTimeout() 메소드를 사용해 시간을 업데이트
-        setTimeout(() => currentTime(), 1000);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        clock.innerHTML = `${hours < 10 ? `0${hours}` : hours} : ${
+          minutes < 10 ? `0${minutes}` : minutes
+        } : ${seconds < 10 ? `0${seconds}` : seconds}`;
       }
-      currentTime();
+      function init() {
+        getTime();
+        setInterval(getTime, 1000);
+      }
+      init();
     </script>
   </body>
 </html>
