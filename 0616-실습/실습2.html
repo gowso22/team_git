@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img
+      id="img"
+      src="img/전지현.png"
+      width="500px"
+      onclick="changeImg()"
+    />
+    <script>
+      let imgArray = [
+        "img/구교환.jpeg",
+        "img/비비.webp",
+        "img/손석구.jpeg",
+        "img/유태오.jpeg",
+        "img/전지현.png",
+        "img/정유미.jpeg",
+        "img/제니.jpeg",
+        "img/천우희.jpeg",
+      ];
+
+      function changeImg() {
+        let imgNum = Math.round(Math.random() * 7);
+        let img = document.getElementById("img");
+        img.src = imgArray[imgNum];
+      }
+    </script>
+  </body>
+</html>
