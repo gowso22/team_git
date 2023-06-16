@@ -5,24 +5,28 @@
 </head>
 <body>
     <img 
-    src="./gowso_img/p_1.jpg"
+    src="./4_img/p_1.jpg"
     id = "showImg" 
     width="500px" 
     height="500px" />
     <div>
-        <button onclick="prev()">이전</button>
+        <button id = "prev_btn">이전</button>
         <span id = "pageNum">현재 페이지 번호</span>
-        <button onclick="next()">다음</button>
+        <button id = "next_btn">이후</button>
     </div>
     <script>
         const showImg = document.getElementById("showImg");
         const pageNum = document.getElementById("pageNum");
+        const prev_btn = document.getElementById("prev_btn");
+        const next_btn = document.getElementById("next_btn");
+        
         const images = ["p_1.jpg", "p_2.png", "p_3.jpg", "p_4.jpg", "p_5.jpg"];
         let index = 0;
         
         pageNum.innerHTML = ` ${index+1} / ${images.length}`
        
-        function prev(){
+
+        prev_btn.addEventListener("click", () => {
             if(index === 0){
                 index = images.length-1;
             }else{
@@ -30,10 +34,10 @@
             }
             const imgName = images[index];
             console.log(imgName);
-            showImg.src = `./gowso_img/${imgName}`
+            showImg.src = `./4_img/${imgName}`
             pageNum.innerHTML = ` ${index+1} / ${images.length}`
-        }
-        function next(){
+        })
+        next_btn.addEventListener("click", () => {
             if(index === images.length-1){
                 index = 0;
             }else{
@@ -41,9 +45,13 @@
             }
             const imgName = images[index];
             console.log(imgName);
-            showImg.src = `./gowso_img/${imgName}`;
-            pageNum.innerHTML = ` ${index+1} / ${images.length}`
-        }
+            showImg.src = `./4_img/${imgName}`;
+            pageNum.innerHTML = ` ${index+1} / ${images.length}`;
+        })
+
+        
+        
+    </script>
 
         
         
