@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <img src="./deswaq_img/jk.jpg" style="width: 1000 px; height: 1000px;" id="Image" onclick="clickImg()">
+  <script>
+    let images =[
+      "./deswaq_img/jk.jpg",
+      "./deswaq_img/jk2.jpg",
+      "./deswaq_img/jk3.jpg",
+      "./deswaq_img/bk.jpg",
+      "./deswaq_img/mh.jpg",
+      "./deswaq_img/sk.jpg",
+      "./deswaq_img/sk2.jpg",
+    ]
+
+    function clickImg(){
+      let image = document.getElementById("Image");
+      let random = Math.floor(Math.random() * images.length);
+      image.src = images[random];
+    }
+  </script>
+
+</body>
+</html>
