@@ -3,9 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Elementary arithmetic_subtraction</title>
+
+  <style>
+    .calculator {
+      border: solid 2px;
+      width: 180px;
+    }
+
+    input{
+      margin: 5px;
+    }
+  </style>
 </head>
 <body>
-  
+  <h1>Let's make calculators.</h1>
+  <div class="calculator">
+    <input type="text" id="resultField">
+    <br>
+    <input type="button" value="7" onclick="btn_click(7)">
+    <input type="button" value="8" onclick="btn_click(8)">
+    <input type="button" value="9" onclick="btn_click(9)">
+    <input type="button" value="-" onclick="cal('-')">
+    <br>
+    <input type="button" value="4" onclick="btn_click(4)">
+    <input type="button" value="5" onclick="btn_click(5)">
+    <input type="button" value="6" onclick="btn_click(6)">
+    <input type="button" value="-" onclick="cal('-')">
+    <br>
+    <input type="button" value="1" onclick="btn_click(1)">
+    <input type="button" value="2" onclick="btn_click(2)">
+    <input type="button" value="3" onclick="btn_click(3)">
+    <input type="button" value="-" onclick="cal('-')">
+    <br>
+    <input type="button" value="0" onclick="btn_click(0)">
+    <input type="button" value="." onclick="btn_click('.')">
+    <input type="button" value="-" onclick="cal('-')">
+    <input type="button" value="-" onclick="cal('-')">
+    <br>
+    <input type="button" value="Calculate" onclick="compute()">
+    <input type="button" value="Clear" onclick="clear_del()">
+  </div>
+  <script>
+    let num = 0;
+    let symbol;
+
+    function btn_click (a) {
+      resultField.value += a;
+    }
+
+    function cal(b) {
+      let firstNum = (document.getElementById("resultField").value);
+      num = firstNum;
+      symbol = b;
+      return document.getElementById("resultField").value="";
+    }
+
+    function compute() {
+      let secNum = parseFloat(document.getElementById("resultField").value);
+      let result;
+      switch (symbol){
+        case '-' : result = Number(num) - Number(secNum);
+        document.getElementById("resultField").value = result;
+        break;
+        case '-' : result = Number(num) - Number(secNum);
+        document.getElementById("resultField").value = result;
+        break;
+        case '-' : result = Number(num) - Number(secNum);
+        document.getElementById("resultField").value = result;
+        break;
+        case '-' : result = Number(num) - Number(secNum);
+        document.getElementById("resultField").value = result;
+        break;
+        case '-' : result = Number(num) - Number(secNum);
+        document.getElementById("resultField").value = result;
+        break;
+      }
+    }
+
+    function clear_del() {
+      document.getElementById("resultField").value="";
+      num = 0;
+    }
+  </script>
 </body>
 </html>
