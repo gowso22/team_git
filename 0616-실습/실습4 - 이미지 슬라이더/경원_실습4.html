@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container{
+      width: 300px;
+      height: 500px;
+      margin: 0 auto;
+      position: relative;
+      left: 0;
+    }
+    #imgWrap{
+      width: 1500px;
+      display: flex;
+      transition: left 0.3s ease-in-out;
+    }
+    img{
+      width: 300px;
+    }
+
+    .btn{
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      font-size: 16px;
+      background-color: white;
+      color: black;
+      text-align: center;
+    }
+    .prev ,.next{
+      top: 200px;
+      cursor: pointer;
+    }
+    .next{
+      right: 0;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="imgWrap">
+      <img src="./deswaq_img/1.jpg">
+      <img src="./deswaq_img/2.jpg">
+      <img src="./deswaq_img/3.jpg">
+      <img src="./deswaq_img/4.jpg">
+      <img src="./deswaq_img/5.jpg">
+      <button class="btn prev" onclick="prev()">이전</button>
+      <button class="btn next" onclick="next()">다음</button>
+    </div>
+  </div>
+
+  <script>
+     let imgIndex = 0;
+     const images = document.querySelectorAll('#imgWrap img');
+     const prevBtn = document.querySelector('.prev');
+     const nextBtn = document.querySelector('.next');
+
+     function showImage(index) {
+      images.forEach((image, idx) => {
+        if (idx === index) {
+          image.style.display = 'block'; 
+        } else {
+          image.style.display = 'none';
+        }
+        // 현재 이미지 요소랑 이미지요소의 인덱스가 일치하면 속성block으로 이미지가 보이게 한다. 그렇지 않으면 none처리로 숨김
+      });
+    }
+
+ 
+
+     function prev (){
+      imgIndex--;
+        if(imgIndex < 0){
+          imgIndex = images.length-1; // 맨 마지막으로 이동
+        }
+        showImage(imgIndex);
+     }
+
+     function next(){
+      imgIndex++;
+      if(imgIndex >= images.length){
+        imgIndex = 0;
+      }
+      showImage(imgIndex);
+     }
+
+     prevBtn.addEventListener('click', prev);
+
+     nextBtn.addEventListener('click', next);
+
+     showImage(imgIndex); // 초기 이미지 표시
+  </script>
+</body>
+</html>
