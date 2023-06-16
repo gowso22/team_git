@@ -6,12 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <img
-      id="img"
-      src="img/전지현.png"
-      width="500px"
-      onclick="changeImg()"
-    />
+    <img id="randomImg" src="img/전지현.png" width="500px" />
     <script>
       let imgArray = [
         "img/구교환.jpeg",
@@ -24,11 +19,13 @@
         "img/천우희.jpeg",
       ];
 
-      function changeImg() {
-        let imgNum = Math.round(Math.random() * 7);
-        let img = document.getElementById("img");
-        img.src = imgArray[imgNum];
+      function getRandomImage() {
+        let randomImg = document.getElementById("randomImg");
+        let imgIndex = Math.floor(Math.random() * imgArray.length);
+        // let imgNum = Math.round(Math.random() * 7);
+        randomImg.src = imgArray[imgIndex];
       }
+      document.addEventListener("click", getRandomImage);
     </script>
   </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      img {
+        width: 300px;
+        vertical-align: middle;
+        margin: 1.5em;
+      }
+      button {
+        background-color: darkblue;
+        color: ivory;
+        border: none;
+        border-radius: 5px;
+
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <button id="prev" onclick="prevBtn()"><</button>
+  <img id="img" src="img/hellokitty.png" />
+  <button id="next" onclick="nextBtn()">></button>
+  <body>
+    <script>
+      let img = document.getElementById("img");
+
+      let imgNum = 1;
+      let imgArray = [
+        "img/팀장님.jpg",
+        "img/변경원님.jpg",
+        "img/hellokitty.png",
+        "img/박재형.jpg",
+      ];
+
+      function prevBtn() {
+        if (imgNum) {
+          if (imgNum == 1) return;
+          i--;
+        }
+        function nextBtn() {
+        if (imgNum) {
+          if (imgNum == 3) return;
+          i++;
+        }
+
+        img.src = imgArray[imgNum];
+      }
+    </script>
+  </body>
+</html>
