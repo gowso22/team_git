@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class = "product-list">
+            <div class = "product">
+                <h3>사과</h3>
+                <p>1000원</p>
+                <button class = "add-to-cart">
+                    장바구니 추가
+                </button>
+            </div>
+            <div class = "product">
+                <h3>바나나</h3>
+                <p>1500원</p>
+                <button class = "add-to-cart">
+                    장바구니 추가
+                </button>
+            </div>
+        </section>
+        <section class = "cart">
+            <h1>장바구니</h1>
+            <ul class = "cart-items">
+
+            </ul>
+        </section>
+    </main>
+    
+    <script>
+        // 장바구니 추가버튼을 가져옴
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+        // 카트리스트를 가져옴
+        const cartItemList = document.querySelector(".cart-items");
+        console.log(cartItemList);
+        console.log(addToCartButtons);
+
+        addToCartButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                // previousElementSibling >> 이전 태그에 접근
+                const productName = button.previousElementSibling.previousElementSibling.textContent;
+                const productPrice = button.previousElementSibling.textContent;
+
+                addToCart(productName, productPrice)
+            });
+        });
+
+
+        function addToCart(name, price){
+            // li태그를 추가할 수 있도록 createElement 사용
+            const cartItem = document.createElement("li");
+            cartItem.textContent = `${name} - ${price}`;
+            // ul 태그 밑에 li 태그를 추가할 수 있도록 appendChild 사용
+            cartItemList.appendChild(cartItem);
+        }
+
+
+
+    </script>
+</body>
+</html>

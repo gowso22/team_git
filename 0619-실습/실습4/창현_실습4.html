@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>할 일 목록</h1>
+      </header>
+      <main>
+        <form id="task-form">
+          <input type="text" id="task-input" placeholder="할 일을 입력하세요" />
+          <button type="submit">추가</button>
+        </form>
+        <ul id="task-list">
+         
+        </ul>
+      </main>
+      <script>
+            const taskForm = document.getElementById("task-form");
+            const taskInput = document.getElementById("task-input");
+            const taskList = document.getElementById("task-list");
+
+            taskForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const task = taskInput.value;
+            // input 태그안에 value 값이 있다면 
+            // 할일 목록을 추가
+            // 추가 후 input 태그는 공백처리
+            if (task) {
+                addTask(task);
+                taskInput.value = "";
+            }
+            });
+
+            // 삭제 버튼 클릭시
+            // parentElement 부모 요소 삭제하도록 함
+            taskList.addEventListener("click", (e) => {
+            if (e.target.tagName === "BUTTON") {
+                deleteTask(e.target.parentElement);
+            }
+            });
+
+            function addTask(task) {
+            const taskItem = document.createElement("li");
+            taskItem.classList.add("task-item");
+            taskItem.textContent = task;
+            
+            // 할일 목록 추가 시 삭제버튼 생성
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "삭제";
+
+            taskItem.appendChild(deleteButton);
+            taskList.appendChild(taskItem);
+            }
+
+            function deleteTask(taskItem) {
+            taskList.removeChild(taskItem);
+            }
+      </script>
+</body>
+</html>
