@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    input[type="text"]{
+      width: 150px;
+      height: 25px;
+      border: 1px solid #aeaeae;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    button{
+      width: 50px;
+      height: 25px;
+      background-color: initial;
+      border: none;
+      font-family: initial;
+      background-color: green;
+      color: #FFF;
+      font-family: 'Pretendard-Regular';
+      
+    }
+
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard-Regular';
+    }
+
+
+    p{
+      margin-bottom: 10px;
+      margin-left: 5px;
+    }
+
+    body{
+      display: flex;
+      justify-content: center;
+    }
+    #wrap{
+      margin-top: 50px;
+    }
+
+    li{
+      width: 1000px;
+      height: 100px;
+      border: 1px solid #b4b4b4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <input type="text" id="titleInput" placeholder="할 일을 작성하세요">
+    <button type="submit" onclick="addTitle()">추가</button>
+    <ul id="todoList">
+      <li>
+        <p class="title">술먹기</p>
+        <button type="button" onclick="deleteTitle(this)">삭제</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const wrapContainer = document.getElementById("wrap");
+const titleInput = document.getElementById("titleInput");
+const addButton = document.querySelector("button[onclick='addTitle()']");
+const todoList = document.getElementById("todoList");
+
+addButton.addEventListener("click", addTitle);
+
+function addTitle() {
+  const title = titleInput.value;
+
+  if (!title) {
+    return; // 필수 입력이 비어 있으면 함수 종료
+  }
+
+  const listItem = document.createElement("li");
+  const titleElement = document.createElement("p");
+  const deleteButton = document.createElement("button");
+
+  titleElement.className = "title";
+  titleElement.textContent = title;
+  deleteButton.textContent = "삭제";
+  deleteButton.addEventListener("click", function() {
+    deleteTitle(this);
+  });
+
+  listItem.appendChild(titleElement);
+  listItem.appendChild(deleteButton);
+  todoList.appendChild(listItem);
+
+  titleInput.value = "";
+}
+
+function deleteTitle(button) {
+  const listItem = button.parentNode;
+  listItem.parentNode.removeChild(listItem);
+}
+
+
+  </script>
+</body>
+</html>
