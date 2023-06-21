@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 폼</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 로그인 폼 컴포넌트
+      function LoginForm() {
+        const [username, setUsername] = React.useState("");
+        const [password, setPassword] = React.useState("");
+
+        const handleUsernameChange = (event) => {
+          console.log(event);
+          setUsername(event.target.value);
+        };
+        const handlePasswordChange = (event) => {
+          setPassword(event.target.value);
+        };
+
+        const handleSubmit = (event) => {
+          event.preventDefault();
+          // 로그인 처리를 수행하거나 다른 작업을 수행할 수 있음
+          console.log("Username:", username);
+          console.log("Password:", password);
+        };
+
+        return (
+          <form onSubmit={handleSubmit}>
+            <lable>
+              Username:
+              <input
+                tpye="text"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+            </lable>
+            <br />
+            <label>
+              Password:
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </label>
+            <br />
+            <button type="submit">Log In</button>
+          </form>
+        );
+      }
+      // React 컴포넌트를 렌더링합니다.
+      ReactDOM.render(<LoginForm />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
