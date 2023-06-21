@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+     <!-- react js 사용하도록 설정 -->
+     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+     <!-- react dom : react element들을 HTML body에 둘 수 있도록 함 -->
+     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+     <!-- 바벨 사용 JSX 사용하기 위해 설정 -->
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id = "root"></div>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App(){
+        const [num1, setNum1] = React.useState(0);
+        const [num2, setNum2] = React.useState(0);
+        const [result, setResult] = React.useState(0);
+
+        const handleNum1Change = (event) => {
+          setNum1(event.target.value);
+        };
+
+        const handleNum2Change = (event) => {
+          setNum2(event.target.value);
+        };
+
+        const handleAdd = () => {
+          setResult(Number(num1) + Number(num2));
+        };
+
+        const handleSubtract = () => {
+          setResult(Number(num1) - Number(num2));
+        };
+
+        const handleMultiply = () => {
+          setResult(Number(num1) * Number(num2));
+        };
+
+        const handleDivide = () => {
+          setResult(Number(num1) / Number(num2));
+        };
+
+        return (
+          <div>
+            <h1>계산기</h1>
+            <input type="number" value={num1} onChange={handleNum1Change} />
+            <input type="number" value={num2} onChange={handleNum2Change} />
+            <button onClick={handleAdd}>+</button>
+            <button onClick={handleSubtract}>-</button>
+            <button onClick={handleMultiply}>*</button>
+            <button onClick={handleDivide}>/</button>
+            <p>결과: {result}</p>
+          </div>
+        );
+      }
+
+
+      ReactDOM.render(
+        <App/> , root
+      )
+    </script>
+</body>
+</html>

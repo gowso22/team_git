@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+     <!-- react js 사용하도록 설정 -->
+     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+     <!-- react dom : react element들을 HTML body에 둘 수 있도록 함 -->
+     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+     <!-- 바벨 사용 JSX 사용하기 위해 설정 -->
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="창현_실습1.css"/>
+    <!-- 구글 폰트 적용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/1d22b5d9e6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id = "root"></div>
+    <script type="text/babel">
+      function App(){
+      
+        return(
+        <div class = "container">
+                <header> <div>나에 대하여!</div>  <div>-About Me-</div></header>
+                <div class = "main">
+                    <div class = "aside">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            height="350px"
+                            width = "100%" 
+                            viewBox="0 0 448 512">
+                            <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                        </svg>
+               
+                         <p>
+                            <span>서창현</span>
+                            <span>徐 昌 賢 / Seo Changhyun</span>
+                        </p>
+                        <div class = "none_768_div">
+                            <p>
+                                    174 cm/ 66 kg / <span>O</span>형 / <span>오른손잡이</span>
+                            </p>
+                        </div>
+                        <div class = "show_768_div">
+                            <div>
+                                <i class="fa-solid fa-arrow-up"></i>
+                                174 cm
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-weight-scale"></i>
+                                66 kg
+                            </div>
+                            <div>
+                                <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55564/drop-of-blood-emoji-clipart-md.png" width="35px" height="35px"/>
+                                O 형
+                            </div> 
+                            <div>
+                                오른손잡이
+                                <i class="fa-solid fa-hand"></i>
+                            </div>     
+                        </div>
+                        <p>
+                            <span>경남 창원시 마산회원구</span>
+                        </p>
+                    </div>
+                    <div class = "article">
+                        <table>
+                            <tr>
+                                <td>생년월일</td>
+                                <td>1994.08</td>
+                            </tr>
+                            <tr>
+                                <td>조</td>
+                                <td> 9조 </td>
+                            </tr>
+                            <tr>
+                                <td>기술 블로그</td>
+                                <td class = "none_768_td"><a 
+                                    target="_blank"
+                                    title = "velog"
+                                    href = "https://velog.io/@gowso22">Velog</a>
+                                </td>
+                                <td class = "show_768_td"><a 
+                                    target="_blank"
+                                    title = "velog"
+                                    href = "https://velog.io/@gowso22">
+                                    <img src="https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1228368893321736193%2FOv0og7E8.jpg" width="70px" height="70px"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Github</td>
+                                <td class = "none_768_td"><a 
+                                    target="_blank"
+                                    title = "Github"
+                                    href = "https://github.com/gowso22">Github</a>
+                                </td>
+                                <td class = "show_768_td"><a 
+                                    target="_blank"
+                                    title = "Github"
+                                    href = "https://github.com/gowso22">
+                                    <i class="fa-brands fa-github"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MBTI</td>
+                                <td>ISTJ</td>
+                            </tr>
+                            <tr>
+                                <td>E-Mail</td>
+                                <td>gowso222@gmail.com</td>
+                            </tr>
+                            <tr class = "none_768">
+                                <td>취미 / 특기</td>
+                                <td> 음악 감상(youtube), 야구경기 시청 / 정보 검색</td>
+                            </tr>
+                        </table>
+                
+
+                        <div class = "title">나의 강점!</div>
+                            <ul>
+                                <li>주어진 일에 책임감을 가지고 임합니다!</li>
+                                <li>사람들과 원만하게 지내는 방향으로 관계을 이끌어감!</li>
+                            </ul>
+                            <div class = "title">프로젝트 캠프의 목표 & 한 마디!</div>
+                            <ul>
+                                <li>성실하게 프로젝트 캠프 완주! + 우수한 프로젝트 결과물</li>
+                                <li>완성도 높은 포트폴리오!</li>
+                                <li>원활한 의사소통으로 큰 트러블 없이 잘 부탁드립니다~</li>
+                            </ul>
+                    </div>
+                </div>
+                <footer>
+                    저작권 &copy; 2023 웹사이트. All rights reserved.
+                </footer>
+            </div>
+        )
+      }
+
+
+      ReactDOM.render(
+        <App/> , root
+      )
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+     <!-- react js 사용하도록 설정 -->
+     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+     <!-- react dom : react element들을 HTML body에 둘 수 있도록 함 -->
+     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+     <!-- 바벨 사용 JSX 사용하기 위해 설정 -->
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id = "root"></div>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App(){
+      
+
+        let time = new Date();
+
+        setInterval(() => {
+           time
+        }, 1000);
+       
+        return(
+            <div>
+                 <h1>{time.toLocaleTimeString()}</h1>      
+            </div>
+        )
+      }
+
+
+      ReactDOM.render(
+        <App/> , root
+      )
+    </script>
+</body>
+</html>

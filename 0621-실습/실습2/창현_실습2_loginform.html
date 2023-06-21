@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+     <!-- react js 사용하도록 설정 -->
+     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+     <!-- react dom : react element들을 HTML body에 둘 수 있도록 함 -->
+     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+     <!-- 바벨 사용 JSX 사용하기 위해 설정 -->
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id = "root"></div>
+    <script type="text/babel">
+
+      function App(){
+      
+        return(
+            <div>
+                 <form method="get" action="창현_실습2_mainpage.html">
+                    <label>사용자명: </label>
+                    <input type="text" required />
+                    <br />
+                    <label>비밀번호: </label>
+                    <input type="password" required />
+                    <br />
+                    <label>이메일: </label>
+                    <input type="email" required />
+                    <br />
+                    <label>전화번호: </label>
+                    <input type="tel" required />
+                    <br />
+                    <label>자동로그인: </label>
+                    <input type="checkbox" />
+                    <br />
+                    <input type="reset" value="초기화" />
+                    <input type="submit" value="로그인" />
+                  </form>
+                </div>
+        )
+      }
+
+
+      ReactDOM.render(
+        <App/> , root
+      )
+    </script>
+</body>
+</html>
