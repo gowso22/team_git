@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+   
+    function App() {
+    const handleSubmit = (event) => {
+    event.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
+    const username = event.target.elements.username.value;
+    const password = event.target.elements.password.value;
+    console.log("Username:", username);
+    console.log("Password:", password);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="username" placeholder="아이디를 입력하세요" required />
+        <input type="password" name="password" placeholder="비밀번호를 입력하세요" required />
+        <button type="submit">로그인</button>
+      </form>
+    </div>
+  );
+}
+
+
+    
+
+    ReactDOM.render(<App/>,root);
+  </script>
+</body>
+</html>

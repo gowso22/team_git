@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자기소개</title>
+  <link rel="stylesheet" href="실습.css">
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="wrap">
+    
+  </div>
+    <script type="text/babel">
+      const wrap = document.getElementById("wrap");
+
+      function App() {
+        return (
+          <div id="wrap">
+            <main>
+              <div className="sub">
+                <div className="se1">
+                  <h1>
+                    안녕하세요 반갑습니다<br />
+                    저는 변경원입니다
+                  </h1>
+                  <div className="img"></div>
+                </div>
+              </div>
+
+              <div className="basic">
+                <p>
+                  <strong>나이 </strong>: 00년생
+                </p>
+                <p>
+                  <strong>MBTI </strong>: ISFP
+                </p>
+                <p>
+                  <strong>취미 </strong>: 누워있기, 유튜브보기
+                </p>
+                <p>
+                  <strong>좋아하는것 </strong>: 아이돌, 콜드케이스 읽기
+                </p>
+              </div>
+
+              <div className="ideal-type">
+                <p>이상형 목록</p>
+
+                <table>
+                  <tr>
+                    <th>그룹명</th>
+                    <th>이름</th>
+                  </tr>
+                  <tr>
+                    <td>엑소</td>
+                    <td>백현</td>
+                  </tr>
+                  <tr>
+                    <td>몬스타엑스</td>
+                    <td>민혁</td>
+                  </tr>
+                  <tr>
+                    <td>배우</td>
+                    <td>송강</td>
+                  </tr>
+                  <tr>
+                    <td>방탄</td>
+                    <td>정국</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div className="future">
+                <p>미래의 나</p>
+                <p>
+                  30살의 저는 안정적인 회사에 취업해있지 않을까요?
+                  <sub>꼭 취업했으면 좋겠습니다</sub>
+                  <br />
+                  프론트엔드 개발을 하면서 야근도 해보고,,, 기타 등등
+                  <br />
+                  아마 그렇게 살고 있지 않을까싶습니다
+                </p>
+              </div>
+
+              <div className="me">
+                <p>나의 성격</p>
+                <p>
+                  저는 사람들과의 마찰을 별로 좋아하지 않고
+                  <br />
+                  모든 사람들의 의견들은 그럴 수 있지라는 생각을 가지고 삽니다
+                  <br />
+                  프로젝트도 마찰없이 잘 끝낼 수 있으면 좋겠어요
+                </p>
+              </div>
+
+              <div className="site">
+                <p>깃허브</p>
+                <a href="https://github.com/deswaq1220" target="_blank">
+                  클릭해주세요
+                </a>
+
+                <p className="tstory">티스토리</p>
+                <a href="https://deswaq.tistory.com/" target="_blank">
+                  클릭해주세요
+                </a>
+              </div>
+            </main>
+          </div>
+        );
+  }
+    ReactDOM.render(<App/>,wrap);
+    </script>
+</body>
+</html>
