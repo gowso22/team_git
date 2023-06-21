@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>간단한 계산기 만들기</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Calculator() {
+        const { useState } = React;
+        const [num1, setNum1] = useState("");
+        const [num2, setNum2] = useState("");
+        const [result, setResult] = useState("");
+
+        const handleNum1Change = (event) => {
+          setNum1(event.target.value);
+        };
+        const handleNum2Change = (event) => {
+          setNum2(event.target.value);
+        };
+
+        const handleAdd = () => {
+          setResult(Number(num1) + Number(num2));
+        };
+        const handleMinus = () => {
+          setResult(Number(num1) - Number(num2));
+        };
+        const handleMultiply = () => {
+          setResult(Number(num1) * Number(num2));
+        };
+        const handleDivide = () => {
+          setResult(Number(num1) / Number(num2));
+        };
+        return (
+          <div>
+            <input type="number" value={num1} onChange={handleNum1Change} />
+            <input type="number" value={num2} onChange={handleNum2Change} />
+            <button onClick={handleAdd}>+</button>
+            <button onClick={handleMinus}>-</button>
+            <button onClick={handleMultiply}>*</button>
+            <button onClick={handleDivide}>/</button>
+            <p>결과: {result}</p>
+          </div>
+        );
+      }
+      ReactDOM.render(<Calculator />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

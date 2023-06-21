@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실시간 시계</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Clock() {
+        const [currentTime, setCurrentTime] = React.useState(new Date());
+
+        React.useEffect(() => {
+          const timer = setInterval(() => {
+            setCurrentTime(new Date());
+          }, 1000);
+          return () => {
+            clearInterval(timer);
+          };
+        }, []);
+
+        return <h1>{currentTime.toLocaleTimeString()}</h1>;
+      }
+
+      ReactDOM.render(<Clock />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>여행지 검색 폼</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      //여기어때 여행지 검색하는 폼 만들기
+      function Search() {
+        return (
+          <div>
+            <h1>가고싶은 여행지를 검색해봐요!</h1>
+            <form
+              action="https://www.goodchoice.kr/product/result"
+              method="get"
+              target="_blank" //서버로부터 받은 응답을 새로운 윈도우나 탭에서 보여줌.
+            >
+              <label for="city">가고싶은 도시: </label>
+              <input type="text" id="city" name="keyword" />
+              <input type="submit" />
+            </form>
+            <footer>
+              <p>&copy;여기어떄</p>
+            </footer>
+          </div>
+        );
+      }
+      ReactDOM.render(<Search />, root);
+    </script>
+  </body>
+</html>
