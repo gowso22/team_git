@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Rullets</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+  <!-- Babel CDN (for JSX support) -->
+  <script src="https://unpkg.com/@babel/standalone@7.12.7/babel.min.js"></script>
+
+  <script type="text/babel">
+    function RulletImage(){
+      const images =[
+        "0621images/about time 2013.jpg",
+        "0621images/Guardians of the Galaxy vol 3 2023.jpg",
+        "0621images/The Bourne Ultimatum.jpg",
+        "0621images/The Shawshank Redemption 1994.jpg",
+        "0621images/Titanic 1997.jpg",
+      ];
+      
+      const getRulletImages = () => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+      };
+
+      return(
+        <div>
+          <h1>Random Image</h1>
+          <img
+            src={getRulletImages()}
+            onClick={getRulletImages}
+            alt="Rullet Image"
+            style={{width:"400px"}}
+          />
+        </div>
+      );
+    }
+    ReactDOM.render(<RulletImage />, document.getElementById("root"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In form</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+  <!-- Babel CDN (for JSX support) -->
+  <script src="https://unpkg.com/@babel/standalone@7.12.7/babel.min.js"></script>
+
+  <script type="text/babel">
+    function SignInForm(){  //리액트는 항상 대문자로 시작할 것 (태그명)
+      const [userName, setUserName] = React.useState("");
+      const [passWord, setPassWord] = React.useState("");
+
+      const handleUserNameChange = (event) => {
+        setUserName(event.target.value);
+      };
+      const handlePassWordChange = (event) => {
+        setPassWord(event.target.value);
+      };
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        //Sign in
+        console.log("userName:", userName);
+        console.log("passWord:", passWord);
+      }
+      return (
+        <form onSubmit = {handleSubmit}>
+          <label>
+            userName:
+            <input
+              type="text"
+              value={userName}
+              onChange={handleUserNameChange}
+            />
+          </label>
+          <br />
+          <label>
+            passWord:
+            <input 
+              type="passWord"
+              value={passWord}
+              onChange={handlePassWordChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Sign In</button>
+        </form>
+      );
+    }
+
+    ReactDOM.render(<SignInForm />, document.getElementById("root"));
+  </script>
+</body>
+</html>

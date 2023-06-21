@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image slieders</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+  <!-- Babel CDN (for JSX support) -->
+  <script src="https://unpkg.com/@babel/standalone@7.12.7/babel.min.js"></script>
+
+  <script type="text/babel">
+    function ImageSilder(){
+      const images = [
+      "0621slider/1.jpg",
+      "0621slider/2.jpg",
+      "0621slider/3.jpg",
+      ];
+
+      const [currentImageIndex, setCurrentImageIndex] =React.useState(0);
+      
+      const prevImage = () => {
+        setCurrentImageIndex((prevIndex) => {
+          if(prevIndex === 0) {
+            return images.length -1;
+          } else{
+            return prevIndex -1;
+          }
+        });
+      };
+
+      const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => {
+          if(prevIndex === images.length -1) {
+            return 0;
+          } else {
+            return prevIndex + 1;
+          }
+        });
+      };
+
+      return (
+        <div>
+          <h1>image Sliders</h1>
+          <button onClick={prevImage}>Previous</button>
+          <img
+           src={images[currentImageIndex]}
+           alt="Slider Image"
+           style={{width:"300px"}}
+          />
+          <button onClick={nextImage}>Next</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<ImageSilder />, document.getElementById("root"));
+  </script>
+</body>
+</html>

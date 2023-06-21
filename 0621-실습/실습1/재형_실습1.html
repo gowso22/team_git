@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/재형_소개.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재형 소개</title>
+  <style>
+    body {
+      background-image: url(https://i.pinimg.com/564x/0f/71/0b/0f710bb81c2ff1aff8976239c18acfd2.jpg);
+      background-repeat: no-repeat;
+    }  /* 깜빡임 효과 */
+  </style>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>저를 소개합니다.</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="https://www.google.com">홈</a></li>
+      <li><a href="https://github.com/wanttobodybuilderifbbpro">My GitHub</a></li>
+      <li><a href="https://blog.naver.com/rtfgh13456">내 블로그</a></li>
+      <li><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">문의</a></li>
+     </ul>
+  </nav>
+  <main>
+    <div id="introduce"></div>
+    <script type="text/babel">
+      const root = document.getElementById("introduce");
+      function Greeting(props){
+        return React.createElement("h2", null, `안녕하세요, ${props.name}입니다.`);
+      }
+      ReactDOM.render(React.createElement(Greeting, {name : "박재형"}), root);
+    </script>
+    <p style="color: royalblue">개발자를 목표로 공부하고 있습니다.</p>
+    <p>좋은 개발자가 되고 싶습니다.</p>
+    <p>외국계 회사에서 일하고 싶습니다. </p>
+    <p>운동하는 개발자가 되고 싶습니다. </p>
+    <img src="https://static.wanted.co.kr/images/events/1633/f85834e9.jpg" alt="개발자" width="150">
+    <a href="https://www.youtube.com/watch?v=ES8fMUodpAQ">제가 잘 기억될 동영상입니다.</a>
+  </main>
+  <form>
+    <p class="Blink">저를 잊어버리고 싶으시면 아래의 버튼을 눌러주세요!</p>
+    <input type="button" value="reset" style="background-color: aqua;"><br>
+    <p>저를 기억하고 싶으시면 아래의 버튼을 눌러주세요!</p>
+    <input type="button" value="remember"><br>
+    <p>이 페이지를 보고 난 감상문을 제출하고 싶으시면...</p>
+    <input type="button" value="submit" style="background-color: palegreen;"><br>
+  </form>
+  <footer>
+    <p style="color: black"><b>wogud1106ⓒ2023.website.All rights reserved.</b></p>
+  </footer>  
+</body>
+</html>
