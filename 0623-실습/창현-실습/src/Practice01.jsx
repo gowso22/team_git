@@ -32,7 +32,8 @@ function Practice01(){
 
     return(
         <div>
-            {logIn ? <h1>로그인 성공</h1> : 
+            <h1>실습 1</h1>
+            {logIn ? <h2>로그인 성공</h2> : 
             <form onSubmit={handleSubmit}>
                 <label>사용자명 : </label>
                 <input type="text"
