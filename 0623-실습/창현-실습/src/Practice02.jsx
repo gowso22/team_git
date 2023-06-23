@@ -38,7 +38,7 @@ function Practice02(){
                          placeholder="할 일을 추가해주세요"
                          value={todoText}
                          onChange={onTextChange}></input>
-                 <input type="submit"></input>
+                 <input type="submit" value="추가"></input>
              </form>
              <ul>
                  {todos.map((item) => (
