@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Movies from "./page/movies";
+import MovieDetails from "./page/movieDetails";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(()=> {
-    fetch(
-      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`    // api 가져오기
-    ).then((response) => response.json()
-    ).then((json) => {
-        setMovies(json.data.movies);
-        {/*console.log(json.data.movies)*/};
-    });
-}, []);
-
   return (
-    <div>
-      {movies.map(movie => (
-        <div key={movie.id}> 
-          <h2>{movie.title}</h2>
-          <img src={movie.medium_cover_image} />
-          <ul>
-            {movie.genres.map((g) => (
-              <li key={g}>{g}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Movies />}></Route>
+        <Route path="/moviedeails" element={<MovieDetails />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
