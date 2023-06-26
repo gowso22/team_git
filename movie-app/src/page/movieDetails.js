@@ -19,7 +19,24 @@ function MovieDetails() {
       });
   }, []);
 
-  return <div>{loading ? <h1>Loading...</h1> : <div>hi</div>}</div>;
+  return (
+    <div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          <h2>{movie.title}</h2>
+          <img src={movie.medium_cover_image} />
+          <ul>
+            {movie.genres.map((g) => (
+              <li key={g}>{g}</li>
+            ))}
+          </ul>
+          <p>{movie.description_intro}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default MovieDetails;

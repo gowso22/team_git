@@ -25,7 +25,7 @@ function Movies() {
         <div>
           {movies.map((movie) => (
             <div key={movie.id}>
-              <Link to={`moviedeails/:${movie.id}`}>
+              <Link to={`moviedeails/${movie.id}`}>
                 <h2>{movie.title}</h2>
                 <img src={movie.medium_cover_image} />
                 <ul>
