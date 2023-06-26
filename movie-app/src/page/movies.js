@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Movies() {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-
-  const onClick = (event) => {
-    //navigate(`//moviedeails?query=${movie.id}`);
-  };
 
   useEffect(() => {
     fetch(
@@ -28,16 +23,17 @@ function Movies() {
         <h1>Loading...</h1>
       ) : (
         <div>
-          {" "}
           {movies.map((movie) => (
             <div key={movie.id}>
-              <h2>{movie.title}</h2>
-              <img src={movie.medium_cover_image} onClick={onClick} />
-              <ul>
-                {movie.genres.map((g) => (
-                  <li key={g}>{g}</li>
-                ))}
-              </ul>
+              <Link to={`moviedeails/:${movie.id}`}>
+                <h2>{movie.title}</h2>
+                <img src={movie.medium_cover_image} />
+                <ul>
+                  {movie.genres.map((g) => (
+                    <li key={g}>{g}</li>
+                  ))}
+                </ul>
+              </Link>
             </div>
           ))}
         </div>

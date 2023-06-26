@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 function MovieDetails() {
   const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState();
 
-  const queryParams = new URLSearchParams(movies.id);
-  const query = queryParams.get("query");
-
-  const getMovies = async () => {
-    const json = await (
-      await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=??`)
-    ).json();
-    setMovies(json.data.movies);
-    setLoading(false);
-  };
+  const { id } = useParams();
 
   useEffect(() => {
-    getMovies();
+    fetch(
+      `https://yts.mx/api/v2/movie_details.json?movie_id=${id}` // api 가져오기
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        setMovie(json.data.movie);
+        setLoading(false);
+        console.log(json.data.movie);
+      });
   }, []);
-  return <div>{loading ? <h1>Loading...</h1> : <div>{query}</div>}</div>;
+
+  return <div>{loading ? <h1>Loading...</h1> : <div>hi</div>}</div>;
 }
 
 export default MovieDetails;
