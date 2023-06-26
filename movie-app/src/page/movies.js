@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import './../css/style.css'
 
 function Movies() {
   const [loading, setLoading] = useState(true);
@@ -19,12 +20,16 @@ function Movies() {
 
   return (
     <div>
+      <header>
+        <h1>Movie</h1>
+      </header>
+
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div>
+        <div id="wrap">
           {movies.map((movie) => (
-            <div key={movie.id}>
+            <div key={movie.id} className="posterWrap">
               <Link to={`moviedeails/${movie.id}`}>
                 <h2>{movie.title}</h2>
                 <img src={movie.medium_cover_image} />
@@ -38,7 +43,7 @@ function Movies() {
           ))}
         </div>
       )}
-    </div>
+      </div>
   );
 }
 
