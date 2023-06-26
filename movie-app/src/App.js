@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(()=> {
+    fetch(
+      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`    // api 가져오기
+    ).then((response) => response.json()
+    ).then((json) => {
+        setMovies(json.data.movies);
+        {/*console.log(json.data.movies)*/};
+    });
+}, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {movies.map(movie => (
+        <div key={movie.id}> 
+          <h2>{movie.title}</h2>
+          <img src={movie.medium_cover_image} />
+          <ul>
+            {movie.genres.map((g) => (
+              <li key={g}>{g}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
