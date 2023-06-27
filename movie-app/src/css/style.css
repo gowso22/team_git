@@ -2,6 +2,11 @@ ul,li{
   list-style: none;
 }
 
+a{
+  text-decoration: none;
+  color : black;
+}
+
 @font-face {
   font-family: 'NanumSquareNeo-Variable';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
@@ -10,6 +15,8 @@ ul,li{
 }
 
 body{
+  margin: 0;
+  padding: 0;
   font-family: 'NanumSquareNeo-Variable';
 }
 

@@ -32,7 +32,7 @@ function Movies() {
             <div key={movie.id} className="posterWrap">
               <Link to={`moviedeails/${movie.id}`}>
                 <h2>{movie.title}</h2>
-                <img src={movie.medium_cover_image} />
+                <img src={movie.medium_cover_image} alt="영화 포스터 이미지"/>
                 <ul>
                   {movie.genres.map((g) => (
                     <li key={g}>{g}</li>
