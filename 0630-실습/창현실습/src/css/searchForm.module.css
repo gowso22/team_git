@@ -1,0 +1,28 @@
+.searchForm{
+    display: flex;
+    justify-content: center;
+
+    gap : 10px
+}
+
+
+.inputText{
+    border: none;
+    border-bottom: 1px solid black !important;
+}
+
+.inputText:focus{
+    outline : none;
+}
+
+
+
+.submitBtn{
+    background-color: black;
+    color : white;
+    border: none;
+    border-radius: 5px;
+
+
+    cursor: pointer;
+}
