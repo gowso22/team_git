@@ -39,6 +39,7 @@ const Login = () => {
       .then((data) => {
         setUserData(data.user);
         console.log(data);
+        navigate("/cafeList");
       })
       .catch((err) => {
         console.log(err);
