@@ -23,7 +23,10 @@ const Login = () => {
       })
       .catch((error) => {
         console.log("로그인 실패", error);
-        if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+        if (
+          error.code === "auth/user-not-found" ||
+          error.code === "auth/wrong-password"
+        ) {
           setErrorMessage("없는 회원입니다.");
         } else {
           setErrorMessage("로그인에 실패했습니다.");
@@ -50,7 +53,11 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="이메일을 입력하세요" name="email" />
-        <input type="password" placeholder="비밀번호를 입력하세요" name="password" />
+        <input
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+          name="password"
+        />
         <input type="submit" value="로그인" />
       </form>
       {errorMessage && <p>{errorMessage}</p>}
@@ -59,8 +66,6 @@ const Login = () => {
       <Link to="/signin">
         <p>회원가입</p>
       </Link>
-
-      
     </>
   );
 };

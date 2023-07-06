@@ -31,7 +31,7 @@ function Signup() {
       .then((userCredential) => {
         console.log("회원가입성공");
         console.log("회원정보:", userCredential)
-        navigate("/subscribeList");
+        navigate("/cafeList");
       })
       .catch((error) => {
         if(error.code === "auth/email-already-in-use"){
