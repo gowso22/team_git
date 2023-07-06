@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CafeCard from "../CafeCard";
+import CafeInfoList from "./CafeInfoList";
 
 
 const CafeList = () => {
 
-    const [cafeInfo, setCafeInfo] = useState([]);
+  const [cafeInfo, setCafeInfo] = useState([]);
 
   const fetchInfoHandler = async () => {
 
@@ -13,10 +13,8 @@ const CafeList = () => {
       
       const data = await response.json();
 
-      
       setCafeInfo(data);
-
-    } 
+  } 
  
     console.log(cafeInfo)
 
@@ -32,7 +30,7 @@ const CafeList = () => {
 
     <ul>
         {cafeInfo.map((info)=>(
-            <CafeCard info = {info} key={info.id}/>
+            <CafeInfoList info = {info} key={info.id}/>
         ) )}
     </ul>
     <Link to = "/subscribeList">
