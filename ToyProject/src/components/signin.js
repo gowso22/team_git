@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import { signupWithEmailAndPassword } from "../fbase";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMesage] = useState("");
+  const navigate = useNavigate();
   
 
   const handleSignup = (e) => {
@@ -29,6 +31,7 @@ function Signup() {
       .then((userCredential) => {
         console.log("회원가입성공");
         console.log("회원정보:", userCredential)
+        navigate("/subscribeList");
       })
       .catch((error) => {
         if(error.code === "auth/email-already-in-use"){
