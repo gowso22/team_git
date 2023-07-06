@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CafeInfoList from "./CafeInfoList";
+import CafeInfoList from './cafeInfoList'
 
 
 const CafeList = () => {
