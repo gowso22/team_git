@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       colors:{
         // primary 
-          "Pri-50":'#EBF1FF',
-          'Pri-100':'#BFD1FF',
+          "Pri-50":'#EBF1FF',  // bgc-50 동일
+          'Pri-100':'#BFD1FF', // bgc_100 동일
           'Pri-200':'#92B1FF',
           'Pri-300':"#6691FF",
           'Pri-400':'#3A71FF',
@@ -16,15 +16,16 @@ module.exports = {
           'Pri-800':'#00247E',
           'Pri-900':'#001A5C',
           //gray
-          'Gray-50': '#FBFBFB',
-          'Gray-100': '#F4F4F4',
-          'Gray-200': '#E7E7E7',
-          'Gray-300': '#CFCFCF',
-          'Gray-400': '#AEAEAE',
+          'Gray-50': '#FBFBFB',  // bg-50 동일 
+          'Gray-100': '#F4F4F4', // bg-100 동일
+          'Gray-200': '#E7E7E7', // text-hold 동일  그림자컬러 투명도 80%
+          'Gray-300': '#CFCFCF', // bg-300 동일
+          'Gray-400': '#AEAEAE', // text-400 동일
           'Gray-500': '#808080',
-          'Gray-600': '#737373',
-          'Gray-700': '#323232',
-          'Gray-600': '#1D1D1D',
+          'Gray-600': '#808080',
+          'Gray-700': '#737373', // text-700 동일
+          'Gray-800': '#323232', 
+          'Gray-900': '#1D1D1D', // text-900 동일, dim컬러 투명도 80%
 
           //basic
           'bsblack':'#141212',
