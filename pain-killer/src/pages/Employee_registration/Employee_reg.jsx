@@ -52,7 +52,7 @@ function EmployeeRegistration() {
               className="mt-4 w-80 h-80"
             />
             <div className="flex justify-center mt-4">
-              <button className="w-80 h-12 bg-gray-100 hover:bg-Pri-500 hover:text-white text-bsblack py-3 px-3 rounded mr-4">
+              <button className="w-80 h-12 bg-Gray-100 hover:bg-Pri-500 hover:text-white text-bsblack py-3 px-3 rounded mr-4">
                 나중에 할래요
               </button>
               <button className="w-80 h-12 bg-Pri-500 hover:bg-Pri-700 text-white py-3 px-3 rounded">
@@ -76,7 +76,7 @@ function EmployeeRegistration() {
                 className={`flex items-center justify-center w-8 h-8 rounded-full ${
                   step === 1
                     ? 'bg-Pri-300 text-white'
-                    : 'bg-gray-100 text-gray-400'
+                    : 'bg-Gray-100 text-Gray-400'
                 } mr-2`}
                 onClick={() => setStep(1)}
               >
@@ -86,7 +86,7 @@ function EmployeeRegistration() {
                 className={`flex items-center justify-center w-8 h-8 rounded-full ${
                   step === 2
                     ? 'bg-Pri-300 text-white'
-                    : 'bg-gray-100 text-gray-400'
+                    : 'bg-Gray-100 text-Gray-400'
                 } mr-2`}
                 onClick={() => setStep(2)}
               >
@@ -96,7 +96,7 @@ function EmployeeRegistration() {
                 className={`flex items-center justify-center w-8 h-8 rounded-full ${
                   step === 3
                     ? 'bg-Pri-300 text-white'
-                    : 'bg-gray-100 text-gray-400'
+                    : 'bg-Gray-100 text-Gray-400'
                 } mr-2`}
                 onClick={() => setStep(3)}
               >
@@ -115,7 +115,7 @@ function EmployeeRegistration() {
                       <span className="text-Pri-500 font-normal">*</span>
                     </label>
                     <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      className="w-full px-3 py-2 border border-Gray-300 rounded"
                       type="text"
                       id="name"
                       name="name"
@@ -130,7 +130,7 @@ function EmployeeRegistration() {
                       <span className="text-Pri-500 font-normal">*</span>
                     </label>
                     <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      className="w-full px-3 py-2 border border-Gray-300 rounded"
                       type="text"
                       id="phone"
                       name="phone"
@@ -141,7 +141,7 @@ function EmployeeRegistration() {
 
                   <div className="flex justify-center">
                     <button
-                      className="w-80 bg-gray-100 hover:bg-Pri-500 hover:text-white text-gray-400  py-3 px-4 rounded"
+                      className="w-80 bg-Gray-100 hover:bg-Pri-500 hover:text-white text-Gray-400  py-3 px-4 rounded"
                       type="button"
                       onClick={handleNextStep}
                     >
@@ -168,14 +168,14 @@ function EmployeeRegistration() {
                       <span className="text-Pri-500 font-normal">*</span>
                     </label>
                     <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      className="w-full px-3 py-2 border border-Gray-300 rounded"
                       type="text"
                       id="username"
                       name="username"
                       placeholder="아이디를 입력해 주세요"
                       required
                     />
-                    <label className="block mt-2 text-xs text-gray-400 text-left">
+                    <label className="block mt-2 text-xs text-Gray-400 text-left">
                       3~15자의 영문, 숫자를 사용한 아이디를 입력해 주세요.
                     </label>
                   </div>
@@ -189,7 +189,7 @@ function EmployeeRegistration() {
                       <span className="text-Pri-500 font-normal">*</span>
                     </label>
                     <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      className="w-full px-3 py-2 border border-Gray-300 rounded"
                       type="password"
                       id="temp-password"
                       name="temp-password"
@@ -201,21 +201,21 @@ function EmployeeRegistration() {
                       alt="icon"
                       className="absolute top-10 right-4 w-6 h-6"
                     />
-                    <label className="block mt-2 text-xs text-gray-400 text-left">
+                    <label className="block mt-2 text-xs text-Gray-400 text-left">
                       4~6자리의 숫자로 구성해 주세요.
                     </label>
                   </div>
 
                   <div className="flex justify-center mt-48">
                     <button
-                      className="w-36 text-bsblack py-3 px-4 rounded border border-gray-300 mr-4"
+                      className="w-36 text-bsblack py-3 px-4 rounded border border-Gray-300 mr-4"
                       type="button"
                       onClick={handlePreviousStep}
                     >
                       뒤로
                     </button>
                     <button
-                      className="w-36 bg-gray-100 hover:bg-Pri-500 hover:text-white text-gray-400  py-3 px-4 rounded "
+                      className="w-36 bg-Gray-100 hover:bg-Pri-500 hover:text-white text-Gray-400  py-3 px-4 rounded "
                       type="button"
                       onClick={handleNextStep}
                     >
@@ -241,7 +241,7 @@ function EmployeeRegistration() {
 
                 <div className="flex-col justify-center mb-4">
                   <div
-                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-gray-300 mb-2 px-5 py-3 ${
+                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-Gray-300 mb-2 px-5 py-3 ${
                       roles.includes('일반직원')
                         ? 'bg-Pri-50 border-Pri-500 text-bsblack'
                         : 'bg-white'
@@ -262,7 +262,7 @@ function EmployeeRegistration() {
                     </p>
                   </div>
                   <div
-                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-gray-300 mb-2 px-5 py-3  ${
+                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-Gray-300 mb-2 px-5 py-3  ${
                       roles.includes('인포직원')
                         ? 'bg-Pri-50 border-Pri-500 text-bsblack'
                         : 'bg-white'
@@ -284,7 +284,7 @@ function EmployeeRegistration() {
                     </p>
                   </div>
                   <div
-                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-gray-300 mb-2 px-5 py-3 ${
+                    className={`flex flex-col items-start justify-center w-full h-16 rounded-lg border border-Gray-300 mb-2 px-5 py-3 ${
                       roles.includes('총괄매니저')
                         ? 'bg-Pri-50 border-Pri-500 text-bsblack'
                         : 'bg-white'
@@ -306,14 +306,14 @@ function EmployeeRegistration() {
 
                 <div className="flex justify-center mt-48">
                   <button
-                    className="w-36 text-bsblack py-3 px-4 rounded border border-gray-300 mr-4"
+                    className="w-36 text-bsblack py-3 px-4 rounded border border-Gray-300 mr-4"
                     type="button"
                     onClick={handlePreviousStep}
                   >
                     뒤로
                   </button>
                   <button
-                    className="w-36 bg-gray-100 hover:bg-Pri-500 hover:text-white text-gray-400  py-3 px-4 rounded"
+                    className="w-36 bg-Gray-100 hover:bg-Pri-500 hover:text-white text-Gray-400  py-3 px-4 rounded"
                     type="button"
                     onClick={handleRegistrationComplete}
                   >
