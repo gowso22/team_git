@@ -1,5 +1,7 @@
 import updateAlarm from '../assets/Graphic_Update_02_230706_250x250 1.png'
 
+
+// 업데이트 알림 표시 페이지
 const Update = () => {
     
 
