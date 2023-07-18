@@ -7,6 +7,9 @@ import RegModal from './pages/Employee_registration/Employee_modal'
 import RegModal3 from './pages/Employee_registration/Employee_modal3.jsx'
 import LoginPage from './pages/Manager_login/login.jsx'
 import ContactVerification from './pages/Manager_login/ContactVerification.jsx'
+// import ContactModal from './pages/Manager_login/ContactModal'
+import FindId from './pages/Manager_login/ContactIdCheck'
+import PwReset from './pages/Manager_login/ContactPwReset'
 
 function App() {
 
@@ -22,6 +25,10 @@ function App() {
 
         <Route path="/managerlogin" element={<LoginPage/>}></Route> {/* 관리자 로그인 */}
         <Route path="/contact" element={<ContactVerification/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
+        {/* <Route path="/contactmodal" element={<ContactModal/>}></Route> 관리자 아이디비번찾기,연락처 인증 */}
+        <Route path="/findid" element={<FindId/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
+        <Route path="/pwreset" element={<PwReset/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
+
         
 
        
