@@ -3,7 +3,7 @@ import React from 'react';
 import Out  from '../../img/Close_24px.svg'
 
 
-const RegModal = ({ onClose }) => {
+const RegModal2 = ({ onClose }) => {
   return (
     <>
     <RegModalHeader></RegModalHeader>
@@ -15,12 +15,12 @@ const RegModal = ({ onClose }) => {
           </button>
         </div>
         <div className="text-center">
-          <p className="mb-4">돌아가기</p>
-          <p>직원 등록을 완료하지 않았습니다.</p>
-          <p className="mb-6">직원 등록을 중단하시겠습니까?</p>
+          <p className="mb-4">계정 정보 전달</p>
+          <p>서비스 사용을 위해</p>
+          <p className="mb-6">계정정보 전달이 필요합니다</p>
           <div className="flex justify-center w-full">
             <button className="mr-2 bg-Gray-100 text-bs lack px-4 py-2 rounded w-full">예</button>
-            <button className="bg-Pri-500  text-bswhite px-4 py-2 rounded w-full">돌아가기</button>
+            <button className="bg-Pri-500  text-bswhite px-4 py-2 rounded w-full">지금 전달하기 </button>
           </div>
         </div>
       </div>
@@ -32,4 +32,4 @@ const RegModal = ({ onClose }) => {
 
 
 
-export default RegModal;
+export default RegModal2;
