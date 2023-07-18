@@ -39,3 +39,5 @@ function LoginTsx() {
   )
 
 }
+
+export default LoginTsx;
