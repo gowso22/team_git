@@ -1,0 +1,35 @@
+.search-bar {
+  width: 312px;
+}
+
+.banners {
+  width: 312px;
+  height: 80px;
+
+  background-color: #2d62ea;
+}
+
+.product-img {
+  background-repeat: no-repeat;
+}
+
+.card {
+  width: 312px;
+}
+.card-title {
+  color: #505050;
+}
+.card-text {
+  color: #1d1d1d;
+}
+.case-number {
+  font-family: 'Roboto', sans-serif;
+  color: #0833a0;
+}
+.icon-bg {
+  width: 40px;
+  height: 40px;
+
+  background: #f4f4f4;
+  border-radius: 50%;
+}
