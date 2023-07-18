@@ -6,8 +6,9 @@ const ContactVerification = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
-  const [verificationCodeConfirmed, setVerificationCodeConfirmed] =
-    useState(false);
+  const [verificationCodeConfirmed, setVerificationCodeConfirmed] = useState(
+    false
+  );
 
   const handleVerificationCodeRequest = () => {
     setVerificationCodeSent(true);
@@ -25,7 +26,7 @@ const ContactVerification = () => {
 
   const handleConfirm = () => {
     console.log(
-      `Name: ${name}, Phone Number: ${phoneNumber}, Verification Code: ${verificationCode}`,
+      `Name: ${name}, Phone Number: ${phoneNumber}, Verification Code: ${verificationCode}`
     );
   };
 
@@ -77,24 +78,27 @@ const ContactVerification = () => {
                     value={verificationCode}
                     placeholder="인증번호 입력"
                     onChange={(e) => setVerificationCode(e.target.value)}
+                    readOnly={verificationCodeConfirmed} // Make the input read-only when verification is confirmed
                   />
                 </div>
                 <button
-                  className="w-32 h-10 ml-2   flex items-center justify-center bg-bswhite text-bsblack rounded border border-Gray-300 hover:bg-Pri-100 hover:border-Pri-500 hover:text-Pri-500"
-                  onClick={
-                    verificationCodeSent
-                      ? handleVerificationCodeConfirm
-                      : handleConfirm
-                  }
+                  className={`w-32 h-10 ml-2   flex items-center justify-center bg-bswhite text-bsblack rounded border border-Gray-300 ${
+                    verificationCodeConfirmed ? 'opacity-50 cursor-not-allowed' : 'hover:bg-Pri-100 hover:border-Pri-500 hover:text-Pri-500'
+                  }`}
+                  onClick={handleVerificationCodeConfirm}
+                  disabled={verificationCodeConfirmed} // Disable the button when verification is confirmed
                 >
-                  {verificationCodeSent ? '인증번호 확인' : '확인'}
+                  인증번호 확인
                 </button>
               </div>
             </>
           )}
         </div>
+        {verificationCodeConfirmed && (
+          <div className="text-Gray-400 mt-2 mb-4">인증이 완료되었습니다.</div>
+        )}
         <button
-          className=" w-72 h-10 mt-60 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded"
+          className="w-72 h-10 mt-60 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded"
           onClick={handleConfirm}
         >
           확인
