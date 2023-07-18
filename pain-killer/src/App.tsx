@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'
+import LoginTsx from "./components/Login";
 /* import EmployeeReg from './pages/Employee_registration/Employee_reg'
 import InviteReg from './pages/Employee_registration/Employee_invite'
 import RegModal from './pages/Employee_registration/Employee_modal'
@@ -23,8 +24,10 @@ function App() {
         <Route path="/managerlogin" element={<LoginPage/>}></Route> {/* 관리자 로그인 */}
         <Route path="/contact" element={<ContactVerification/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
         
+        
+        {/* 직원 로그인 */}
+        <Route path="/login" element={<LoginTsx/>}/>
 
-       
       </Routes>
     </Router>
   )
