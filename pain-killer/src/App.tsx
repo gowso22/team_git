@@ -27,9 +27,8 @@ function App() {
 
         <Route path="/managerlogin" element={<LoginPage/>}></Route> {/* 관리자 로그인 */}
         <Route path="/contact" element={<ContactVerification/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
-        {/* <Route path="/contactmodal" element={<ContactModal/>}></Route> 관리자 아이디비번찾기,연락처 인증 */}
-        <Route path="/findid" element={<FindId/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
-        <Route path="/pwreset" element={<PwReset/>}></Route> {/* 관리자 아이디비번찾기,연락처 인증 */}
+        <Route path="/findid" element={<FindId/>}></Route> {/* 관리자 아이디 찾기*/}
+        <Route path="/pwreset" element={<PwReset/>}></Route> {/* 관리자 비밀번호 재설정 */}
 
         
 
