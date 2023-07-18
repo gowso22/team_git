@@ -9,7 +9,7 @@ import Mypage from './pages/mypage/mypage';
 function App() {
   return (
     <>
-      <Home />
+      {/* <Home /> */}
       <Mypage />
       {/* <Test /> */}
     </>
