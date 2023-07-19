@@ -16,6 +16,11 @@ import PwReset from './pages/Manager_login/ContactPwReset'
 function App() {
 
   return (
+    // 계속 불러올 컴포넌트는 components 폴더에
+    // 페이지 내용에 해당하는 컴포넌트는 pages 폴더에
+    
+    //  375px~400px
+
     <Router>
       <Routes>
         <Route path="/" element={<EmployeeReg/>}></Route> {/* 직원등록 */}
