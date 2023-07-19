@@ -18,7 +18,7 @@ function ChangePassword() {
 
   const handleModalConfirm = () => {
     setIsModalOpen(false);
-    window.alert("비밀번호 재설정 완료");
+    window.alert("비밀번호 재설정 완료"); //alert 창으로 옮김
   };
 
   const handleNextButton = () => {
