@@ -16,7 +16,8 @@ const MyInfoEdit = () => {
         </header>
         <div className='mt-10 mb-10 flex flex-col'>
             <p className='font-bold text-2xl'>정보 확인</p>
-            <p>정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 입력해 주세요.</p>
+            <p>정보를 안전하게 보호하기 위해 </p>
+            <p>비밀번호를 다시 한번 입력해 주세요.</p>
         </div>
         <form className='flex flex-col items-start'>
             <label >아이디</label>
