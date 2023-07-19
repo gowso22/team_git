@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import './App.css'
 import LoginTsx from "./components/Login";
 import EmployeeReg from './pages/Employee_registration/Employee_reg'
@@ -9,6 +9,8 @@ import RegModal3 from './pages/Employee_registration/Employee_modal3.jsx'
 import LoginPage from './pages/Manager_login/login.jsx'
 import ContactVerification from './pages/Manager_login/ContactVerification.jsx'
 import ChangePassword from "./components/changePassword.js";
+import SimpleLoginPage from "./pages/simple_login/simpleLogin.js";
+import UserDetailPage from "./pages/simple_login/userDetail.js";
 // import ContactModal from './pages/Manager_login/ContactModal'
 import FindId from './pages/Manager_login/ContactIdCheck'
 import PwReset from './pages/Manager_login/ContactPwReset'
@@ -20,7 +22,7 @@ function App() {
     // 페이지 내용에 해당하는 컴포넌트는 pages 폴더에
     
     //  375px~400px
-
+  
     <Router>
       <Routes>
         <Route path="/" element={<EmployeeReg/>}></Route> {/* 직원등록 */}
@@ -37,11 +39,19 @@ function App() {
 
         
 
+
+
         {/* 직원로그인 */}
         <Route path="/login" element={<LoginTsx />} />
         
         {/* 비밀번호변경 페이지 */}
         <Route path="/change" element={<ChangePassword />} />
+
+       {/*  간편로그인 페이지 */}
+       <Route path="/simple" element={<SimpleLoginPage />} />
+
+       {/* 간편로그인 후 키패드 호출 페이지 */}
+       <Route path="/udetail" element={<UserDetailPage />} />
         
       </Routes>
     </Router>
