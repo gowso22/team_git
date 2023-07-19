@@ -25,19 +25,26 @@ function LoginTsx() {
     }
   };
 
+  const isFormValid = username !== "" && pwd !== "";
+
   return (
     <React.Fragment>
       <div>
         <div>Point T</div>
-        <h4>관리자 로그인 | 직원 로그인</h4>
+        <div className="underline text-gray-500 hover:text-blue-400">관리자 로그인</div>
+        <div className="underline text-gray-500 hover:text-blue-400">직원 로그인</div>
         <form onSubmit={handleSubmit}>
-          <div>센터코드</div>
-          <input type="number" />
-          <div>아이디</div>
-          <input type="id" onChange={handleUsernameChange} />
-          <div>비밀번호</div>
-          <input type="password" onChange={handlePwdChange} />
-          <button type="submit">로그인</button>
+          <div className="">센터코드</div>
+          <input className="border border-gray-400" type="number" />
+          <div className="">아이디</div>
+          <input className="border border-gray-400" type="id" onChange={handleUsernameChange} />
+          <div className="">비밀번호</div>
+          <input className="border border-gray-400" type="password" onChange={handlePwdChange} /> <br></br>
+          <button 
+          className={`bg-gray-500/60 ${isFormValid ? "bg-blue-500" : ""}`} 
+          type="submit">
+            로그인
+          </button>
         </form>
       </div>
     </React.Fragment>
