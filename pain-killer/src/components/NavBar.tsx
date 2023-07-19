@@ -14,6 +14,8 @@ const NavBar = () =>{
         
     }
 
+    // 추후 작업
+    
     return(
         <div className="border p-2 flex justify-between">
             <img 

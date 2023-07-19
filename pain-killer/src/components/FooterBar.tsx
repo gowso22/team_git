@@ -25,7 +25,8 @@ const FooterBar = () => {
     const centerMatch = useMatch("/centerInfo");
     const mypageMatch = useMatch("/myPage");
 
-
+    // 경로만 수정해서 적용
+    
     return(
         <div className="border p-3 flex justify-between">
             {/* 홈으로 */}
