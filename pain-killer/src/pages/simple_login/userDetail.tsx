@@ -22,6 +22,7 @@ function UserDetailPage() {
   };
 
 // 센터코드와 아이디를 API로부터 가져왔다고 가정하고 변수에 저장합니다.
+// It is temporary.
 const centerCode = "ABC123";
 const userId = "user123";
 
