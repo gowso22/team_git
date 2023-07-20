@@ -30,15 +30,10 @@ function App() {
           <Route path = "/centerInfo" element={<CenterManage/>}/>
           <Route path = "/myPage" element={<Mypage/>}/>
         </Route> 
+
         {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
         <Route path='/' element={<LoginPage/>}/>
-        {/*  
-          <Route path='/scheduleInfo' element={<MyInfoEdit/>}/>
-          <Route path='/memberInfo' element={<EmployeeRegistration/>}/>
-          <Route path='/centerInfo' element={<CenterInfo/>}/>
-          <Route path='/myPage' element={<Mypage/>}/>
-          <Route path = '/schedulecheck' element = {<ScheduleCheck/>}/>
-        */}
+
       </Routes>
     </Router> 
   </div>
