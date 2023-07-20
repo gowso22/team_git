@@ -17,6 +17,12 @@ import PwReset from './pages/Manager_login/ContactPwReset'
 import FirstLogin from "./pages/Manager_login/FirstLogin";
 import Agree from "./pages/Manager_login/Agree.js";
 import TemporaryPw from "./pages/Manager_login/TemporaryPw.js";
+import StudyList from "./pages/StudyMangement/StudyList.js";
+import StudyListEndSale from "./pages/StudyMangement/StudyListEndSale.js";
+import CreateStudy from "./pages/StudyMangement/CreateStudy.js";
+import StudyDetails from "./pages/StudyMangement/StudyDetails.js";
+import GrantList from "./pages/StudyMangement/GrantList.js";
+
 function App() {
 
   return (
@@ -39,14 +45,21 @@ function App() {
         <Route path="/findid" element={<FindId/>}></Route> {/* 관리자 아이디 찾기*/}
         <Route path="/pwreset" element={<PwReset/>}></Route> {/* 관리자 비밀번호 재설정 */}
 
+        {/* 센터관리- 수강권관리>수강권리스트 */}
+        <Route path="/studylist" element={<StudyList/>}></Route>
+        <Route path="/endstudylist" element={<StudyListEndSale/>}></Route>
+        <Route path="/createstudy" element={<CreateStudy/>}></Route>
+        <Route path="/studydetail" element={<StudyDetails/>}></Route>
+        <Route path="/grant" element={<GrantList/>}></Route>
         
 
-
+ 
 
         {/* 직원로그인 */}
-        <Route path="/login" element={<LoginTsx />} />
+        <Route path="/login" element={<LoginTsx />} /> 
         <Route path="/firstlogin" element={<FirstLogin />} />
-        <Route path="/agree" element={<Agree />} />
+        <Route path="/agree" element={<Agree />} />  {/* 최초로그인*/}
+        <Route path="/temporarypw" element={<TemporaryPw />} />{/* 임시 비번 발급*/}
         
         {/* 비밀번호변경 페이지 */}
         <Route path="/change" element={<ChangePassword />} />

@@ -29,7 +29,7 @@ const NavBar = () =>{
         <>
         {menuOn ? 
             (
-                <div className='absolute bg-black opacity-90 w-5/6 h-full flex flex-col p-5 gap-7 items-start'>
+                <div className='absolute bg-black opacity-40 w-5/6 h-full flex flex-col p-5 gap-7 items-start'>
 
                     <img
                         src={BackImage}
