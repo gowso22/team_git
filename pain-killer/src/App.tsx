@@ -14,7 +14,9 @@ import UserDetailPage from "./pages/simple_login/userDetail.js";
 // import ContactModal from './pages/Manager_login/ContactModal'
 import FindId from './pages/Manager_login/ContactIdCheck'
 import PwReset from './pages/Manager_login/ContactPwReset'
-
+import FirstLogin from "./pages/Manager_login/FirstLogin";
+import Agree from "./pages/Manager_login/Agree.js";
+import TemporaryPw from "./pages/Manager_login/TemporaryPw.js";
 function App() {
 
   return (
@@ -43,6 +45,8 @@ function App() {
 
         {/* 직원로그인 */}
         <Route path="/login" element={<LoginTsx />} />
+        <Route path="/firstlogin" element={<FirstLogin />} />
+        <Route path="/agree" element={<Agree />} />
         
         {/* 비밀번호변경 페이지 */}
         <Route path="/change" element={<ChangePassword />} />
