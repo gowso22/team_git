@@ -28,7 +28,7 @@ const FooterBar = () => {
     // 경로만 수정해서 적용
     
     return(
-        <div className="border p-3 flex justify-between">
+        <div className="p-3 flex justify-between">
             {/* 홈으로 */}
             <div className='flex flex-col justify-center items-center'>
                 <Link to = "/">
