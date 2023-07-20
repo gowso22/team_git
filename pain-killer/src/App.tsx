@@ -12,7 +12,11 @@ import ChangePassword from "./components/changePassword.js";
 import SimpleLoginPage from "./pages/simple_login/simpleLogin.js";
 import UserDetailPage from "./pages/simple_login/userDetail.js";
 import MemberManagementPage from "./pages/Member_Management/memberManage.js";
-import TicketPage from "./pages/Member_Management/ticket_page.js";
+import TicketPage from "./pages/Member_Management/ticketPage.js";
+import TicketDetailPage from "./pages/Member_Management/TicketDetail.js";
+import TicketAllocationPage from "./pages/Member_Management/ticketAllocation.js";
+import EditTicketPage from "./pages/Member_Management/editTicket.js";
+
 // import ContactModal from './pages/Manager_login/ContactModal'
 /* import FindId from './pages/Manager_login/ContactIdCheck'
 import PwReset from './pages/Manager_login/ContactPwReset' */
@@ -58,8 +62,17 @@ function App() {
         {/* 회원관리 */}
         <Route path="/member" element={<MemberManagementPage />} />
 
-        {/* 수강권관리 */}
+        {/* 수강권조회 */}
         <Route path="/ticket" element={<TicketPage />} />
+
+        {/* 수강권상세 */}
+        <Route path="/tdetail" element={<TicketDetailPage />} />
+
+        {/* 수강권부여 */}
+        <Route path="/tallocate" element={<TicketAllocationPage />} />
+
+        {/* 수강권수정 */}
+        <Route path="/edit" element={<EditTicketPage />} />
         
       </Routes>
     </Router>

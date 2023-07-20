@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Link를 불러옵니다.
 
 function TicketPage() {
   const [ticketStatus, setTicketStatus] = useState("이용중/종료됨"); // 수강권 상태: 이용중 or 종료됨
@@ -8,7 +9,7 @@ function TicketPage() {
       {/* 헤더 */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>수강권</div>
-        <div>부여하기</div>
+        <Link to="/tallocate">부여하기</Link>
       </div>
 
       {/* 수강권 상태 */}
