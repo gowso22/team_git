@@ -1,9 +1,11 @@
+
 import profileEdit from '../assets/Profile edit_48px.png';
 import regCertificate from '../assets/image 28.png';
 
 const CenterInfo = () => {
 
 
+    
 
     return(
         <div className="bg-gray-200 flex flex-col items-center gap-2 p-6">
@@ -11,11 +13,11 @@ const CenterInfo = () => {
                 <span className="text-base font-bold">센터 정보</span>
             </div>
             <div className="w-full bg-white rounded-lg flex items-center justify-between px-6 py-4">
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-1'>
                     <img src={profileEdit} alt = "프로필수정"/>
-                    <span className='font-bold text-blue-600'>좋은 관절센터</span>
+                    <span className='font-bold text-[#2D62EA] text-[15px]'>좋은 관절센터</span>
                 </div>
-                <div className="bg-gray-100 rounded-lg px-2 py-1 text-xs">
+                <div className="bg-gray-100 rounded-lg px-2 py-1 text-[5px]">
                     센터 정보 수정이 필요하신가요?
                 </div>
             </div>
