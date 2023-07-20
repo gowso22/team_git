@@ -7,7 +7,7 @@ export default function ConfirmLogoutModal({ setModalShow }: PropsType) {
 
   return (
     <div className="w-full h-full fixed top-0 left-0 bg-[#000000bc]">
-      <div className="confirm-logout absolute top-1/2 left-1/2 pt-3 px-5 pb-4 bg-white rounded-[10px] border-solid border border-[#CFCFCF]">
+      <div className="confirm-logout absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] pt-3 px-5 pb-4 bg-white rounded-[10px] border-solid border border-[#CFCFCF]">
         <div className="text-right">
           <button onClick={closeModal}>
             <svg

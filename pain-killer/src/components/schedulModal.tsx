@@ -1,3 +1,5 @@
+import journalPath from '../assets/svg/journal-path.svg';
+
 export default function SchedulModal({ setSchedule }: PropsType) {
   const closeSchedulModal = () => {
     setSchedule(false);
@@ -5,11 +7,14 @@ export default function SchedulModal({ setSchedule }: PropsType) {
 
   return (
     <div className="w-full h-full fixed top-0 left-0 bg-[#000000bc]">
-      <div className="w-20 absolute top-1/2 left-1/2 bg-white">
-        <p>일정생성</p>
-        <p>일정을 생성해주세요.</p>
-        <button onClick={closeSchedulModal}>
+      <div className="w-3/4 px-6 py-5 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white rounded-[10px]">
+        <div className="mb-9 flex">
+          <div className="text-left flex-1">
+            <p className="font-extrabold text-[#1d1d1d]">일정생성</p>
+            <p className="text-xs">일정을 생성해주세요.</p>
+          </div>
           <svg
+            onClick={closeSchedulModal}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -21,12 +26,22 @@ export default function SchedulModal({ setSchedule }: PropsType) {
               fill="black"
             />
           </svg>
-        </button>
-        <div className="flex">
-          <div>
-            <p>개인수업</p>
-            <p>개인 수업 suppoting msg</p>
-            <div className="w-5 h-2 rounded-full bg-[#f4f4f4]"> </div>
+        </div>
+        <div className="flex flex-col text-left">
+          <div className="mb-2 px-4 py-5 rounded-[10px] border-solid border-[1.5px] border-[#6691ff]">
+            <p className="text-sm text-bold text-[#6691ff]">개인 수업</p>
+            <p className="text-xs text-[#505050]">개인 수업 suppoting msg</p>
+            <object className="mt-3 float-right" data={journalPath}></object>
+          </div>
+          <div className="mb-2 px-4 py-5 rounded-[10px] border-solid border-[1.5px] border-[#cfcfcf]">
+            <p className="text-sm text-bold text-[#aeaeae]">그룹 수업</p>
+            <p className="text-xs text-[#aeaeae]">그룹 수업 suppoting msg</p>
+            <object className="mt-3 float-right" data={journalPath}></object>
+          </div>
+          <div className="mb-2 px-4 py-5 rounded-[10px] border-solid border-[1.5px] border-[#cfcfcf]">
+            <p className="text-sm text-bold text-[#1d1d1d]">상담</p>
+            <p className="text-xs text-[#505050]">상담 suppoting msg</p>
+            <object className="mt-3 float-right" data={journalPath}></object>
           </div>
         </div>
       </div>

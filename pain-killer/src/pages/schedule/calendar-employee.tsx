@@ -2,12 +2,18 @@ import { useState } from 'react';
 import Dropdown from 'react-dropdown';
 import Calendar from 'react-calendar';
 import Table from '../../components/table';
+import SchedulModal from '../../components/schedulModal';
 
 import '../../assets/style/dropdown.css';
 import '../../assets/style/calendar.css';
 
 export default function CalendarEmployee(this: any) {
   const [value, onChange] = useState(new Date());
+  const [schedule, setSchedule] = useState(false);
+
+  const scheduleHandle = () => {
+    setSchedule(true);
+  };
 
   const options = ['월', '주', '일'];
   const defaultOption = options[0];
@@ -102,7 +108,10 @@ export default function CalendarEmployee(this: any) {
             </defs>
           </svg>
         </button>
-        <button className="w-12 h-8 text-white font-black bg-[#6691ff] rounded-[4px] justify-self-end">
+        <button
+          className="w-12 h-8 text-white font-black bg-[#6691ff] rounded-[4px] justify-self-end"
+          onClick={scheduleHandle}
+        >
           +
         </button>
       </div>
@@ -172,6 +181,7 @@ export default function CalendarEmployee(this: any) {
       <div className="bg-[#f4f4f4] rounded-b-lg border-x-[2px] border-b-[2px]">
         <Table columns={columns} data={data} />
       </div>
+      {schedule && <SchedulModal setSchedule={setSchedule} />}
     </>
   );
 }
