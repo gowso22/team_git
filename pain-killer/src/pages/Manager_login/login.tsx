@@ -1,7 +1,11 @@
 import React from 'react';
 import VisibilityON from '../../img/Visibility_24px.svg'; // 아이콘 이미지 경로
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
+
+
+
   return (
     <div className="flex flex-col items-center">
       <div className="my-10 font-bold text-3xl text-Pri-500">Point T</div>
@@ -35,9 +39,11 @@ const LoginPage = () => {
       </div>
       <div className="mt-24 mb-4 text-Gray-700">포인티 계정이 없으세요? | 회원가입
       </div>
-      <button className="w-64 h-10 p-2 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded">
-        로그인
-      </button>
+      <Link to = "/home">
+        <button className="w-64 h-10 p-2 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded">
+          로그인
+        </button>
+      </Link>
     </div>
   );
 };

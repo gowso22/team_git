@@ -1,6 +1,6 @@
-import BackImage from '../img/Back_24px.svg';
-import CalIcon from '../assets/Calendar_24px.svg';
-import TimeIcon from '../assets/Time_24px.svg';
+import BackImage from '../../img/Back_24px.svg';
+import CalIcon from '../../assets/Calendar_24px.svg';
+import TimeIcon from '../../assets/Time_24px.svg';
 
 
 const CraeteConsult = () => {

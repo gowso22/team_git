@@ -1,17 +1,17 @@
-import homeIcon from '../assets/home.svg';
-import homeIcon_active from '../assets/home_active.svg';
+import homeIcon from '../../assets/home.svg';
+import homeIcon_active from '../../assets/home_active.svg';
 
-import scheduleIcon from '../assets/schedule.svg';
-import scheduleIcon_active from '../assets/schedule_active.svg';
+import scheduleIcon from '../../assets/schedule.svg';
+import scheduleIcon_active from '../../assets/schedule_active.svg';
 
-import memberIcon from '../assets/member.svg';
-import memberIcon_active from '../assets/member_active.svg';
+import memberIcon from '../../assets/member.svg';
+import memberIcon_active from '../../assets/member_active.svg';
 
-import centerIcon from '../assets/center.svg';
-import centerIcon_active from '../assets/center_active.svg';
+import centerIcon from '../../assets/center.svg';
+import centerIcon_active from '../../assets/center_active.svg';
 
-import mypageIcon from '../assets/mypage.svg';
-import mypageIcon_active from '../assets/mypage_active.svg';
+import mypageIcon from '../../assets/mypage.svg';
+import mypageIcon_active from '../../assets/mypage_active.svg';
 import { Link, useMatch } from 'react-router-dom';
 
 
@@ -19,7 +19,7 @@ import { Link, useMatch } from 'react-router-dom';
 
 const FooterBar = () => {
 
-    const homeMatch = useMatch("/");
+    const homeMatch = useMatch("/home");
     const scheduleMatch = useMatch("/scheduleInfo");
     const memberMatch = useMatch("/memberInfo");
     const centerMatch = useMatch("/centerInfo");
@@ -31,7 +31,7 @@ const FooterBar = () => {
         <div className="p-3 flex justify-between">
             {/* 홈으로 */}
             <div className='flex flex-col justify-center items-center'>
-                <Link to = "/">
+                <Link to = "/home">
                     <img 
                         src={homeMatch ? homeIcon_active : homeIcon}
                         alt="홈"

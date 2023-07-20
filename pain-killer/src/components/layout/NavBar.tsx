@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import hamburgerIcon from '../assets/hamburger_button_menu_icon.svg';
-import notiIcon from '../assets/notifications.svg';
-import BackImage from '../img/Back_24px.svg';
-import { useMatch } from 'react-router-dom';
+import hamburgerIcon from '../../assets/hamburger_button_menu_icon.svg';
+import notiIcon from '../../assets/notifications.svg';
+import BackImage from '../../img/Back_24px.svg';
+import {useMatch } from 'react-router-dom';
 
 const NavBar = () =>{
 
@@ -17,7 +17,7 @@ const NavBar = () =>{
         
     }
 
-    const homeMatch = useMatch("/");
+    const homeMatch = useMatch("/home");
     const scheduleMatch = useMatch("/scheduleInfo");
     const memberMatch = useMatch("/memberInfo");
     const centerMatch = useMatch("/centerInfo");
@@ -29,7 +29,7 @@ const NavBar = () =>{
         <>
         {menuOn ? 
             (
-                <div className='absolute bg-black opacity-40 w-5/6 h-full flex flex-col p-5 gap-7 items-start'>
+                <div className='absolute bg-black opacity-90 w-[90%] h-full flex flex-col p-5 gap-7 items-start'>
 
                     <img
                         src={BackImage}

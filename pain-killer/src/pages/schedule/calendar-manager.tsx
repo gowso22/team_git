@@ -29,7 +29,7 @@ export default function CalendarManager(this: any) {
   const current_date = `${month}.${date}(${day})`;
 
   return (
-    <>
+    <div className='bg-[#F4F4F4] h-[900px] overflow-y-auto p-2'>
       <div className="mb-4 flex items-center">
         <div className="flex justify-between w-20 h-8 mr-2 px-3 py-1 text-left font-black bg-white rounded-[10px] flex-1">
           <p>
@@ -160,6 +160,6 @@ export default function CalendarManager(this: any) {
       </div>
       <div className="h-1/3 px-6 py-2 text-left bg-white rounded-b-lg"></div>
       {schedule && <SchedulModal setSchedule={setSchedule} />}
-    </>
+    </div>
   );
 }
