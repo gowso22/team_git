@@ -7,7 +7,7 @@ import Home from './pages/home/home';
 import Mypage from './pages/mypage/mypage';
 import CalendarManager from './pages/schedule/calendar-manager';
 import CalendarEmployee from './pages/schedule/calendar-employee';
-import WeekCalendar from './components/week-calendar';
+import WeeklyCalendar from './components/week-calendar';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       {/* <Mypage /> */}
       {/* <CalendarManager /> */}
       {/* <CalendarEmployee /> */}
-      <WeekCalendar />
+      <WeeklyCalendar />
       {/* <Test /> */}
     </>
   );
