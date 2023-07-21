@@ -32,7 +32,7 @@ function App() {
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
-          <Route path="/test" element={<WeekCalendar />} />
+          {/* <Route path="/test" element={<WeekCalendar />} /> */}
         </Routes>
       </Router>
     </div>
