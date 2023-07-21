@@ -13,7 +13,7 @@ import SimpleLoginPage from "./pages/simple_login/simpleLogin.js";
 import UserDetailPage from "./pages/simple_login/userDetail.js";
 import MemberManagementPage from "./pages/Member_Management/memberManage.js";
 import TicketPage from "./pages/Member_Management/ticketPage.js";
-import TicketDetailPage from "./pages/Member_Management/TicketDetail.js";
+import TicketDetailPage from "./pages/Member_Management/ticketDetail.js";
 import TicketAllocationPage from "./pages/Member_Management/ticketAllocation.js";
 import EditTicketPage from "./pages/Member_Management/editTicket.js";
 
