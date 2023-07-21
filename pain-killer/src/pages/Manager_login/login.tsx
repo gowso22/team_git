@@ -4,7 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
-  
+  const [adminLogin, setAdminLogin] = useState(true);  
+
+  const onAdminLogin = () => {
+    setAdminLogin(true);
+  }
+
+  const onEmpLogin = () =>{
+    setAdminLogin(false);
+  }
 
   const [visible, setVisible] = useState(false);
   // 비밀번호 표시여부
@@ -25,9 +33,10 @@ const LoginPage = () => {
   }
 
 
-  // 전역상태로 토큰값을 가지고 있어야 함.(상태 선언)
+  // 전역상태로 토큰값을 가지고 있어야 함.(상태 선언) 
 
-  const onLoginSubmit = (event : React.FormEvent) =>{
+  // 관리자 로그인 로직
+  const onAdminLoginSubmit = (event : React.FormEvent) =>{
     event.preventDefault();
 
     try {
@@ -47,9 +56,9 @@ const LoginPage = () => {
             
 
             if(result.accessToken !== undefined) {
-
+               // 로컬스토리지에 access토큰 값 저장
               localStorage.setItem('access_token', result.accessToken)
-             
+               // 세션스토리지에 id값 저장
               sessionStorage.setItem("id", id);
 
               alert(result.message);
@@ -69,37 +78,96 @@ const LoginPage = () => {
     } catch (error : any) {
       alert(error);
     }
-  
+  }
+
+  // 직원 로그인 로직
+  const onEmpLoginSubmit = (event : React.FormEvent) =>{
+
+    event.preventDefault();
+
+    try {
+      
+        fetch("http://223.130.161.221/api/v1/staffs/login?centerCode=2300862", {
+          method: 'POST',
+          headers: {
+            "Authorization" : `Basic ${btoa(id + ":" + pwd)}`,
+          },
+          body: JSON.stringify({
+            username: id,
+            password: pwd,
+          }),
+        }).then((response) => response.json())
+          .then((result) => {
+            if(result.accessToken !== undefined) {
+              // 로컬스토리지에 access토큰 값 저장
+              localStorage.setItem('access_token', result.accessToken)
+              // 세션스토리지에 id값 저장
+              sessionStorage.setItem("id", id);
+
+              alert(result.message);
+
+              navigate("/home");
+
+            }else{
+              alert(result.message);
+            }
+
+
+            console.log(result);
+            console.log(result.accessToken);
+            
+           }
+        )
+    } catch (error : any) {
+      alert(error);
+    }
   }
 
 
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center p-5">
 
       <div className="my-10 font-bold text-3xl text-Pri-500">Point T</div>
 
       <div className="flex justify-start w-64">
-        <div className="border-b-2 border-Pri-300 py-2 px-3 font-semibold text-Pri-300">관리자 로그인</div>
-        <div className="border-b-2 py-2 px-3 text-Gray-400 font-semibold">직원 로그인</div>
+        <div
+          onClick={onAdminLogin} 
+          className={
+            adminLogin ? 
+            "border-b-2 py-2 px-3 border-Pri-300 text-Pri-300 font-semibold " :
+            "border-b-2 py-2 px-3 text-Gray-400 font-semibold"
+            }
+          >
+            관리자 로그인
+        </div>
+        <div
+          onClick={onEmpLogin} 
+          className={
+            adminLogin ? 
+            "border-b-2 py-2 px-3 text-Gray-400 font-semibold" :
+            "border-b-2 py-2 px-3 border-Pri-300 text-Pri-300 font-semibold "
+          }>
+            직원 로그인
+        </div>
       </div>
 
       <form 
-        onSubmit={onLoginSubmit}
-        className="flex flex-col items-start w-96 mt-6">
+        onSubmit={adminLogin ? onAdminLoginSubmit : onEmpLoginSubmit}
+        className="flex flex-col items-start w-full mt-6">
 
         <div className="mb-1">아이디</div>
         <input
-          className="w-full h-8   px-4 py-2 border border-Gray-300 rounded"
+          className="w-full h-8   px-4 py-2 border border-Gray-300 rounded focus:outline-none"
           type="text"
           value={id}
           onChange={onIdChange}
         />
 
         <div className="mt-6 mb-1">비밀번호</div>
-        <div className="relative w-full"> {/* relative 클래스 추가 */}
+        <div className="flex items-center w-full border border-Gray-300 rounded">
           <input
-            className="w-full h-8   px-4 py-2 border border-Gray-300 rounded"
+            className="w-full h-8 px-4 py-2 rounded focus:outline-none"
             type={visible ? "text" : "password"}
             value={pwd}
             onChange={onPwdChage}
@@ -108,7 +176,7 @@ const LoginPage = () => {
             src={VisibilityON}
             alt="icon"
             onClick={onVisibleToggle}
-            className="absolute top-2 right-3 w-6 h-6 cursor-pointer"
+            className="w-6 h-6 cursor-pointer mx-3"
           />
         </div>
 
@@ -120,7 +188,7 @@ const LoginPage = () => {
 
         <div className='flex flex-col items-center w-full'>
           <div className="mt-24 mb-4 text-Gray-700">포인티 계정이 없으세요? | 회원가입</div>
-          <button className="w-64 h-10 p-2 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded">
+          <button className="w-full h-10 p-2 bg-Gray-100 text-Gray-400 hover:bg-Pri-500 hover:text-white rounded">
             로그인
           </button>
         </div>
