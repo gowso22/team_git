@@ -1,15 +1,76 @@
 import React, { useState } from 'react';
 import VisibilityON from '../../img/Visibility_24px.svg'; // 아이콘 이미지 경로
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+
+  
 
   const [visible, setVisible] = useState(false);
   // 비밀번호 표시여부
   const onVisibleToggle = () => {
     setVisible((prev) => !prev);
   }
+  const navigate = useNavigate();
+
+  
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const onIdChange = (event : any) => {
+    setId(event.target.value)
+  }
+  const onPwdChage = (event : any) => {
+    setPwd(event.target.value);
+  }
 
 
+  // 전역상태로 토큰값을 가지고 있어야 함.(상태 선언)
+
+  const onLoginSubmit = (event : React.FormEvent) =>{
+    event.preventDefault();
+
+    try {
+      
+        fetch("http://223.130.161.221/api/v1/admins/login", {
+          method: 'POST',
+          headers: {
+            "Authorization" : `Basic ${btoa(id + ":" + pwd)}`,
+          },
+          body: JSON.stringify({
+            username: id,
+            password: pwd,
+          }),
+        }).then((response) => response.json())
+          .then((result) => {
+
+            
+
+            if(result.accessToken !== undefined) {
+
+              localStorage.setItem('access_token', result.accessToken)
+             
+              sessionStorage.setItem("id", id);
+
+              alert(result.message);
+
+              navigate("/home");
+
+            }else{
+              alert(result.message);
+            }
+
+
+            console.log(result);
+            console.log(result.accessToken);
+            
+           }
+        )
+    } catch (error : any) {
+      alert(error);
+    }
+  
+  }
 
 
 
@@ -24,13 +85,15 @@ const LoginPage = () => {
       </div>
 
       <form 
-        
+        onSubmit={onLoginSubmit}
         className="flex flex-col items-start w-96 mt-6">
 
         <div className="mb-1">아이디</div>
         <input
           className="w-full h-8   px-4 py-2 border border-Gray-300 rounded"
           type="text"
+          value={id}
+          onChange={onIdChange}
         />
 
         <div className="mt-6 mb-1">비밀번호</div>
@@ -38,6 +101,8 @@ const LoginPage = () => {
           <input
             className="w-full h-8   px-4 py-2 border border-Gray-300 rounded"
             type={visible ? "text" : "password"}
+            value={pwd}
+            onChange={onPwdChage}
           />
           <img
             src={VisibilityON}
