@@ -2,10 +2,11 @@ import React from 'react';
 import SearchBar from '../../components/search';
 import '../../assets/style/home.css';
 import bannerImg from '../../assets/img/banner-img.png';
+//import bannerImg from '../../assets/img/banner-img.png';
 
 export default function Home() {
   return (
-    <>
+    <div className='flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto'>
       <SearchBar />
       <div className="banners text-xs my-7 pl-6 pr-4 py-px rounded-[10px] flex justify-end items-center">
         <div className="text-white text-left pr-3">
@@ -102,6 +103,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

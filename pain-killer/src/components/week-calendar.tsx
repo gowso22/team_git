@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { DayPilotCalendar } from '@daypilot/daypilot-lite-react';
-import '../assets/style/week-calendar.css';
 
 export default function WeekCalendar() {
+  const [value, setVaule] = useState(new Date());
   const [config, setConfig] = useState({
     viewType: 'Week',
     durationBarVisible: false,
@@ -10,24 +10,33 @@ export default function WeekCalendar() {
 
   const calendarRef = useRef();
 
+  const week = ['일', '월', '화', '수', '목', '금', '토'];
+  const month =
+    value.getMonth() + 1 < 10
+      ? `0${value.getMonth() + 1}`
+      : value.getMonth() + 1;
+  const date = value.getDate() < 10 ? `0${value.getDate()}` : value.getDate();
+  const day = week[value.getDay()];
+
+  const current_date = `${month}.${date}(${day})`;
+
   useEffect(() => {
     // load event data
     calendarRef.current.control.update({
-      startDate: '2023-07-20',
+      startDate: '2023-10-02',
       events: [
         {
           id: 1,
-          text: '강파이',
-          start: '2023-07-17T09:00:00',
-          end: '2023-07-17T10:00:00',
-          backColor: '#ebf1ff',
+          text: 'Event 1',
+          start: '2023-10-02T10:30:00',
+          end: '2023-10-02T13:00:00',
         },
         {
           id: 2,
-          text: '05분 상담',
-          start: '2023-07-18T09:00:00',
-          end: '2023-07-18T10:00:00',
-          backColor: '#4fb564',
+          text: 'Event 2',
+          start: '2023-10-03T09:30:00',
+          end: '2023-10-03T11:30:00',
+          backColor: '#6aa84f',
         },
         {
           id: 3,

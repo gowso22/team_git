@@ -10,7 +10,7 @@ export default function Mypage() {
   };
 
   return (
-    <>
+    <div className='bg-[#F4F4F4] p-2 h-[900px] overflow-y-auto'>
       <div className="mb-5 px-6 py-2 bg-white rounded-[10px]">
         <div className="mb-2 flex justify-between items-center">
           <div className="flex items-center">
@@ -67,6 +67,6 @@ export default function Mypage() {
         </div>
       </div>
       {logoutButton && <LogoutModal />}
-    </>
+    </div>
   );
 }
