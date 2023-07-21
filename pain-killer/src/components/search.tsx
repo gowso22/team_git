@@ -1,7 +1,7 @@
 export default function SearchBar() {
   return (
     <>
-      <form className="search-bar px-4 py-1 bg-white rounded-[10px] flex">
+      <form className="w-[20rem] px-4 py-1 bg-white rounded-[10px] flex">
         <input
           className="flex-1 placeholder:text-xs placeholder:font-normal"
           placeholder="회원/멤버 이름, 연락처로 검색하세요"
