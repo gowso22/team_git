@@ -8,6 +8,8 @@ import CalendarManager from './pages/schedule/calendar-manager';
 import MemberManage from './pages/member/MemberManage';
 import Mypage from './pages/mypage/mypage';
 import CenterManage from './pages/center/CenterManage';
+import StudyList from './pages/StudyMangement/StudyList';
+import CreateStudy from './pages/StudyMangement/CreateStudy';
 
 import WeekCalendar from './components/week-calendar';
 
@@ -28,6 +30,8 @@ function App() {
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
             <Route path="/myPage" element={<Mypage />} />
+            <Route path="/studylist" element={<StudyList />} />
+            <Route path="/create" element={<CreateStudy />} />
           </Route>
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
