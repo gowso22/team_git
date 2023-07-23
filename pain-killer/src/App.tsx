@@ -50,7 +50,7 @@ function App() {
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
 
-          {/* 박재형꺼 No reject */}
+          {/* 박재형 : 어디 둬야 할지 몰라서 여기에 두었음, 디자인만 약소하게 구현되어 있으며 아직 데이터 넣는 것은 못해봄*/}
           {/* 직원로그인 */}
           <Route path="/login" element={<LoginTsx />} />
         
