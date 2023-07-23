@@ -1,35 +1,37 @@
 import React from 'react';
 import SearchBar from '../../components/search';
-import '../../assets/style/home.css';
 import bannerImg from '../../assets/img/banner-img.png';
+//import bannerImg from '../../assets/img/banner-img.png';
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto">
       <SearchBar />
-      <div className="banners text-xs my-7 pl-6 pr-4 py-px rounded-[10px] flex justify-end items-center">
+      <div className="w-[20rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
         <div className="text-white text-left pr-3">
           <p className="font-normal">시리어스 근적외선</p>
           <p className="font-bold">대량구매 특별할인 최대 40%</p>
         </div>
         <div>
-          <img className="product-img" src={bannerImg} alt="Banner Image" />
+          <img className="bg-no-repeat" src={bannerImg} alt="Banner Image" />
         </div>
       </div>
       <div>
-        <div className="card text-left mb-4">
-          <p className="card-title mb-1 text-base font-light">나의 오늘 일정</p>
+        <div className="w-[20rem] text-left mb-4">
+          <p className="text-[#505050] mb-1 text-base font-light">
+            나의 오늘 일정
+          </p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
               <div className="flex-1 ">
-                <p className="card-text text-base/[24px] font-extrabold">
+                <p className="text-[#1d1d1d] text-base/[24px] font-extrabold">
                   총 8건의 일정
                 </p>
-                <p className="card-text text-base font-normal">
+                <p className="text-[#1d1d1d] text-base font-normal">
                   수업 7건, 상담 1건
                 </p>
               </div>
-              <div className="icon-bg px-3 py-3">
+              <div className="w-10 h-10 bg-[#f4f4f4] rounded-full px-3 py-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -44,19 +46,21 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p className="case-number text-right text-3xl ">8</p>
+            <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
+              8
+            </p>
           </div>
         </div>
-        <div className="card text-left mb-4">
-          <p className="card-title mb-1 text-base font-light">나의 회원</p>
+        <div className="w-[20rem] text-left mb-4">
+          <p className="text-[#505050] mb-1 text-base font-light">나의 회원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
               <div className="flex-1 ">
-                <p className="card-text text-base/[24px] font-extrabold">
+                <p className="text-[#1d1d1d] text-base/[24px] font-extrabold">
                   나의 회원 수
                 </p>
               </div>
-              <div className="icon-bg px-3 py-3">
+              <div className="w-10 h-10 bg-[#f4f4f4] rounded-full px-3 py-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -71,19 +75,21 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p className="case-number text-right text-3xl ">16</p>
+            <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
+              16
+            </p>
           </div>
         </div>
-        <div className="card text-left mb-4">
-          <p className="card-title mb-1 text-base font-light">전체 직원</p>
+        <div className="w-[20rem] text-left mb-4">
+          <p className="text-[#505050] mb-1 text-base font-light">전체 직원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
               <div className="flex-1 ">
-                <p className="card-text text-base/[24px] font-extrabold">
+                <p className="text-[#1d1d1d] text-base/[24px] font-extrabold">
                   전체 직원 수
                 </p>
               </div>
-              <div className="icon-bg px-3 py-3">
+              <div className="w-10 h-10 bg-[#f4f4f4] rounded-full px-3 py-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -98,10 +104,12 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p className="case-number text-right text-3xl ">80</p>
+            <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
+              80
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

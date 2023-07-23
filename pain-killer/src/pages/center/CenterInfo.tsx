@@ -1,6 +1,6 @@
 
-import profileEdit from '../assets/Profile edit_48px.png';
-import regCertificate from '../assets/image 28.png';
+import profileEdit from '../../assets/Profile edit_48px.png';
+import regCertificate from '../../assets/image 28.png';
 
 const CenterInfo = () => {
 
@@ -8,7 +8,7 @@ const CenterInfo = () => {
     
 
     return(
-        <div className="bg-gray-200 flex flex-col items-center gap-2 p-6">
+        <div className="bg-[#F4F4F4] flex flex-col items-center gap-2 p-6">
             <div className="w-full text-left">
                 <span className="text-base font-bold">센터 정보</span>
             </div>
