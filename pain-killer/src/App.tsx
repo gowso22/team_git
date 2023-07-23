@@ -10,6 +10,8 @@ import Mypage from './pages/mypage/mypage';
 import CenterManage from './pages/center/CenterManage';
 
 import WeekCalendar from './components/week-calendar';
+import EmpDetail from './pages/center/EmpDetail';
+import CreateEmp from './pages/center/CreateEmp';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
+          <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
+          <Route path = "/addemp" element={<CreateEmp/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
         </Routes>
       </Router>
