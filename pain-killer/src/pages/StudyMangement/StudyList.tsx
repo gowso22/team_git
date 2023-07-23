@@ -1,27 +1,69 @@
 import Tiket from '../../img/Tiket_ac.svg';
 import axios from 'axios';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMDQ4NDgxLCJzdWIiOiI0IiwiZXhwIjoxNjkwMDQ5MzgxfQ.llBh4rl2TCMT6vDQE-VTKL7MgqmmUfeCiDzKDn8ZMbI'
+const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTIwMTE2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTIxMDE2fQ.8PCzpF3ayXZAxeFYrXy3wpuW0Y2m8RR5Orw7HZuGdA8'
+interface Ticket {
+  id: number;
+  title: string;
+  lessonType: string;
+  granted: number;
+  defaultCount: number;
+  duration: number;
+  defaultTerm: number;
+  defaultTermUnit: string;
+}
 export default function StudyList() {
-
-  const [tickets, setTickets] = useState([]);
-
+  const [ticketData, setTicketData] = useState<Ticket[]>([]);
+  const [loading, setLoading] = useState(true);
   // API에 POST 요청으로 수강권 생성
-  axios.get('http://223.130.161.221/api/v1/tickets', {
-    headers: {
-      "Authorization": `Bearer ${TOKEN}`,
-      "Content-Type": "application/json", // JSON 형식으로 설정
+  useEffect(() => {
+    // API에 GET 요청으로 수강권 가져오기
+    axios
+      .get('http://223.130.161.221/api/v1/tickets', {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        // 수강권 생성 성공 시 처리할 코드
+        console.log('수강권 출력 완료:', response.data);
+        setTicketData(response.data.tickets); // API 응답 데이터를 ticketData 상태에 설정
+        setLoading(false);
+      })
+      .catch((error) => {
+        // 오류 처리
+        console.error('수강권 출력 오류:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  // 로딩 상태를 확인하고 로딩 중이면 "Loading..."을 렌더링
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // ticketData 상태가 배열인 경우에만 수강권 정보를 렌더링
+  if (!Array.isArray(ticketData) || ticketData.length === 0) {
+    return <div>Error: 수강권 데이터가 유효하지 않거나 데이터가 없습니다.</div>;
+  }
+
+  // 영어값을 한글로 변환하는 함수
+  function convertTermUnitToKorean(termUnit) {
+    switch (termUnit) {
+      case "MONTH":
+        return "개월";
+      case "WEEK":
+        return "주";
+      case "DAY":
+        return "일";
+      default:
+        return termUnit;
     }
-  })
-    .then((response) => {
-      // 수강권 생성 성공 시 처리할 코드
-      console.log('수강권 출력 완료:', response.data);
-    })
-    .catch((error) => {
-      // 오류 처리
-      console.error('수강권 출력 오류:', error);
-    });
+  }
+
 
 
   return (
@@ -30,7 +72,10 @@ export default function StudyList() {
       <div>
         <div className="flex justify-between items-center">
           <p className="text-Gray-800 font-extrabold text-lg mt-6">센터 수강권</p>
+          <Link to="/create">
+
           <button className="font-blod text-base mt-10 ">생성하기</button>
+          </Link>
         </div>
 
         <div className="flex justify-start mt-6 mb-4">
@@ -39,13 +84,14 @@ export default function StudyList() {
         </div>
 
         {/* 수강권 목록 렌더링 */}
-        {tickets.map((ticket) => (
-          <div key={ticket.id} className="border border-Gray-200 rounded-xl p-6 mb-3">
+        {ticketData.map((ticket) => (
+
+          <div className="border border-Gray-200 rounded-xl p-6 mb-3" key={ticket.id}>
             <div>
               <div className="flex justify-between items-end">
                 <p className="text-left truncate font-semibold">{ticket.title}</p>
                 <p className="text-right bg-Pri-50 text-xs px-2 py-1 rounded text-Pri-500">
-                  {ticket.lessonType}
+                {ticket.lessonType === 'GROUP' ? '그룹 수업' : '개인수업 - 1:1'}
                 </p>
               </div>
             </div>
@@ -58,10 +104,10 @@ export default function StudyList() {
                   <span className="text-Gray-400 mr-2">수강권 횟수</span> {ticket.defaultCount}회
                 </p>
                 <p className="text-left">
-                  <span className="text-Gray-400 mr-6">수업시간</span> {ticket.duration}분
+                  <span className="text-Gray-400 mr-6">수업시간</span> {ticket.bookableLessons[0].duration}분
                 </p>
                 <p className="text-left">
-                  <span className="text-Gray-400 mr-2">수강권 기간</span> {ticket.defaultTerm}개월
+                  <span className="text-Gray-400 mr-2">수강권 기간</span> {ticket.defaultTerm}{convertTermUnitToKorean(ticket.defaultTermUnit)}
                 </p>
               </div>
               <img src={Tiket} alt="티켓 아이콘" />

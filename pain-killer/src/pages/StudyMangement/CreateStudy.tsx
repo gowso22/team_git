@@ -2,7 +2,7 @@ import CreateStudyHeader from '../../components/CreateStudyHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMDQ0NTcyLCJzdWIiOiI0IiwiZXhwIjoxNjkwMDQ1NDcyfQ.tAMnxz0XdNiXvInjQ4AzsH-gyGA13QhWtV5OGTeLnqY'
+const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTIwMTE2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTIxMDE2fQ.8PCzpF3ayXZAxeFYrXy3wpuW0Y2m8RR5Orw7HZuGdA8'
 
 // 수강권 생성 요청 데이터의 타입
 interface NewTicketData {
@@ -52,6 +52,7 @@ export default function CreateStudy() {
       defaultTermUnit,
       dailyCountLimit
     };
+    console.log('lessontype:',lessonType)
 
     // API에 POST 요청으로 수강권 생성
     axios.post('http://223.130.161.221/api/v1/tickets', newTicketData, {
@@ -81,6 +82,8 @@ export default function CreateStudy() {
     setServiceCount((prevCount) => prevCount + 1);
   };
 
+  
+
 
   return (
     <>
@@ -100,11 +103,11 @@ export default function CreateStudy() {
           <select
             className="border p-2 w-[389px] rounded-lg"
             value={lessonType}
-            onChange={(e) => setLessonType(e.target.value)}
+            onChange={(e) => setLessonType(e.target.value)} // 변경된 부분
           >
             <option value="">선택</option>
             <option value="SINGLE">1:1 개인수업</option>
-            <option value="GRUP">그룹 수업</option>
+            <option value="GROUP">그룹 수업</option>
           </select>
         </div>
 
