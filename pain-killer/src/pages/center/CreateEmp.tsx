@@ -60,16 +60,57 @@ const CreateEmp = () => {
     }
 
 
-
+    // 연락처 중복 검증
     const onPhoneCheck = () =>{
         console.log('연락처 중복확인');
+        try {
+      
+            fetch("http://223.130.161.221/api/v1/staffs/validate/phone", {
+              method: 'POST',
+              headers: {
+                "Authorization" : `Bearer ${access_Token}`,
+                "Content-Type" : "application/json",
+              },
+              body: JSON.stringify({
+                phone : phoneNum,
+              }),
+            }).then((response) => response.json())
+              .then((result) => {
+                console.log(result)
+               }
+            )
+        } catch (error : any) {
+          alert(error);
+        }
+
         
     }
+    // 아이디 중복 검증
     const onIdCheck = () => {
         console.log('아이디 중복확인');
+        try {
+      
+            fetch("http://223.130.161.221/api/v1/staffs/validate/id", {
+              method: 'POST',
+              headers: {
+                "Authorization" : `Bearer ${access_Token}`,
+                "Content-Type" : "application/json",
+              },
+              body: JSON.stringify({
+                id : empId,
+              }),
+            }).then((response) => response.json())
+              .then((result) => {
+                console.log(result)
+               }
+            )
+        } catch (error : any) {
+          alert(error);
+        }
+
     }
 
-
+    // 직원 생성
     const onSubmit = (e : React.FormEvent) =>{
         e.preventDefault();
 
@@ -103,7 +144,6 @@ const CreateEmp = () => {
     return(
         <>
             <div>직원등록</div>
-            <div>{access_Token}</div>
             <form className="flex flex-col" onSubmit={onSubmit}>
                 <label>이름 *</label>
                 <input
@@ -117,14 +157,14 @@ const CreateEmp = () => {
                     value={phoneNum}
                     onChange={onPhoneNumChange}
                     placeholder="000-0000-0000('-'포함)"/>
-               
+                <div onClick={onPhoneCheck}>연락처 중복 확인</div>
                 <label>아이디 *</label>
                 <input
                     type="text"
                     value={empId}
                     onChange={onEmpIdChange}
                     placeholder="3~15자의 영문, 숫자를 사용하여 아이디 입력해주세요"/>
-                 
+                <div onClick={onIdCheck}>아이디 중복 확인</div> 
                 <label>비밀번호 *</label>
                 <input
                     type="text"

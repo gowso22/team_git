@@ -12,6 +12,7 @@ import CenterManage from './pages/center/CenterManage';
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
+import ModEmpInfo from './pages/center/ModEmpInfo';
 import LoginTsx from './components/Login';
 import ChangePassword from './components/changePassword';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
@@ -44,6 +45,7 @@ function App() {
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
           <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
+          <Route path = "/modemp/:userId" element={<ModEmpInfo/>}/>
           <Route path = "/addemp" element={<CreateEmp/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
