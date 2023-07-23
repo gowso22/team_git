@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import VisibilityON from '../../img/Visibility_24px.svg'; // 아이콘 이미지 경로
+import VisibilityOFF from '../../assets/Hide_password.svg';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -21,7 +22,8 @@ const LoginPage = () => {
   }
   const navigate = useNavigate();
 
-  
+  const [centerCode, setCenterCode] = useState("");
+
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
 
@@ -30,6 +32,9 @@ const LoginPage = () => {
   }
   const onPwdChage = (event : any) => {
     setPwd(event.target.value);
+  }
+  const onCodeChage = (event : any) => {
+    setCenterCode(event.target.value);
   }
 
 
@@ -87,7 +92,7 @@ const LoginPage = () => {
 
     try {
       
-        fetch("http://223.130.161.221/api/v1/staffs/login?centerCode=2300862", {
+        fetch(`http://223.130.161.221/api/v1/staffs/login?centerCode=${centerCode}`, {
           method: 'POST',
           headers: {
             "Authorization" : `Basic ${btoa(id + ":" + pwd)}`,
@@ -156,9 +161,23 @@ const LoginPage = () => {
         onSubmit={adminLogin ? onAdminLoginSubmit : onEmpLoginSubmit}
         className="flex flex-col items-start w-full mt-6">
 
-        <div className="mb-1">아이디</div>
+        {
+          !adminLogin && 
+          <>
+            <div className="mb-1">센터 코드</div>
+            <input
+              className="w-full h-8 px-4 py-2 border border-Gray-300 rounded focus:outline-none"
+              type="number"
+              value={centerCode}
+              onChange={onCodeChage}
+              placeholder='2300862'
+            />
+          </>
+        }
+
+        <div className="mt-6 mb-1">아이디</div>
         <input
-          className="w-full h-8   px-4 py-2 border border-Gray-300 rounded focus:outline-none"
+          className="w-full h-8 px-4 py-2 border border-Gray-300 rounded focus:outline-none"
           type="text"
           value={id}
           onChange={onIdChange}
@@ -173,7 +192,7 @@ const LoginPage = () => {
             onChange={onPwdChage}
           />
           <img
-            src={VisibilityON}
+            src={visible ? VisibilityON : VisibilityOFF}
             alt="icon"
             onClick={onVisibleToggle}
             className="w-6 h-6 cursor-pointer mx-3"
