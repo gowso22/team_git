@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackImage from '../../img/Back_24px.svg'
 import InfoEdit from '../../assets/Edit_24px.svg';
 
@@ -114,7 +114,9 @@ const EmpDetail = () => {
               empContent &&
               <>
                 <div>{empContent.id}</div>
-                <img src={InfoEdit} alt = "정보수정 아이콘"/> 
+                <Link to = {`/modemp/${empContent.id}`}>
+                  <img src={InfoEdit} alt = "정보수정 아이콘"/>
+                </Link> 
                 <div>{empContent.name}</div>
                 <div>{empContent.active}</div>
                 <div>{empContent.phone}</div>
