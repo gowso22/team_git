@@ -1,8 +1,9 @@
 import CreateStudyHeader from '../../components/CreateStudyHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ConfirmationModal from './ConfirmationModal'
 
-const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTIwMTE2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTIxMDE2fQ.8PCzpF3ayXZAxeFYrXy3wpuW0Y2m8RR5Orw7HZuGdA8'
+const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTI0Njg0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTI1NTg0fQ.O7wCnF041JIfrD2A7iAjBpHlrTSyRMupk8GGAp24HTg'
 
 // 수강권 생성 요청 데이터의 타입
 interface NewTicketData {
@@ -14,6 +15,7 @@ interface NewTicketData {
   defaultTerm: number;
   defaultTermUnit: string;
   dailyCountLimit: number;
+  maxServiceCount: number;
 }
 
 export default function CreateStudy() {
@@ -23,11 +25,17 @@ export default function CreateStudy() {
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState(0);
   const [defaultCount, setDefaultCount] = useState(0);
-  // const [maxServiceCount, setMaxServiceCount] = useState(0);
+  const [maxServiceCount, setMaxServiceCount] = useState(0);
   const [defaultTerm, setDefaultTerm] = useState(0);
   const [defaultTermUnit, setDefaultTermUnit] = useState('DAY');
   const [dailyCountLimit, setDailyCountLimit] = useState(0);
-  const [serviceCount, setServiceCount] = useState(0);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 모달
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
 
 
@@ -50,7 +58,8 @@ export default function CreateStudy() {
       serviceCount,
       defaultTerm,
       defaultTermUnit,
-      dailyCountLimit
+      dailyCountLimit,
+      maxServiceCount
     };
     console.log('lessontype:',lessonType)
 
@@ -64,6 +73,7 @@ export default function CreateStudy() {
       .then((response) => {
         // 수강권 생성 성공 시 처리할 코드
         console.log('수강권 생성 완료:', response.data);
+        setIsModalOpen(true);
       })
       .catch((error) => {
         // 오류 처리
@@ -74,12 +84,12 @@ export default function CreateStudy() {
 
   // 여기는 서비스 수강 카운터 입니다
   const handleDecreaseServiceCount = () => {
-    setServiceCount((prevCount) => Math.max(prevCount - 1, 0));
+    setMaxServiceCount((prevCount) => Math.max(prevCount - 1, 0));
   };
 
   const handleIncreaseServiceCount = () => {
     // 최대 횟수를 넘지 않게 해놨음
-    setServiceCount((prevCount) => prevCount + 1);
+    setMaxServiceCount((prevCount) => prevCount + 1);
   };
 
   
@@ -207,7 +217,7 @@ export default function CreateStudy() {
             >
               -
             </button>
-            <p className="border p-2 rounded-lg text-center w-72">{serviceCount}회</p>
+            <p className="border p-2 rounded-lg text-center w-72">{maxServiceCount}회</p>
             <button
               className="flex justify-center items-center border p-1 ml-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
               onClick={handleIncreaseServiceCount}
@@ -221,6 +231,9 @@ export default function CreateStudy() {
         <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40" onClick={handleCreateTicket}>
           저장
         </button>
+         {/* 모달 */}
+        {/* 모달 */}
+        {isModalOpen && <ConfirmationModal onClose={handleModalClose} />}
       </div>
     </>
   );

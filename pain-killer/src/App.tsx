@@ -10,6 +10,7 @@ import Mypage from './pages/mypage/mypage';
 import CenterManage from './pages/center/CenterManage';
 import StudyList from './pages/StudyMangement/StudyList';
 import CreateStudy from './pages/StudyMangement/CreateStudy';
+import StudyDetails from './pages/StudyMangement/StudyDetails';
 
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
           <Route path = "/addemp" element={<CreateEmp/>}/>
+          <Route path = "/studydetails/:ticketId" element={<StudyDetails/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
         </Routes>
       </Router>

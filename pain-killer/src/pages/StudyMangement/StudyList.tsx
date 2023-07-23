@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTIwMTE2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTIxMDE2fQ.8PCzpF3ayXZAxeFYrXy3wpuW0Y2m8RR5Orw7HZuGdA8'
+const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTI0Njg0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTI1NTg0fQ.O7wCnF041JIfrD2A7iAjBpHlrTSyRMupk8GGAp24HTg'
 interface Ticket {
   id: number;
   title: string;
@@ -17,6 +17,8 @@ interface Ticket {
 export default function StudyList() {
   const [ticketData, setTicketData] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState(0);
+
   // API에 POST 요청으로 수강권 생성
   useEffect(() => {
     // API에 GET 요청으로 수강권 가져오기
@@ -31,6 +33,7 @@ export default function StudyList() {
         // 수강권 생성 성공 시 처리할 코드
         console.log('수강권 출력 완료:', response.data);
         setTicketData(response.data.tickets); // API 응답 데이터를 ticketData 상태에 설정
+        setCount(response.data.tickets.filter((ticket) => ticket.lessonType === 'SINGLE').length); // 판매중인 수강권 갯수 설정
         setLoading(false);
       })
       .catch((error) => {
@@ -79,13 +82,13 @@ export default function StudyList() {
         </div>
 
         <div className="flex justify-start mt-6 mb-4">
-          <p className="py-2 px-3 font-semibold text-Pri-300 border-b-2 border-Pri-300">판매중 (3)</p>
+          <p className="py-2 px-3 font-semibold text-Pri-300 border-b-2 border-Pri-300">판매중 ({count})</p>
           <p className="py-2 px-3 font-semibold border-b-2 border-Gray-300 text-Gray-300 ">판매종료 (2)</p>
         </div>
 
         {/* 수강권 목록 렌더링 */}
         {ticketData.map((ticket) => (
-
+             <Link to={`/studydetails/${ticket.id}`} key={ticket.id}>
           <div className="border border-Gray-200 rounded-xl p-6 mb-3" key={ticket.id}>
             <div>
               <div className="flex justify-between items-end">
@@ -113,6 +116,7 @@ export default function StudyList() {
               <img src={Tiket} alt="티켓 아이콘" />
             </div>
           </div>
+            </Link>
         ))}
       </div>
     </>
