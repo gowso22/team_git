@@ -39,6 +39,8 @@ export default function CalendarEmployee(this: any) {
       remaining: '888회',
     }));
 
+  const access_Token = localStorage.getItem('access_token');
+
   return (
     <>
       <div className="mb-4 flex items-center">
