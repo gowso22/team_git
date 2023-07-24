@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import ManagerFindHeader from '../../components/ManagerFindAccount';
 
+
+//아래의 모든 코드들은 임시비밀번호 변경을 구현하기 위해 쓴 코드들입니다. 
+
 interface PwReset {
   status: number;
   type: string;
@@ -27,6 +30,7 @@ export default function PwReset(){
           'Content-Type': 'application/json',
         },
       /*   body: JSON.stringify({
+          hashKey: stirng,
           loginId: empId,
           password: pwd,
           name: empName,
@@ -62,13 +66,13 @@ export default function PwReset(){
     return <div>Failed to fetch user data.</div>;
   }
 
- const onSubmit = () =>[
+ const onSubmit = () =>{
   try {
     // 비밀번호 변경 api
   } catch (error) {
     //err
   }
- ]
+}
 
 
   return(
