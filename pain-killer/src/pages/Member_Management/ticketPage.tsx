@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Link를 불러옵니다.
+import StudyDetails from "../StudyMangement/StudyDetails";
 
 function TicketPage() {
   const [ticketStatus, setTicketStatus] = useState("이용중/종료됨"); // 수강권 상태: 이용중 or 종료됨
@@ -34,6 +35,7 @@ function TicketPage() {
       {/* 이용중/종료됨 화면 */}
       <div style={{ color: ticketStatus === "이용중" ? "blue" : "red" }}>
         {/* 이용중 또는 종료됨 상태일 때 보여질 내용 */}
+        <StudyDetails />
       </div>
     </React.Fragment>
   );

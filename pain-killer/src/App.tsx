@@ -22,6 +22,7 @@ import TicketPage from './pages/Member_Management/ticketPage';
 import TicketDetailPage from './pages/Member_Management/ticketDetail';
 import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
 import EditTicketPage from './pages/Member_Management/editTicket';
+import MyPage from './pages/mypage/myPage1';
 
 function App() {
   return (
@@ -77,6 +78,9 @@ function App() {
 
           {/* 수강권수정 */}
           <Route path="/edit" element={<EditTicketPage />} />
+
+
+          <Route path="/mPage" element={<MyPage />} />
 
         </Routes>
       </Router>
