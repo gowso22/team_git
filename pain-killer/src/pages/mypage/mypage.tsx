@@ -1,13 +1,64 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import profileEdit from '../../assets/svg/profile-edit-48px.svg';
 import LogoutModal from '../../components/logoutModal';
 
+interface MyPage {
+  name: string;
+  phone: string;
+  id: string;
+  loginId: string;
+  hashKey: string;
+  center : {
+    code: string;
+  }
+}
+
 export default function Mypage() {
   const [logoutButton, setLogoutButton] = useState(false);
+  const [userData, setUserData] = useState<MyPage>()
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const TOKEN = localStorage.getItem('access_token');
 
   const LogoutButtonHandle = () => {
     setLogoutButton(true);
   };
+
+  const fetchUserDataFromAPI = async () => {
+    try {
+      // Perform the API call using fetch or any other library (e.g., axios)
+      const response = await fetch("http://223.130.161.221/api/v1/me", {
+        method: "GET",
+        headers: {
+          // Add any required headers (e.g., authorization token) here
+          'Authorization' : `Bearer ${TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      const data = await response.json();
+      setUserData(data);
+      console.log(data);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserDataFromAPI();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
 
   return (
     <div className='bg-[#F4F4F4] p-2 h-[900px] overflow-y-auto'>
@@ -19,7 +70,7 @@ export default function Mypage() {
               className="text-xl font-extrabold text-[#2D62EA]"
               onClick={LogoutButtonHandle}
             >
-              김파이
+              {userData?.name};
             </p>
           </div>
 
@@ -36,7 +87,7 @@ export default function Mypage() {
           </p>
           <div className="flex">
             <span className="mr-1 text-sm text-[#505050]">센터코드</span>
-            <p className="text-sm font-extrabold text-[#2D62EA]">020111</p>
+            <p className="text-sm font-extrabold text-[#2D62EA]">{userData?.center.code}</p>
           </div>
         </div>
       </div>
@@ -49,21 +100,21 @@ export default function Mypage() {
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">이름 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">김파이</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.name}</p>
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">휴대폰 번호 </p>
           <p className="text-sm font-extrabold text-[#1D1D1D]">
-            010 - 1222 - ****
+            {userData?.phone};
           </p>
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">아이디 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">p0322</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.loginId}</p>
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">비밀번호 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">********</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.hashKey}</p>
         </div>
       </div>
       {logoutButton && <LogoutModal />}
