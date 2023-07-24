@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTI0Njg0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTI1NTg0fQ.O7wCnF041JIfrD2A7iAjBpHlrTSyRMupk8GGAp24HTg'
+ const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTg1ODIyLCJzdWIiOiI0IiwiZXhwIjoxNjkwMTg2NzIyfQ.30uV03AYGPv8w4D1suhWhdVLRbM3lkefxZMWqNV1A70'
 interface Ticket {
   id: number;
   title: string;
@@ -15,6 +15,7 @@ interface Ticket {
   defaultTermUnit: string;
 }
 export default function StudyList() {
+  // const access_Token = localStorage.getItem('access_token')
   const [ticketData, setTicketData] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(0);

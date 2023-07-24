@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ConfirmationModal from './ConfirmationModal'
 
-const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTI0Njg0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMTI1NTg0fQ.O7wCnF041JIfrD2A7iAjBpHlrTSyRMupk8GGAp24HTg'
 
+const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTg1ODIyLCJzdWIiOiI0IiwiZXhwIjoxNjkwMTg2NzIyfQ.30uV03AYGPv8w4D1suhWhdVLRbM3lkefxZMWqNV1A70'
 // 수강권 생성 요청 데이터의 타입
 interface NewTicketData {
   lessonType: string;
@@ -55,7 +55,7 @@ export default function CreateStudy() {
       title,
       duration,
       defaultCount,
-      serviceCount,
+      // serviceCount,
       defaultTerm,
       defaultTermUnit,
       dailyCountLimit,
