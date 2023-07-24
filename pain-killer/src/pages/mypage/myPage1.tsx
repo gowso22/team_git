@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 interface MyPage {
   name: string;
-  email: string;
+  phone: string;
+  id: string;
 }
 
 function MyPage() {
@@ -10,24 +11,28 @@ function MyPage() {
   const [isLoading, setIsLoading] = useState(true);
 
 
-  const TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTc0MDIwLCJzdWIiOiI0IiwiZXhwIjoxNjkwMTc0OTIwfQ.JfUIaZ8HEPPWSwJVn9RRnvoujCDvamp-ojb6gEFR7Ro"
+  const TOKEN = localStorage.getItem('access_token')
 
   const fetchUserDataFromAPI = async () => {
     try {
       // Perform the API call using fetch or any other library (e.g., axios)
-      const response = await fetch("http://223.130.161.221", {
+      const response = await fetch("http://223.130.161.221/api/v1/me", {
         method: "GET",
         headers: {
           // Add any required headers (e.g., authorization token) here
-          Authorization : `Bearer ${TOKEN}`,
+          'Authorization' : `Bearer ${TOKEN}`,
           'Content-Type': 'application/json',
         },
       });
+
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
+
       const data = await response.json();
-      setUserData(data.data);
+      setUserData(data);
+      console.log(data);
+
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -51,7 +56,7 @@ function MyPage() {
     <React.Fragment>
       {/* Display user data */}
       <h2>{userData.name}</h2>
-      <p>Email: {userData.email}</p>
+      <p>Phone: {userData.phone}</p>
       {/* Add other user information here */}
 
       {/* Other components or content related to the MyPage */}
