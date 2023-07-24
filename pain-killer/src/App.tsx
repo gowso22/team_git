@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import LoginPage from './pages/Manager_login/login';
 import Home from './pages/home/home';
@@ -8,15 +8,21 @@ import CalendarManager from './pages/schedule/calendar-manager';
 import MemberManage from './pages/member/MemberManage';
 import Mypage from './pages/mypage/mypage';
 import CenterManage from './pages/center/CenterManage';
-import StudyList from './pages/StudyMangement/StudyList';
-import CreateStudy from './pages/StudyMangement/CreateStudy';
 
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
 import ModEmpInfo from './pages/center/ModEmpInfo';
-import SearchResult from './components/searchResult';
-import SearchBar from './components/search';
+import LoginTsx from './components/Login';
+import ChangePassword from './components/changePassword';
+import SimpleLoginPage from './pages/simple_login/simpleLogin';
+import UserDetailPage from './pages/simple_login/userDetail';
+import MemberManagementPage from './pages/Member_Management/memberManage';
+import TicketPage from './pages/Member_Management/ticketPage';
+import TicketDetailPage from './pages/Member_Management/ticketDetail';
+import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
+import EditTicketPage from './pages/Member_Management/editTicket';
+import MyPage from './pages/mypage/myPage1';
 
 function App() {
   return (
@@ -35,18 +41,47 @@ function App() {
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
             <Route path="/myPage" element={<Mypage />} />
-            <Route path="/studylist" element={<StudyList />} />
-            <Route path="/create" element={<CreateStudy />} />
           </Route>
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
-          <Route path="/centerInfo/:userId" element={<EmpDetail />} />
-          <Route path="/modemp/:userId" element={<ModEmpInfo />} />
-          <Route path="/addemp" element={<CreateEmp />} />
+          <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
+          <Route path = "/modemp/:userId" element={<ModEmpInfo/>}/>
+          <Route path = "/addemp" element={<CreateEmp/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
-          {/* <Route path="/search" element={<SearchBar />} /> */}
-          <Route path="/search" element={<SearchResult />} />
+
+
+          {/* 박재형 : 어디 둬야 할지 몰라서 여기에 두었음, 디자인만 약소하게 구현되어 있으며 아직 데이터 넣는 것은 못해봄*/}
+          {/* 직원로그인 */}
+          <Route path="/login" element={<LoginTsx />} />
+        
+          {/* 비밀번호변경 페이지 */}
+          <Route path="/change" element={<ChangePassword />} />
+
+          {/*  간편로그인 페이지 */}
+          <Route path="/simple" element={<SimpleLoginPage />} />
+
+          {/* 간편로그인 후 키패드 호출 페이지 */}
+          <Route path="/udetail" element={<UserDetailPage />} />
+
+          {/* 회원관리 */}
+          <Route path="/member" element={<MemberManagementPage />} />
+
+          {/* 수강권조회 */}
+          <Route path="/ticket" element={<TicketPage />} />
+
+          {/* 수강권상세 */}
+          <Route path="/tdetail" element={<TicketDetailPage />} />
+
+          {/* 수강권부여 */}
+          <Route path="/tallocate" element={<TicketAllocationPage />} />
+
+          {/* 수강권수정 */}
+          <Route path="/edit" element={<EditTicketPage />} />
+
+
+          <Route path="/mPage" element={<MyPage />} />
+
         </Routes>
       </Router>
     </div>
