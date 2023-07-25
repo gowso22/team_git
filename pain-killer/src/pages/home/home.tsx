@@ -1,9 +1,56 @@
-import React from 'react';
+import React , { useState, useEffect }from 'react';
 import SearchBar from '../../components/search';
 import bannerImg from '../../assets/img/banner-img.png';
 //import bannerImg from '../../assets/img/banner-img.png';
 
+interface Home {
+  
+    center: {
+        staffCount: string
+        memberCount: string,
+        myMemberCount: string
+    },
+    mySchedule: {
+        counselingCount: string,
+        lessonCount: string
+    },
+    message: string
+
+}
+
+
 export default function Home() {
+
+  const [usedata, setUsedata] = useState<Home>()
+
+
+  const access_Token = localStorage.getItem('access_Token')
+
+
+  const inquiryAPI = async () => {
+    try{
+      const ref = await fetch("http://223.130.161.221/api/v1/me/summary", {
+        method: "GET",
+        headers: {
+          'Authorization' : `Bearer ${access_Token}`,
+          'Content-Type' : 'application/json'
+        },
+      });
+
+     const data = await ref.json();
+     setUsedata(data);
+     console.log(data);
+
+    } catch (error) {
+      console.log("Error fetching user data.", error);
+    }
+  }
+
+  useEffect(() => {
+    inquiryAPI();
+  }, []);
+
+
   return (
     <div className="flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto">
       <SearchBar />
@@ -47,7 +94,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              8
+              {usedata?.mySchedule.counselingCount}, {usedata?.mySchedule.lessonCount};
             </p>
           </div>
         </div>
@@ -76,7 +123,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              16
+              {usedata?.center.myMemberCount};
             </p>
           </div>
         </div>
@@ -105,7 +152,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              80
+              {usedata?.center.memberCount};
             </p>
           </div>
         </div>
