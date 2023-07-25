@@ -25,6 +25,7 @@ import EditTicketPage from './pages/Member_Management/editTicket';
 import MyPage from './pages/mypage/myPage1';
 import ChangePwd from './pages/Manager_login/ChangePwd';
 import ModRole from './pages/center/ModRole';
+import SearchResult from './components/searchResult';
 
 function App() {
   return (
@@ -47,20 +48,21 @@ function App() {
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
-          <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
-          <Route path = "/modemp/:userId" element={<ModEmpInfo/>}/>
-          <Route path = "/addemp" element={<CreateEmp/>}/>
-          <Route path = "/changepwd" element={<ChangePwd/>}/>
+          <Route path="/centerInfo/:userId" element={<EmpDetail />} />
+          <Route path="/modemp/:userId" element={<ModEmpInfo />} />
+          <Route path="/addemp" element={<CreateEmp />} />
+          <Route path="/changepwd" element={<ChangePwd />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
           {/* 직원 역할 수정 페이지*/}
-          <Route path='/modrole/:userId' element = {<ModRole/>}/>
+          <Route path="/modrole/:userId" element={<ModRole />} />
 
+          <Route path="/search" element={<SearchResult />} />
 
           {/* 박재형 : 어디 둬야 할지 몰라서 여기에 두었음, 디자인만 약소하게 구현되어 있으며 아직 데이터 넣는 것은 못해봄*/}
           {/* 직원로그인 */}
           <Route path="/login" element={<LoginTsx />} />
-        
+
           {/* 비밀번호변경 페이지 */}
           <Route path="/change" element={<ChangePassword />} />
 
@@ -85,9 +87,7 @@ function App() {
           {/* 수강권수정 */}
           <Route path="/edit" element={<EditTicketPage />} />
 
-
           <Route path="/mPage" element={<MyPage />} />
-
         </Routes>
       </Router>
     </div>
