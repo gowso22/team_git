@@ -24,6 +24,7 @@ import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
 import EditTicketPage from './pages/Member_Management/editTicket';
 import MyPage from './pages/mypage/myPage1';
 import ChangePwd from './pages/Manager_login/ChangePwd';
+import ModRole from './pages/center/ModRole';
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
           <Route path = "/addemp" element={<CreateEmp/>}/>
           <Route path = "/changepwd" element={<ChangePwd/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
+
+          {/* 직원 역할 수정 페이지*/}
+          <Route path='/modrole/:userId' element = {<ModRole/>}/>
 
 
           {/* 박재형 : 어디 둬야 할지 몰라서 여기에 두었음, 디자인만 약소하게 구현되어 있으며 아직 데이터 넣는 것은 못해봄*/}
