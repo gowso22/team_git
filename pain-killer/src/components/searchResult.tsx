@@ -52,6 +52,7 @@ export default function SearchResult() {
       )
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           setEmpMembersList(result.members);
           setEmpUserList(result.users);
         });
@@ -66,8 +67,9 @@ export default function SearchResult() {
 
   return (
     <>
+      {/* 삼항연산자 부분 and연산자(&&)로 수정  */}
       {empMembersList
-        ? empMembersList.map((emp) => (
+        && empMembersList.map((emp) => (
             <div
               key={emp.id}
               className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
@@ -82,7 +84,9 @@ export default function SearchResult() {
               </div>
             </div>
           ))
-        : empUserList?.map((emp) => (
+        }
+
+        {empUserList && empUserList.map((emp) => (
             <div
               key={emp.id}
               className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
