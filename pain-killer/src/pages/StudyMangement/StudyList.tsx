@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
- const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTg1ODIyLCJzdWIiOiI0IiwiZXhwIjoxNjkwMTg2NzIyfQ.30uV03AYGPv8w4D1suhWhdVLRbM3lkefxZMWqNV1A70'
+ const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAyNDYxLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzAzMzYxfQ.6kX-3U17wjHtuGsi2mx_HCPR1zHDg-0e096_QSWokwE'
 interface Ticket {
   id: number;
   title: string;

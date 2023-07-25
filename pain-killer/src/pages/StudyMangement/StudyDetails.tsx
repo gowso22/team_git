@@ -1,10 +1,11 @@
 import StudyDetailsHeader from '../../components/StudyDetailsHeader';
+import StudyModifying from '../../components/StudyModifying';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMTg1ODIyLCJzdWIiOiI0IiwiZXhwIjoxNjkwMTg2NzIyfQ.30uV03AYGPv8w4D1suhWhdVLRbM3lkefxZMWqNV1A70';
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAyNDYxLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzAzMzYxfQ.6kX-3U17wjHtuGsi2mx_HCPR1zHDg-0e096_QSWokwE';
 
 interface Ticket {
   id: number;
@@ -29,10 +30,33 @@ export default function StudyDetails() {
   // const access_Token = localStorage.get
   const [ticketData, setTicketData] = useState<Ticket | null>(null); // 수강권 데이터를 저장할 상태 변수
   const { ticketId } = useParams<{ ticketId: string }>(); // URL 파라미터에서 ticketId를 가져옴
-  const [loading, setLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState(false);
+  const [lessonType, setLessonType] = useState(''); // 수업 유형
+  const [title, setTitle] = useState(''); // 수강권명
+  const [duration, setDuration] = useState(0); // 시간
+  const [defaultCount, setDefaultCount] = useState(0); // 기본 횟수
+  const [defaultTerm, setDefaultTerm] = useState(0); // 수강권 기간
+  const [defaultTermUnit, setDefaultTermUnit] = useState('DAY'); // 수강권 기간 단위
+  const [isExhausted1, setIsExhausted1] = useState(false); // 슬라이드 토글 버튼1
+  const [isExhausted2, setIsExhausted2] = useState(false); // 슬라이드 토글 버튼2
+  const [maxServiceCount, setMaxServiceCount] = useState(0); // 서비스 횟수
+  const [loading, setLoading] = useState(false);
 
-  const [editedTitle, setEditedTitle] = useState(ticketData?.title || ''); // 상세 정보 편집 모드에서 수정할 필드에 대한 상태 변수
+
+
+  const handleToggle1 = () => {
+    setIsExhausted1(!isExhausted1);
+  };
+
+  const handleToggle2 = () => {
+    setIsExhausted2(!isExhausted2);
+  };
+
+  // 상세 정보 수정 취소 시 호출되는 함수
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
 
   // 상세 정보 편집 모드로 변경하는 함수
   const handleEditTicket = () => {
@@ -41,19 +65,61 @@ export default function StudyDetails() {
 
   // 상세 정보 수정 폼 제출 시 호출되는 함수
   const handleSaveEdit = (e) => {
-    e.preventDefault(); // 폼 제출을 막음
-    // 서버로 수정된 데이터 전송하는 로직 추가 (axios.put 또는 axios.post 등)
-    console.log('수정된 title:', editedTitle);
-  
-    // ticketData의 title을 수정된 값인 editedTitle로 업데이트
-    setTicketData((prevTicketData) => ({
-      ...prevTicketData,
-      title: editedTitle,
-    }));
-  
+    // e.preventDefault(); // 폼 제출을 막음
+    console.log('수정된 title:', title);
+    console.log('수정된 defaultCount:', defaultCount);
+    console.log('수정된 titldefaultTerme:', defaultTerm);
+    defaultCount,
+      defaultTerm,
+      defaultTermUnit,
+      maxServiceCount
+
+    // 수정된 정보를 서버로 보내는 API 요청
+    axios
+      .put(
+        `http://223.130.161.221/api/v1/tickets/${ticketData.id}`,
+        {
+          title: title,
+          defaultCount: defaultCount,
+          defaultTerm: defaultTerm,
+          defaultTermUnit: defaultTermUnit,
+          // 필요한 다른 수정된 필드들도 추가해주세요.
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((response) => {
+        console.log('수강권 수정이 성공적으로 저장되었습니다.');
+        // 서버로부터 응답을 받아 추가적인 처리가 필요한 경우 이곳에 작성해주세요.
+      })
+      .catch((error) => {
+        console.error('수강권 수정 저장 오류:', error);
+        // 오류 처리가 필요한 경우 이곳에 작성해주세요.
+      });
+
+
     // 수정 후 편집 모드 종료
     setIsEditing(false);
   };
+
+  useEffect(() => {
+    fetchTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
+  }, [ticketId]);
+  useEffect(() => {
+    // 수정 모드일 때만 실행
+    if (isEditing && ticketData) {
+      setLessonType(ticketData.lessonType);
+      setTitle(ticketData.title);
+      setDuration(ticketData.bookableLessons[0].duration); // 수정된 부분
+      setDefaultCount(ticketData.defaultCount);
+      setDefaultTerm(ticketData.defaultTerm);
+      setDefaultTermUnit(ticketData.defaultTermUnit);
+    }
+  }, [isEditing, ticketData]);
 
   // 서버로부터 ticket 데이터를 가져오는 함수
   const fetchTicketData = async () => {
@@ -115,48 +181,159 @@ export default function StudyDetails() {
     }
   }
 
+  const handleDecreaseServiceCount = () => {
+    setMaxServiceCount((prevCount) => Math.max(prevCount - 1, 0));
+  };
+
+  const handleIncreaseServiceCount = () => {
+    setMaxServiceCount((prevCount) => prevCount + 1);
+  };
+
   return (
     <>
-      <StudyDetailsHeader
-        onDeleteTicket={handleDeleteTicket}
-        onEditTicket={handleEditTicket}
-      />
+
+      {isEditing ? (
+        <StudyModifying isEditing={isEditing} onEdit={handleCancelEdit} />
+      ) : (
+        <StudyDetailsHeader
+          onDeleteTicket={handleDeleteTicket}
+          onEditTicket={handleEditTicket}
+        />
+      )}
       {/* ticketData가 로드되기 전에 렌더링 되는 상황을 처리 */}
       {ticketData ? (
         <>
           {isEditing ? (
-            // 편집 모드일 때, 상세 정보 수정 뷰 표시
-            <div className="text-left p-5">
-              {/* 상세 정보 수정 폼 */}
-              <h2 className="text-2xl font-extrabold">수강권 수정</h2>
-              {/* 여기에 상세 정보 수정 폼을 추가하면 됩니다. */}
-              <form onSubmit={handleSaveEdit}>
-                {/* <div className="flex items-start flex-col mb-4">
-                  <p className="mb-1">수업유형*</p>
-                  <select
-                    className="border p-2 w-[389px] rounded-lg"
-                    value={lessonType}
-                    onChange={(e) => setLessonType(e.target.value)}
-                  >
-                    <option value="">선택</option>
-                    <option value="SINGLE">1:1 개인수업</option>
-                    <option value="GROUP">그룹 수업</option>
-                  </select>
-                </div> */}
+            <div>
+              
+              <div className="flex items-start flex-col mb-4">
+                <p className=" mb-1">수업유형*</p>
+                <select
+                  className="border p-2 w-[389px] rounded-lg"
+                  value={lessonType}
+                  onChange={(e) => setLessonType(e.target.value)} // 변경된 부분
+                  disabled={isEditing} // 편집 모드일때 비활성화
+                >
+                  <option value="">선택</option>
+                  <option value="SINGLE">1:1 개인수업</option>
+                  <option value="GROUP">그룹 수업</option>
+                </select>
+              </div>
 
-                <div className="flex items-start flex-col mb-4">
-                  <p className="mr-2">수강권명*</p>
+              {/* 수강권명 입력 */}
+              <div className="flex items-start flex-col mb-4">
+                <p className="mr-2">수강권명*</p>
+                <input
+                  type="text"
+                  className="border p-2 w-[389px] rounded-lg"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  disabled={isEditing} // 편집 모드일때 비활성화
+                />
+              </div>
+
+              {/* 수강권기간 입력 */}
+              <div className="flex items-start flex-col mb-4">
+                <p className="mr-2">수강권기간*</p>
+                <div className="flex justify-between">
                   <input
-                    type="text"
-                    className="border p-2 w-[389px] rounded-lg"
-                    value={editedTitle}
-                    onChange={(e) => setEditedTitle(e.target.value)}
+                    type="number"
+                    className="border p-2 rounded-lg mr-1 w-[245px]"
+                    value={defaultTerm}
+                    onChange={(e) => setDefaultTerm(e.target.value)}
+                  // disabled={isEditing} // 편집 모드일때 비활성화
                   />
+                  <select
+                    className="border p-2  rounded-lg w-36"
+                    value={defaultTermUnit}
+                    onChange={(e) => setDefaultTermUnit(e.target.value)}
+                  >
+                    <option value="MONTH">개월</option>
+                    <option value="WEEK">주</option>
+                    <option value="DAY">일</option>
+                  </select>
                 </div>
+              </div>
+              {/* 슬라이드 토글 버튼 */}
+              <div className="flex justify-end  mb-4">
+                <p className='text-Gray-400 text-sm'>소진시 까지</p>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    onChange={handleToggle1} // handleToggle1을 연결
+                    checked={isExhausted1} // isExhausted1을 연결
+                    disabled={isEditing} // 편집 모드일때 비활성화
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
 
-                <button type="submit">저장</button>
-                <button onClick={() => setIsEditing(false)}>취소</button>
-              </form>
+              {/* 시간 */}
+              <div className="flex items-start flex-col mb-4">
+                <p className="mr-2">시간*</p>
+                <div className="flex items-end">
+                  <input type="number" className="border p-2 rounded-lg w-[372px]"
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
+                    disabled={isEditing} // 편집 모드일때 비활성화
+                  />
+                  <span className="ml-2">분</span>
+                </div>
+              </div>
+
+              {/* 기본횟수 */}
+              <div className="flex items-start flex-col mb-4">
+                <p className="mr-2">기본횟수*</p>
+                <div>
+                  <input type="number" className="border p-2 rounded-lg w-[372px]"
+                    value={defaultCount}
+                    onChange={(e) => setDefaultCount(e.target.value)}
+                  />
+                  <span className="ml-2">회</span>
+                </div>
+              </div>
+              {/* 슬라이드 토글 버튼 */}
+              <div className="flex justify-end  mb-4">
+                <p className='text-Gray-400 text-sm'>무제한 </p>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    onChange={handleToggle2} // handleToggle2를 연결
+                    checked={isExhausted2} // isExhausted2를 연결
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+
+
+
+              {/* 서비스횟수 */}
+              <div className="flex items-start flex-col mb-4">
+                <p className="mr-2">서비스횟수</p>
+                <p className="text-xs mb-1">
+                  서비스로 부여되는 횟수를 제한하여 설정할 수 있습니다
+                </p>
+                <div className="flex justify-between w-[389px]">
+                  <button
+                    className="flex justify-center items-center border p-1 mr-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
+                    onClick={handleDecreaseServiceCount}
+                  >
+                    -
+                  </button>
+                  <p className="border p-2 rounded-lg text-center w-72">{maxServiceCount}회</p>
+                  <button
+                    className="flex justify-center items-center border p-1 ml-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
+                    onClick={handleIncreaseServiceCount}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* 저장버튼 */}
+              <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40" onClick={handleSaveEdit}>
+                저장
+              </button>
             </div>
           ) : (
             // 편집 모드가 아닐 때, 기본 상세 정보 뷰 표시
