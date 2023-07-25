@@ -23,7 +23,7 @@ const CenterManage = () => {
       fetch('http://223.130.161.221/api/v1/staffs', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${access_Token}`,
+          "Authorization": `Bearer ${access_Token}`,
         },
       })
         .then((response) => response.json())
