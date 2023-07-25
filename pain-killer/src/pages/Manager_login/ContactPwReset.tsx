@@ -66,9 +66,12 @@ export default function PwReset(){
     return <div>Failed to fetch user data.</div>;
   }
 
- const onSubmit = () =>{
+ const onSubmit = async () =>{
   try {
     // 비밀번호 변경 api
+    const pwdchange = await fetch("http://223.130.161.221/api/v1/me/change-password", {
+      
+    })
   } catch (error) {
     //err
   }
@@ -87,27 +90,23 @@ export default function PwReset(){
         </div>
         <div className="space-y-2 text-left mb-2">
           {/* 왼쪽 정렬된 새로운 비밀번호 */}
-          <label className="block font-medium">새로운 비밀번호</label>
+          <label className="block font-medium">변경할 비밀번호(pin)</label>
           <input
             type="password"
             className="block w-full rounded border px-4 py-3 border-Gray-300 "
           />
-          <p className='text-xs text-Gray-400'>8~15자의 영문 소문자, 숫자, 기호(!,@,#,$,%,^,&,*) 조합</p>
+          <p className='text-xs text-Gray-400'>4~6자리 숫자로 구성해 주세요.</p>
         </div>
         <div className="space-y-2 text-left mb-52">
           {/* 왼쪽 정렬된 비밀번호 확인 */}
-          <label className="block font-medium">비밀번호 확인</label>
+          <label className="block font-medium">변경할 비밀번호 재확인 (pin)</label>
           <input
             type="password"
             className="block w-full rounded border px-4 py-3 border-Gray-300"
-            placeholder="비밀번호를 다시 입력하세요."
           />
         </div>
         {/* 취소와 확인 버튼 */}
         <div className="flex justify-between mt-52">
-          <button className="mr-2 bg-gray-100 text-Gray-900 py-2 px-4 rounded w-full">
-            취소
-          </button>
           <button className="hover:bg-Pri-500 hover:text-white bg-gray-100  text-Gray-400 py-3 px-4 rounded  w-full">
             확인
           </button>
