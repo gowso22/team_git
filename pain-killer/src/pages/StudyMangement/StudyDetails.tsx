@@ -3,9 +3,10 @@ import StudyModifying from '../../components/StudyModifying';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import ModifiyingModal from './ModifiyingModal';
 
 const TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAyNDYxLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzAzMzYxfQ.6kX-3U17wjHtuGsi2mx_HCPR1zHDg-0e096_QSWokwE';
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzOTU3LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0ODU3fQ.lTmMkqRG9TKwCG9zTAy2uRVP3zNwtKEXtrDv1uDfAaE';
 
 interface Ticket {
   id: number;
@@ -41,6 +42,7 @@ export default function StudyDetails() {
   const [isExhausted2, setIsExhausted2] = useState(false); // 슬라이드 토글 버튼2
   const [maxServiceCount, setMaxServiceCount] = useState(0); // 서비스 횟수
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
 
 
@@ -104,6 +106,12 @@ export default function StudyDetails() {
 
     // 수정 후 편집 모드 종료
     setIsEditing(false);
+    // 모달 보여주기
+    setShowModal(true);
+  };
+  
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -395,6 +403,8 @@ export default function StudyDetails() {
         // ticketData가 로드되기 전에 로딩 중인 상태를 표시
         <p>Loading...</p>
       )}
+
+  <ModifiyingModal isOpen={showModal} onClose={closeModal} />
     </>
   );
 }

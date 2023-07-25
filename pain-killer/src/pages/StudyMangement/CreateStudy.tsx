@@ -4,7 +4,7 @@ import axios from 'axios';
 import ConfirmationModal from './ConfirmationModal'
 
 
-const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAxMzIzLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzAyMjIzfQ.PqaMrC21Z84hs8dF1NjggWihomUV0hQyJ7h2QoqB6rI'
+const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzNDM0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0MzM0fQ.Ody8LLj9K4H_1P3fMrrj92iWJ5HNBI9Daam2pxuI5GE'
 // 수강권 생성 요청 데이터의 타입
 interface NewTicketData {
   lessonType: string;
