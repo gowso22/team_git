@@ -23,6 +23,7 @@ import TicketDetailPage from './pages/Member_Management/ticketDetail';
 import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
 import EditTicketPage from './pages/Member_Management/editTicket';
 import MyPage from './pages/mypage/myPage1';
+import ChangePwd from './pages/Manager_login/ChangePwd';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
           <Route path = "/modemp/:userId" element={<ModEmpInfo/>}/>
           <Route path = "/addemp" element={<CreateEmp/>}/>
+          <Route path = "/changepwd" element={<ChangePwd/>}/>
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
 
