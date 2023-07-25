@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 
  // 역할 리스트
  const roleList = [
-    {id : 'basic', name : '기본', role_value : '1'},
-    {id : 'info', name : '인포 직원', role_value : '7'},
-    {id : 'manager', name : '총괄', role_value : '8'}
+    {id : 'info', name : '인포 직원', role_value : 7},
+    {id : 'manager', name : '총괄', role_value : 8}
 ];
 
 const CreateEmp = () => {
@@ -33,28 +32,28 @@ const CreateEmp = () => {
     }
 
     // 한 가지 이상의 역할을 담을 체크리스트 
-    const [checkList, setCheckList] = useState<string[]>([]);
+    const [checkList, setCheckList] = useState<number[]>([]);
     // 체크여부
     const [isChecked, setIsChecked] = useState(false);
 
 
     // 체크박스 처리 로직
-    const checkedRoleHandler = (value:string, isChecked: boolean) => {
+    const checkedRoleHandler = (value:number, isChecked: boolean) => {
         if(isChecked){
             setCheckList((prev) => [...prev, value])
 
             return;
         }
 
-        if(!isChecked && checkList.includes(value)){
-            setCheckList(checkList.filter((role) => role !== value));
+        if(!isChecked && checkList?.includes(value)){
+            setCheckList(checkList?.filter((role) => role !== value));
 
             return;
         }
 
         return;
     };
-    const oncheckHandler = (e : React.ChangeEvent<HTMLInputElement>, value : string) => {
+    const oncheckHandler = (e : React.ChangeEvent<HTMLInputElement>, value : number) => {
         setIsChecked(!isChecked);
         checkedRoleHandler(value, e.target.checked);
     }
@@ -173,6 +172,10 @@ const CreateEmp = () => {
                     placeholder="비밀번호를 입력해주세요"/>
                 <span>역할 선택(중복선택가능)</span>
 
+                <div>
+                  <input id ='basic' type="checkbox" checked readOnly/>
+                  <label htmlFor="basic">기본</label>
+                </div>
                 {
                     roleList.map((role) => (
                         <div key={role.id}>
