@@ -24,6 +24,7 @@ import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
 import EditTicketPage from './pages/Member_Management/editTicket';
 import MyPage from './pages/mypage/myPage1';
 import PwReset from './pages/Manager_login/ContactPwReset';
+import ChangePwd from './pages/Manager_login/ChangePwd';
 
 function App() {
   return (
@@ -85,6 +86,8 @@ function App() {
 
 
           <Route path="/dPassword" element={<PwReset />} />
+
+          <Route path="/cPassword" element={<ChangePwd />} />
 
         </Routes>
       </Router>

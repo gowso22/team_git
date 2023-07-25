@@ -26,7 +26,7 @@ export default function PwReset(){
   const gethashKeyOthers = async () => {
     try {
       // Perform the API call using fetch or any other library (e.g., axios)
-      const response = await fetch("http://223.130.161.221/api/v1/me/", {
+      const response = await fetch("http://223.130.161.221/api/v1/me", {
         method: "GET",
         headers: {
           // Add any required headers (e.g., authorization token) here
