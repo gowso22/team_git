@@ -1,4 +1,4 @@
-import NavBar from '../../components/NavBar';
+import NavBar from '../../components/layout/NavBar';
 import Tiket from '../../img/Tiket_ac.svg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
