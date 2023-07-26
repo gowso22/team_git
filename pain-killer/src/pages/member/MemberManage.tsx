@@ -1,7 +1,38 @@
+import { useState, useEffect } from 'react';
 import SearchBar from "../../components/search";
 import Profile from '../../assets/Profile_24px.svg'
 
+interface Member {
+  totalCount: 0,
+  members: []
+}
+
 const MemberManage = () => {
+  const [data, setsData] = useState<Member>()
+  const access_token = localStorage.getItem('access_token')
+
+  const manage_member = async () => {
+    try{
+      const response = await fetch("http://223.130.161.221/api/v1/me/members", {
+        method: "GET",
+        headers: {
+          'Authorization' : `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
+        },
+      });
+
+      const info = await response.json();
+      setsData(info);
+      console.log(info);
+    } catch(error){
+      console.log('error fetching user data', error);
+    }
+  }
+
+  useEffect(() => {
+    manage_member();
+  }, []);
+
 
     return(
        <div className="flex flex-col items-center bg-[#F4F4F4] p-2 gap-3 h-[900px] overflow-y-auto">
