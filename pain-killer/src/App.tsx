@@ -15,6 +15,21 @@ import StudyDetails from './pages/StudyMangement/StudyDetails';
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
+import GrantList from './pages/StudyMangement/GrantList';
+import ModEmpInfo from './pages/center/ModEmpInfo';
+import LoginTsx from './components/Login';
+import ChangePassword from './components/changePassword';
+import SimpleLoginPage from './pages/simple_login/simpleLogin';
+import UserDetailPage from './pages/simple_login/userDetail';
+import MemberManagementPage from './pages/Member_Management/memberManage';
+import TicketPage from './pages/Member_Management/ticketPage';
+import TicketDetailPage from './pages/Member_Management/ticketDetail';
+import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
+import EditTicketPage from './pages/Member_Management/editTicket';
+import MyPage from './pages/mypage/myPage1';
+import ChangePwd from './pages/Manager_login/ChangePwd';
+import ModRole from './pages/center/ModRole';
+import SearchResult from './components/searchResult';
 
 function App() {
   return (
@@ -35,6 +50,7 @@ function App() {
             <Route path="/myPage" element={<Mypage />} />
             <Route path="/studylist" element={<StudyList />} />
             <Route path="/create" element={<CreateStudy />} />
+            <Route path="/grant-list/:ticketId" element={<GrantList/>} />
           </Route>
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
