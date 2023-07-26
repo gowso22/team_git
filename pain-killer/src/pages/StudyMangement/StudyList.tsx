@@ -2,6 +2,7 @@ import Tiket from '../../img/Tiket_ac.svg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import instance from '../../api/axios_interceptors';
 
 
  const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzYzMzU2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzY0MjU2fQ.ikEG_GpWNusJ7NES1XWU-daKJMArvNYqmTFkIqWHZ0w'
@@ -71,14 +72,12 @@ export default function StudyList() {
   // ticketId 값을 매개변수로 
   const fetchTicketsById = async (ticketId: number) => {
     try {
-      const response = await axios.get(`http://223.130.161.221/api/v1/tickets/${ticketId}/issued-tickets`, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-          'Content-Type': 'application/json',
-        },
+      const response = await instance.get(`/tickets/${ticketId}/issued-tickets`, {
+        
       });
-  
+      console.log(response)
       return response.data;
+      
     } catch (error) {
       console.error('수강권 출력 오류:', error);
       return null;
