@@ -2,9 +2,10 @@ import CreateStudyHeader from '../../components/CreateStudyHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ConfirmationModal from './ConfirmationModal'
+import instance from '../../api/axios_interceptors';
 
+/* 수강권 생성 페이지  */
 
-const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzNDM0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0MzM0fQ.Ody8LLj9K4H_1P3fMrrj92iWJ5HNBI9Daam2pxuI5GE'
 // 수강권 생성 요청 데이터의 타입
 interface NewTicketData {
   lessonType: string;
@@ -37,15 +38,18 @@ export default function CreateStudy() {
     setIsModalOpen(false);
   };
 
-  const handleToggle = () => {
-    setIsExhausted(!isExhausted);
+
+
+  // 토글 박스~
+  const handleToggle1 = () => {
+    setIsExhausted1(!isExhausted1);
   };
 
   const handleToggle2 = () => {
     setIsExhausted2(!isExhausted2);
   };
 
-  const handleCreateTicket = () => {
+  const handleCreateTicket = async () => {
     // 수강권 생성 요청 데이터
     const newTicketData: NewTicketData = {
       lessonType,
@@ -58,26 +62,27 @@ export default function CreateStudy() {
       dailyCountLimit,
       maxServiceCount
     };
-    console.log('lessontype:',lessonType)
-
-    // API에 POST 요청으로 수강권 생성
-    axios.post('http://223.130.161.221/api/v1/tickets', newTicketData, {
-      headers: {
-        "Authorization": `Bearer ${TOKEN}`,
-        "Content-Type": "application/json", // JSON 형식으로 설정
-      }
-    })
-      .then((response) => {
-        // 수강권 생성 성공 시 처리할 코드
-        console.log('수강권 생성 완료:', response.data);
-        setIsModalOpen(true);
-      })
-      .catch((error) => {
-        // 오류 처리
-        console.error('수강권 생성 오류:', error);
+    console.log('lessontype:',lessonType);
+  
+    try {
+      // API에 POST 요청으로 수강권 생성
+      const response = await instance.post('/tickets', newTicketData, {
+        headers: {
+          "Content-Type": "application/json", // JSON 형식으로 설정
+        }
       });
-    console.log(newTicketData)
+  
+      // 수강권 생성 성공 시 처리할 코드
+      console.log('수강권 생성 완료:', response.data);
+      setIsModalOpen(true);
+    } catch (error) {
+      // 오류 처리
+      console.error('수강권 생성 오류:', error);
+    }
+  
+    console.log(newTicketData);
   };
+  
 
   // 여기는 서비스 수강 카운터 입니다
   const handleDecreaseServiceCount = () => {
@@ -103,7 +108,8 @@ export default function CreateStudy() {
           수강권 정보 설정
         </p>
 
-        {/* 수업유형 */}
+
+        {/* 수업유형 선택 */}
         <div className="flex items-start flex-col mb-4">
           <p className=" mb-1">수업유형*</p>
           <select
@@ -117,45 +123,59 @@ export default function CreateStudy() {
           </select>
         </div>
 
-        {/* 수강권명 */}
+        {/* 수강권명 입력 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">수강권명*</p>
-          <input type="text" className="border p-2 w-[389px] rounded-lg" />
+          <input
+            type="text"
+            className="border p-2 w-[389px] rounded-lg"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
 
-        {/* 수강권기간 */}
+        {/* 수강권기간 입력 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">수강권기간*</p>
           <div className="flex justify-between">
             <input
-              type="text"
+              type="number"
               className="border p-2 rounded-lg mr-1 w-[245px]"
+              value={defaultTerm}
+              onChange={(e) => setDefaultTerm(e.target.value)}
             />
-            <select className="border p-2  rounded-lg w-36">
-              <option value="개월">개월</option>
-              <option value="주">주</option>
-              <option value="일">일</option>
+            <select
+              className="border p-2  rounded-lg w-36"
+              value={defaultTermUnit}
+              onChange={(e) => setDefaultTermUnit(e.target.value)}
+            >
+              <option value="MONTH">개월</option>
+              <option value="WEEK">주</option>
+              <option value="DAY">일</option>
             </select>
           </div>
         </div>
         {/* 슬라이드 토글 버튼 */}
         <div className="flex justify-end  mb-4">
-            <p className='text-Gray-400 text-sm'>소진시 까지</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                onChange={handleToggle}
-                checked={isExhausted}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <p className='text-Gray-400 text-sm'>소진시 까지</p>
+          <label className="switch">
+            <input
+              type="checkbox"
+              onChange={handleToggle1} // handleToggle1을 연결
+              checked={isExhausted1} // isExhausted1을 연결
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
 
         {/* 시간 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">시간*</p>
           <div className="flex items-end">
-            <input type="text" className="border p-2 rounded-lg w-[372px]" />
+            <input type="number" className="border p-2 rounded-lg w-[372px]"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            />
             <span className="ml-2">분</span>
           </div>
         </div>
@@ -164,29 +184,32 @@ export default function CreateStudy() {
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">기본횟수*</p>
           <div>
-          <input type="text" className="border p-2 rounded-lg w-[372px]" />
-          <span className="ml-2">회</span>
+            <input type="number" className="border p-2 rounded-lg w-[372px]"
+            value={defaultCount}
+            onChange={(e)=> setDefaultCount(e.target.value)}
+            />
+            <span className="ml-2">회</span>
           </div>
         </div>
         {/* 슬라이드 토글 버튼 */}
         <div className="flex justify-end  mb-4">
-            <p className='text-Gray-400 text-sm'>무제한 </p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                onChange={handleToggle}
-                checked={isExhausted}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <p className='text-Gray-400 text-sm'>무제한 </p>
+          <label className="switch">
+            <input
+              type="checkbox"
+              onChange={handleToggle2} // handleToggle2를 연결
+              checked={isExhausted2} // isExhausted2를 연결
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
 
-        
+
 
         {/* 서비스횟수 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">서비스횟수</p>
-          <p className=" text-xs mb-1">
+          <p className="text-xs mb-1">
             서비스로 부여되는 횟수를 제한하여 설정할 수 있습니다
           </p>
           <div className="flex justify-between w-[389px]">
@@ -207,7 +230,7 @@ export default function CreateStudy() {
         </div>
 
         {/* 저장버튼 */}
-        <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40">
+        <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40" onClick={handleCreateTicket}>
           저장
         </button>
          {/* 모달 */}

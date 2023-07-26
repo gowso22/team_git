@@ -1,10 +1,12 @@
-import NavBar from '../../components/layout/NavBar';
 import Tiket from '../../img/Tiket_ac.svg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import instance from '../../api/axios_interceptors';
 
- const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzOTU3LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0ODU3fQ.lTmMkqRG9TKwCG9zTAy2uRVP3zNwtKEXtrDv1uDfAaE'
+//수강권 조회페이지
+
+ const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzYzMzU2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzY0MjU2fQ.ikEG_GpWNusJ7NES1XWU-daKJMArvNYqmTFkIqWHZ0w'
 interface Ticket {
   id: number;
   title: string;
@@ -23,26 +25,28 @@ export default function StudyList() {
 
   // API에 POST 요청으로 수강권 생성
   useEffect(() => {
-    // API에 GET 요청으로 수강권 가져오기
-    axios
-      .get('http://223.130.161.221/api/v1/tickets', {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((response) => {
+    const fetchTicketData = async () => {
+      try {
+        const response = await instance.get('/tickets', {
+          headers: {
+            
+            'Content-Type': 'application/json',
+          },
+        });
+  
         // 수강권 생성 성공 시 처리할 코드
         console.log('수강권 출력 완료:', response.data);
         setTicketData(response.data.tickets); // API 응답 데이터를 ticketData 상태에 설정
         setCount(response.data.tickets.filter((ticket) => ticket.lessonType === 'SINGLE').length); // 판매중인 수강권 갯수 설정
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         // 오류 처리
         console.error('수강권 출력 오류:', error);
         setLoading(false);
-      });
+      }
+    };
+  
+    fetchTicketData();
   }, []);
 
   // 로딩 상태를 확인하고 로딩 중이면 "Loading..."을 렌더링
@@ -68,12 +72,25 @@ export default function StudyList() {
         return termUnit;
     }
   }
+  // ticketId 값을 매개변수로 
+  const fetchTicketsById = async (ticketId: number) => {
+    try {
+      const response = await instance.get(`/tickets/${ticketId}/issued-tickets`, {
+        
+      });
+      console.log(response)
+      return response.data;
+      
+    } catch (error) {
+      console.error('수강권 출력 오류:', error);
+      return null;
+    }
+  };
 
 
 
   return (
     <>
-      <NavBar />
 
       <div>
         <div className="flex justify-between items-center">
@@ -124,4 +141,8 @@ export default function StudyList() {
       </div>
     </>
   );
-}
+
+
+
+};
+

@@ -5,7 +5,7 @@ const ModifiyingModal = ({ onClose,isOpen }) => {
   if(!isOpen) return null;
 
   const handleConfirm = () => {
-    // 호출된 콜백 함수를 통해 모달을 닫습니다.
+    
     onClose();
   };
   return (
