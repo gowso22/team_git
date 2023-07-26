@@ -15,6 +15,7 @@ import StudyDetails from './pages/StudyMangement/StudyDetails';
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
+import GrantList from './pages/StudyMangement/GrantList';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/myPage" element={<Mypage />} />
             <Route path="/studylist" element={<StudyList />} />
             <Route path="/create" element={<CreateStudy />} />
+            <Route path="/grant-list/:ticketId" element={<GrantList/>} />
           </Route>
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
