@@ -4,12 +4,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ModifiyingModal from './ModifiyingModal';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import GrantList from './GrantList';
 
 const TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzM0MTczLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzM1MDczfQ._42mBJfSdhbAUeiCjBH5o3LBLGZTM7BZ9XuIsrZPmu8';
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzOTU3LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0ODU3fQ.lTmMkqRG9TKwCG9zTAy2uRVP3zNwtKEXtrDv1uDfAaE';
 
 interface Ticket {
   id: number;
@@ -46,7 +43,9 @@ export default function StudyDetails() {
   const [maxServiceCount, setMaxServiceCount] = useState(0); // 서비스 횟수
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
+
+
+
   const handleToggle1 = () => {
     setIsExhausted1(!isExhausted1);
   };
@@ -60,6 +59,7 @@ export default function StudyDetails() {
     setIsEditing(false);
   };
 
+
   // 상세 정보 편집 모드로 변경하는 함수
   const handleEditTicket = () => {
     setIsEditing(true);
@@ -71,10 +71,10 @@ export default function StudyDetails() {
     console.log('수정된 title:', title);
     console.log('수정된 defaultCount:', defaultCount);
     console.log('수정된 titldefaultTerme:', defaultTerm);
-    defaultCount;
-    defaultTerm;
-    defaultTermUnit;
-    maxServiceCount;
+    defaultCount,
+      defaultTerm,
+      defaultTermUnit,
+      maxServiceCount
 
     // 수정된 정보를 서버로 보내는 API 요청
     axios
@@ -92,7 +92,7 @@ export default function StudyDetails() {
             Authorization: `Bearer ${TOKEN}`,
             'Content-Type': 'application/json',
           },
-        },
+        }
       )
       .then((response) => {
         console.log('수강권 수정이 성공적으로 저장되었습니다.');
@@ -103,19 +103,20 @@ export default function StudyDetails() {
         // 오류 처리가 필요한 경우 이곳에 작성해주세요.
       });
 
+
     // 수정 후 편집 모드 종료
     setIsEditing(false);
     // 모달 보여주기
     setShowModal(true);
   };
-
+  
   const closeModal = () => {
     setShowModal(false);
   };
 
   useEffect(() => {
     fetchTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
-  }, []);
+  }, [ticketId]);
   useEffect(() => {
     // 수정 모드일 때만 실행
     if (isEditing && ticketData) {
@@ -196,15 +197,9 @@ export default function StudyDetails() {
     setMaxServiceCount((prevCount) => prevCount + 1);
   };
 
-  // 수강권 부여내역 페이지로 이동하는 함수
-  const handleMoveToGrantList = () => {
-    if (ticketData) {
-      navigate(`/grant-list/${ticketData.id}`);
-    }
-  };
-
   return (
     <>
+
       {isEditing ? (
         <StudyModifying isEditing={isEditing} onEdit={handleCancelEdit} />
       ) : (
@@ -218,6 +213,7 @@ export default function StudyDetails() {
         <>
           {isEditing ? (
             <div>
+              
               <div className="flex items-start flex-col mb-4">
                 <p className=" mb-1">수업유형*</p>
                 <select
@@ -253,7 +249,7 @@ export default function StudyDetails() {
                     className="border p-2 rounded-lg mr-1 w-[245px]"
                     value={defaultTerm}
                     onChange={(e) => setDefaultTerm(e.target.value)}
-                    // disabled={isEditing} // 편집 모드일때 비활성화
+                  // disabled={isEditing} // 편집 모드일때 비활성화
                   />
                   <select
                     className="border p-2  rounded-lg w-36"
@@ -268,7 +264,7 @@ export default function StudyDetails() {
               </div>
               {/* 슬라이드 토글 버튼 */}
               <div className="flex justify-end  mb-4">
-                <p className="text-Gray-400 text-sm">소진시 까지</p>
+                <p className='text-Gray-400 text-sm'>소진시 까지</p>
                 <label className="switch">
                   <input
                     type="checkbox"
@@ -284,9 +280,7 @@ export default function StudyDetails() {
               <div className="flex items-start flex-col mb-4">
                 <p className="mr-2">시간*</p>
                 <div className="flex items-end">
-                  <input
-                    type="number"
-                    className="border p-2 rounded-lg w-[372px]"
+                  <input type="number" className="border p-2 rounded-lg w-[372px]"
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     disabled={isEditing} // 편집 모드일때 비활성화
@@ -299,9 +293,7 @@ export default function StudyDetails() {
               <div className="flex items-start flex-col mb-4">
                 <p className="mr-2">기본횟수*</p>
                 <div>
-                  <input
-                    type="number"
-                    className="border p-2 rounded-lg w-[372px]"
+                  <input type="number" className="border p-2 rounded-lg w-[372px]"
                     value={defaultCount}
                     onChange={(e) => setDefaultCount(e.target.value)}
                   />
@@ -310,7 +302,7 @@ export default function StudyDetails() {
               </div>
               {/* 슬라이드 토글 버튼 */}
               <div className="flex justify-end  mb-4">
-                <p className="text-Gray-400 text-sm">무제한 </p>
+                <p className='text-Gray-400 text-sm'>무제한 </p>
                 <label className="switch">
                   <input
                     type="checkbox"
@@ -320,6 +312,8 @@ export default function StudyDetails() {
                   <span className="slider"></span>
                 </label>
               </div>
+
+
 
               {/* 서비스횟수 */}
               <div className="flex items-start flex-col mb-4">
@@ -334,9 +328,7 @@ export default function StudyDetails() {
                   >
                     -
                   </button>
-                  <p className="border p-2 rounded-lg text-center w-72">
-                    {maxServiceCount}회
-                  </p>
+                  <p className="border p-2 rounded-lg text-center w-72">{maxServiceCount}회</p>
                   <button
                     className="flex justify-center items-center border p-1 ml-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
                     onClick={handleIncreaseServiceCount}
@@ -347,10 +339,7 @@ export default function StudyDetails() {
               </div>
 
               {/* 저장버튼 */}
-              <button
-                className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40"
-                onClick={handleSaveEdit}
-              >
+              <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40" onClick={handleSaveEdit}>
                 저장
               </button>
             </div>
@@ -374,12 +363,7 @@ export default function StudyDetails() {
                 <p className="text-lg font-semibold text-Gray-800">
                   수강권 내용
                 </p>
-                <button
-                  className="text-Pri-500"
-                  onClick={handleMoveToGrantList}
-                >
-                  수강권 부여내역
-                </button>
+                <button className="text-Pri-500">수강권 부여내역</button>
               </div>
               <div className="border border-Gray-200 rounded-xl p-6 mb-3">
                 <div className="flex justify-between items-end">
@@ -420,7 +404,7 @@ export default function StudyDetails() {
         <p>Loading...</p>
       )}
 
-      <ModifiyingModal isOpen={showModal} onClose={closeModal} />
+  <ModifiyingModal isOpen={showModal} onClose={closeModal} />
     </>
   );
 }

@@ -4,8 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
- const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzM0MTczLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzM1MDczfQ._42mBJfSdhbAUeiCjBH5o3LBLGZTM7BZ9XuIsrZPmu8'
+ const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzOTU3LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0ODU3fQ.lTmMkqRG9TKwCG9zTAy2uRVP3zNwtKEXtrDv1uDfAaE'
 interface Ticket {
   id: number;
   title: string;
@@ -69,22 +68,6 @@ export default function StudyList() {
         return termUnit;
     }
   }
-  // ticketId 값을 매개변수로 
-  const fetchTicketsById = async (ticketId: number) => {
-    try {
-      const response = await axios.get(`http://223.130.161.221/api/v1/tickets/${ticketId}/issued-tickets`, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      return response.data;
-    } catch (error) {
-      console.error('수강권 출력 오류:', error);
-      return null;
-    }
-  };
 
 
 
