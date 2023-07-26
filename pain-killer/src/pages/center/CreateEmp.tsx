@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import instance from "../../api/axios_interceptors";
 
  // 역할 리스트
  const roleList = [
@@ -9,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const CreateEmp = () => {
 
-    const access_Token = localStorage.getItem('access_token');
     const navigate = useNavigate();
    
     // 이름, 연락처, 아이디, 비밀번호
@@ -60,84 +60,55 @@ const CreateEmp = () => {
 
 
     // 연락처 중복 검증
-    const onPhoneCheck = () =>{
+    const onPhoneCheck = async () =>{
         console.log('연락처 중복확인');
         try {
-      
-            fetch("http://223.130.161.221/api/v1/staffs/validate/phone", {
-              method: 'POST',
-              headers: {
-                "Authorization" : `Bearer ${access_Token}`,
-                "Content-Type" : "application/json",
-              },
-              body: JSON.stringify({
-                phone : phoneNum,
-              }),
-            }).then((response) => response.json())
-              .then((result) => {
-                console.log(result)
-               }
-            )
-        } catch (error : any) {
-          alert(error);
-        }
-
+          const res = await instance.post(`/staffs/validate/phone`, {
+            phone : phoneNum,
+          });
         
+          console.log(res);
+
+      } catch (error : any) {
+        alert(error);
+      }
     }
     // 아이디 중복 검증
-    const onIdCheck = () => {
+    const onIdCheck = async () => {
         console.log('아이디 중복확인');
-        try {
-      
-            fetch("http://223.130.161.221/api/v1/staffs/validate/id", {
-              method: 'POST',
-              headers: {
-                "Authorization" : `Bearer ${access_Token}`,
-                "Content-Type" : "application/json",
-              },
-              body: JSON.stringify({
-                id : empId,
-              }),
-            }).then((response) => response.json())
-              .then((result) => {
-                console.log(result)
-               }
-            )
-        } catch (error : any) {
-          alert(error);
-        }
 
+        try {
+          const res = await instance.post(`/staffs/validate/id`, {
+            id : empId,
+          });
+        
+          console.log(res);
+
+      } catch (error : any) {
+        alert(error);
+      }
     }
 
     // 직원 생성
-    const onSubmit = (e : React.FormEvent) =>{
+    const onSubmit = async (e : React.FormEvent) =>{
         e.preventDefault();
 
         try {
-      
-            fetch("http://223.130.161.221/api/v1/staffs", {
-              method: 'POST',
-              headers: {
-                "Authorization" : `Bearer ${access_Token}`,
-                "Content-Type" : "application/json",
-              },
-              body: JSON.stringify({
-                loginId: empId,
-                password: pwd,
-                name: empName,
-                phone : phoneNum,
-                roles: checkList
-              }),
-            }).then((response) => response.json())
-              .then((result) => {
-                navigate("/centerInfo")
-                console.log(result)
-               }
-            )
+            const res = await instance.post(`/staffs`, {
+
+              loginId: empId,
+              password: pwd,
+              name: empName,
+              phone : phoneNum,
+              roles: checkList
+
+            });
+          
+            console.log(res);
+
         } catch (error : any) {
           alert(error);
         }
-        
     }
 
     return(

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Profile from '../../assets/Profile_24px.svg';
 import SearchBar from '../../components/search';
 import { Link } from 'react-router-dom';
+import instance from '../../api/axios_interceptors';
 
 interface IEmpList {
   id: number;
@@ -10,27 +11,24 @@ interface IEmpList {
   memberCount: number;
   rating: number;
   memo: string;
+
 }
 
 const CenterManage = () => {
-  const access_Token = localStorage.getItem('access_token');
-
+  
   const [empList, setEmpList] = useState<IEmpList[]>();
   const [empCount, setEmpCount] = useState(0);
 
-  const getEmp = () => {
+  // 직원 전체 조회
+  const getEmp = async () => {
     try {
-      fetch('http://223.130.161.221/api/v1/staffs', {
-        method: 'GET',
-        headers: {
-          "Authorization": `Bearer ${access_Token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          setEmpList(result.datas);
-          setEmpCount(result.meta.totalCount);
-        });
+      const res = await instance.get('/staffs');
+
+      setEmpList(res.data.datas);
+      setEmpCount(res.data.meta.totalCount);
+
+      console.log(res.data.message);
+
     } catch (error: any) {
       alert(error);
     }
@@ -40,6 +38,8 @@ const CenterManage = () => {
     getEmp();
   }, []);
 
+  
+  
   return (
     <div className="flex flex-col items-center bg-[#F4F4F4] p-2 gap-3 h-[900px] overflow-y-auto">
       <SearchBar />
