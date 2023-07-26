@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습3 Grid</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 20px;
+    }
+
+    body {
+      height: 3000px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sticky top-0 py-2 text-sm p-4 w-full bg white border-b relative">
+   <div class="container">
+     <div class="item"><img src="https://sniperfactory.com/img/sfac.svg" alt="스나이퍼팩토리 로고" width="100" height="100"></div>
+     <div class="item"><b>스펙소개</b></div>
+     <div class="item"><b>교육과정</b></div>
+     <div class="item"><b>공지사항</b></div>
+     <div class="item"><b>수료생 커뮤니티</b></div>
+     <div class="item"><b>협력사</b></div>
+     <div class="item"><b>스펙블로그</b></div>
+   </div>
+  </div> 
+</body>
+</html>

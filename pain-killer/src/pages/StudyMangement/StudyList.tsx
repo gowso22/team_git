@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
- const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzM0MTczLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzM1MDczfQ._42mBJfSdhbAUeiCjBH5o3LBLGZTM7BZ9XuIsrZPmu8'
+ const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzYzMzU2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzY0MjU2fQ.ikEG_GpWNusJ7NES1XWU-daKJMArvNYqmTFkIqWHZ0w'
 interface Ticket {
   id: number;
   title: string;

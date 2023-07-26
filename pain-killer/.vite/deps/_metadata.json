@@ -1,0 +1,50 @@
+{
+  "hash": "43cc9a71",
+  "browserHash": "8729da54",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "ddcdd5ce",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "6407d2a8",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "c887c96c",
+      "needsInterop": false
+    },
+    "react-dropdown": {
+      "src": "../../node_modules/react-dropdown/dist/index.js",
+      "file": "react-dropdown.js",
+      "fileHash": "a971873c",
+      "needsInterop": true
+    },
+    "react-calendar": {
+      "src": "../../node_modules/react-calendar/dist/esm/index.js",
+      "file": "react-calendar.js",
+      "fileHash": "cb20bf72",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "3f7e4998",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZAUFE7H7": {
+      "file": "chunk-ZAUFE7H7.js"
+    },
+    "chunk-UXIASGQL": {
+      "file": "chunk-UXIASGQL.js"
+    }
+  }
+}

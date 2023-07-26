@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="TimeNow"></h1>
+
+  <script>
+    let TimeNow = document.querySelector('.TimeNow');
+
+    function getTime() {
+      let today = new Date();
+      let hour = today.getHours();
+      let min = today.getMinutes();
+      let seconds = today.getSeconds();
+
+      //한 자리 숫자일때 앞에 0을 붙임
+      hour = hour.toString().padStart(2, '0');
+      min = min.toString().padStart(2, '0');
+      seconds = seconds.toString().padStart(2, '0');
+
+      TimeNow.innerHTML = hour + ":" + min + ":" + seconds;
+    }
+
+    // 페이지 로드될때 1초마다 getTime함수 호출해서 현재 시간 업데이트
+    getTime();
+    setInterval(getTime, 1000);
+</script>
+</body>
+</html>

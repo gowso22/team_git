@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Rullets</title>
+</head>
+<body>
+ <img src="./images/about time 2013.jpg" style="width: 500px; height: 500px;" id="image" onclick="clickImg()">
+ <script>
+  let images =[
+    "images/about time 2013.jpg",
+    "images/Guardians of the Galaxy vol 3 2023.jpg",
+    "images/The Bourne Ultimatum.jpg",
+    "images/The Shawshank Redemption 1994.jpg",
+    "images/Titanic 1997.jpg",
+  ];
+
+  function clickImg(){
+    let image = document.getElementById("image");
+    let random = Math.floor(Math.random() * images.length);
+    image.src = images[random];
+  }
+ </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 슬라이더</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function ImageSlider() {
+        const images = [
+          "img/구교환.jpeg",
+          "img/비비.webp",
+          "img/전지현.png",
+          "img/정유미.jpeg",
+          "img/제니.jpeg",
+        ];
+
+        const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+        const prevImage = () => {
+          setCurrentImageIndex((prevIndex) => {
+            if (prevIndex === 0) {
+              return images.length - 1;
+            } else {
+              return prevIndex - 1;
+            }
+          });
+        };
+
+        const nextImage = () => {
+          setCurrentImageIndex((prevIndex) => {
+            if (prevIndex === images.length - 1) {
+              return 0;
+            } else {
+              return prevIndex + 1;
+            }
+          });
+        };
+
+        return (
+          <div>
+            <button onClick={prevImage}>이전</button>
+            <img
+              src={images[currentImageIndex]}
+              alt="Slider Image"
+              style={{ width: "400px" }}
+            />
+            <button onClick={nextImage}>다음</button>
+          </div>
+        );
+      }
+      ReactDOM.render(<ImageSlider />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

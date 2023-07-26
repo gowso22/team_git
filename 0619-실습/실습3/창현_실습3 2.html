@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>실시간 채팅</h1>
+
+    <div id = "chat_wrap">
+        <div>
+            <div>User 1 : 안녕하세요!</div>
+        </div>    
+        <div>
+            <div>User 2 : 반갑습니다.</div>
+        </div>
+        <div id = "chat-content">
+
+        </div>
+    </div>
+    <input type="text" id = "username" placeholder="사용자명"/>
+    <input type="text" id = "content" placeholder="메세지를 입력하세요"/>
+    <input type="button" id = "transmit" value="전송"/>
+
+    <script>
+        const username = document.getElementById("username");
+        const content = document.getElementById("content");
+
+        const chatDiv = document.getElementById("chat-content");
+        const chatBtn = document.getElementById("transmit");
+
+        chatBtn.addEventListener("click", () => {
+            const user = username.value;
+            const con = content.value;
+
+            addToChat(user, con);
+        })
+
+
+        function addToChat(name, text){
+            const chatContent = document.createElement("div");
+            chatContent.textContent = `${name} : ${text}`;
+            chatDiv.appendChild(chatContent);
+        }
+    </script>
+</body>
+</html>

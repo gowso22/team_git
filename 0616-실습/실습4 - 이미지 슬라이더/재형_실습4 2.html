@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    .slider{
+      width: 500px;
+      height: 300px;
+      overflow: hidden; /* 하나만 보이고 숨김? */
+    }
+
+    .slider img{
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .slider img:not(:first-child) {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <img src="slider_image/1.jpg" alt="image1" />
+    <img src="slider_image/2.jpg" alt="image2" />
+    <img src="slider_image/3.jpg" alt="image3" />
+    <img src="slider_image/4.jpg" alt="image4" />
+  </div>
+  <button id="prevButton">Back</button>
+  <button id="NextButton">Next</button>
+</body>
+<script>
+  const slider = document.querySelector(".slider");
+  const prevButton = document.getElementById("prevButton");
+  const NextButton = document.getElementById("NextButton");
+  const images = slider.getElementsByTagName("img");
+  let currentIndex = 0;
+  prevButton.addEventListener("click", showPrevImage);
+  NextButton.addEventListener("click", showNextImage);
+
+  function showPrevImage(){
+    images[currentIndex].style.display = "none";
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    images[currentIndex].style.display = "block";
+    console.log(currentIndex);
+  }
+  function showNextImage(){
+    images[currentIndex].style.display = "none";
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = "block";
+    console.log(currentIndex);
+  }
+</script>
+</html>

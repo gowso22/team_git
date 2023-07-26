@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 랜덤 변환</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function RandomImage() {
+        const images = [
+          "mingyeong_img/구교환.jpeg",
+          "mingyeong_img/비비.webp",
+          "mingyeong_img/손석구.jpeg",
+          "mingyeong_img/유태오.jpeg",
+          "mingyeong_img/전지현.png",
+          "mingyeong_img/정유미.jpeg",
+          "mingyeong_img/제니.jpeg",
+          "mingyeong_img/천우희.jpeg",
+        ];
+
+        const [imageSrc, setImageSrc] = React.useState(
+          "mingyeong_img/전지현.png"
+        );
+        const handleChangeImg = () => {
+          const randomImage = document.getElementById("randomImage");
+          const randomIndex = Math.floor(Math.random() * images.length);
+          randomImage.src = images[randomIndex];
+        };
+
+        return (
+          <div>
+            <img
+              id="randomImage"
+              src={imageSrc}
+              alt="Random Image"
+              style={{ width: "500px" }}
+              onClick={handleChangeImg}
+            />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<RandomImage />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

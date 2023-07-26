@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    input[type="text"]{
+      width: 150px;
+      height: 25px;
+      border: 1ps solid #f9f9f9;
+      margin-left: 5px;
+    }
+
+    button{
+      width: 50px;
+      height: 25px;
+      background-color: initial;
+      border: none;
+      font-family: initial;
+      background-color: green;
+      color: #FFF;
+      font-family: 'Pretendard-Regular';
+      
+    }
+
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard-Regular';
+    }
+
+    header{
+      background-color: green;
+      width: 100%;
+      height: 100px;
+      color: #FFF;
+      text-align: center;
+      line-height: 100px;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p{
+      margin-bottom: 10px;
+      margin-left: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <header>실시간 채팅</header>
+  <div id="chat">
+    <p><b>경원:</b> 야 어렵다 다들 왜이렇게 잘하냐</p>
+  </div>
+  <input type="text" id="usernameInput" placeholder="사용자명" required>
+  <input type="text" id="messageInput" placeholder="메세지를 입력하세요" required>
+  <button type="submit" onclick="sendMessage()">전송</button>
+
+  <script>
+    const chatContainer = document.getElementById("chat");
+    const usernameInput = document.getElementById("usernameInput");
+    const messageInput = document.getElementById("messageInput");
+
+    // 엔터 키 누르면 메세지 전송
+    messageInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+    const sendMessage =() => {
+    const username = usernameInput.value;
+    const message = messageInput.value;
+
+    if (!username || !message) {
+    return; // 필수 입력이 비어 있으면 함수 종료
+    }
+    const formattedMessage = `<b>${username}: </b> ${message}`;
+
+    appendMessage(formattedMessage);
+
+    usernameInput.value = "";
+    messageInput.value = "";
+   };
+
+   //메세지 추가
+   const appendMessage = (message) => {
+    const p = document.createElement("p");
+    p.innerHTML = message;
+    chatContainer.appendChild(p);
+   }
+    
+  </script>
+</body>
+</html>
