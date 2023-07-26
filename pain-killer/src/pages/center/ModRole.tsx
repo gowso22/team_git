@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom';
+import instance from '../../api/axios_interceptors';
 
 
 const roleList = [
@@ -10,7 +11,6 @@ const roleList = [
 const ModRole = () => {
 
     const {userId} = useParams();
-    const access_Token = localStorage.getItem('access_token');
 
      // 한 가지 이상의 역할을 담을 체크리스트 
      const [checkList, setCheckList] = useState<number[]>([]);
@@ -43,38 +43,21 @@ const ModRole = () => {
 
     const onModRoleHandler = async(e : React.FormEvent) => {
         e.preventDefault();
+
         try{
-
-            const res = await fetch(`http://223.130.161.221/api/v1/staffs/${userId}/change-role`, {
-              method: 'POST',
-              headers: {
-                "Authorization" : `Bearer ${access_Token}`,
-                "Content-Type"  : "application/json",
-              },
-              body: JSON.stringify({
+            const res = await instance.post(`/staffs/${userId}/change-role`, {
                 "roleIds": checkList   
-              })
-            });
+            })
 
-            const result = await res.json();
-                
-                // console.log를 이용하여 result 값을 확인
-                console.log(result)
-                
-                /*  
-                    비밀번호 변경 완료 시
-                    navigete를 이용해 이동할 페이지를 설정("알아서 설절해주세요") 
-                 */
+            console.log(res);
 
-    
-        } catch (error) {
-          alert(error);
+        } catch(error){
+            alert(error);
         }
 
-        console.log(checkList + `으로 권한 변경`);
+    console.log(checkList + `으로 권한 변경`);
     }
-
-    console.log(userId)
+   
 
     return(
         <form onSubmit={onModRoleHandler}>

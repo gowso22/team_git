@@ -63,8 +63,7 @@ const LoginPage = () => {
             if(result.accessToken !== undefined) {
                // 로컬스토리지에 access토큰 값 저장
               localStorage.setItem('access_token', result.accessToken)
-               // 세션스토리지에 id값 저장
-              sessionStorage.setItem("id", id);
+              localStorage.setItem('refresh_token', result.refreshToken)
 
               alert(result.message);
 
@@ -74,9 +73,9 @@ const LoginPage = () => {
               alert(result.message);
             }
 
-
             console.log(result);
             console.log(result.accessToken);
+            console.log(result.refreshToken);
             
            }
         )
@@ -106,8 +105,8 @@ const LoginPage = () => {
             if(result.accessToken !== undefined) {
               // 로컬스토리지에 access토큰 값 저장
               localStorage.setItem('access_token', result.accessToken)
-              // 세션스토리지에 id값 저장
-              sessionStorage.setItem("id", id);
+              // 로컬스토리지에 refresh토큰 값 저장
+              localStorage.setItem("refresh_token", result.refreshToken);
 
               alert(result.message);
 
