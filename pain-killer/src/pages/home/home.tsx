@@ -4,10 +4,35 @@ import bannerImg from '../../assets/img/banner-img.png';
 //import bannerImg from '../../assets/img/banner-img.png';
 
 export default function Home() {
+
+  const tokenRefresh = async () => {
+    const refreshToken = localStorage.getItem('refresh_token')
+  
+    try {
+        
+      await fetch("http://223.130.161.221/api/v1/tokens", {
+        method: 'POST',
+        headers: {
+         Authorization : `Bearer ${refreshToken}`,
+        },
+      }).then((response) => response.json())
+      .then((result) => {
+        localStorage.setItem('access_token', result.accessToken)
+        localStorage.setItem('refresh_token', result.refreshToken)
+
+        console.log('새로운 토큰 ' + result.accessToken)
+      })
+  } catch (error : any) {
+    alert(error);
+  }
+  }
   return (
     <div className="flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto">
       <SearchBar />
-      <div className="w-[20rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
+      <div onClick={tokenRefresh}>
+        토큰 갱신
+      </div>
+      <div className="w-[21rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
         <div className="text-white text-left pr-3">
           <p className="font-normal">시리어스 근적외선</p>
           <p className="font-bold">대량구매 특별할인 최대 40%</p>
@@ -17,7 +42,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">
             나의 오늘 일정
           </p>
@@ -51,7 +76,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">나의 회원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
@@ -80,7 +105,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">전체 직원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">

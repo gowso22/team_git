@@ -1,3 +1,4 @@
+import NavBar from '../../components/NavBar';
 import Tiket from '../../img/Tiket_ac.svg';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -89,6 +90,7 @@ export default function StudyList() {
 
   return (
     <>
+      <NavBar />
 
       <div>
         <div className="flex justify-between items-center">
@@ -139,8 +141,4 @@ export default function StudyList() {
       </div>
     </>
   );
-
-
-
-};
-
+}

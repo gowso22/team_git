@@ -37,11 +37,8 @@ export default function CreateStudy() {
     setIsModalOpen(false);
   };
 
-
-
-  // 토글 박스~
-  const handleToggle1 = () => {
-    setIsExhausted1(!isExhausted1);
+  const handleToggle = () => {
+    setIsExhausted(!isExhausted);
   };
 
   const handleToggle2 = () => {
@@ -106,8 +103,7 @@ export default function CreateStudy() {
           수강권 정보 설정
         </p>
 
-
-        {/* 수업유형 선택 */}
+        {/* 수업유형 */}
         <div className="flex items-start flex-col mb-4">
           <p className=" mb-1">수업유형*</p>
           <select
@@ -121,59 +117,45 @@ export default function CreateStudy() {
           </select>
         </div>
 
-        {/* 수강권명 입력 */}
+        {/* 수강권명 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">수강권명*</p>
-          <input
-            type="text"
-            className="border p-2 w-[389px] rounded-lg"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <input type="text" className="border p-2 w-[389px] rounded-lg" />
         </div>
 
-        {/* 수강권기간 입력 */}
+        {/* 수강권기간 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">수강권기간*</p>
           <div className="flex justify-between">
             <input
-              type="number"
+              type="text"
               className="border p-2 rounded-lg mr-1 w-[245px]"
-              value={defaultTerm}
-              onChange={(e) => setDefaultTerm(e.target.value)}
             />
-            <select
-              className="border p-2  rounded-lg w-36"
-              value={defaultTermUnit}
-              onChange={(e) => setDefaultTermUnit(e.target.value)}
-            >
-              <option value="MONTH">개월</option>
-              <option value="WEEK">주</option>
-              <option value="DAY">일</option>
+            <select className="border p-2  rounded-lg w-36">
+              <option value="개월">개월</option>
+              <option value="주">주</option>
+              <option value="일">일</option>
             </select>
           </div>
         </div>
         {/* 슬라이드 토글 버튼 */}
         <div className="flex justify-end  mb-4">
-          <p className='text-Gray-400 text-sm'>소진시 까지</p>
-          <label className="switch">
-            <input
-              type="checkbox"
-              onChange={handleToggle1} // handleToggle1을 연결
-              checked={isExhausted1} // isExhausted1을 연결
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
+            <p className='text-Gray-400 text-sm'>소진시 까지</p>
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={handleToggle}
+                checked={isExhausted}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
 
         {/* 시간 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">시간*</p>
           <div className="flex items-end">
-            <input type="number" className="border p-2 rounded-lg w-[372px]"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            />
+            <input type="text" className="border p-2 rounded-lg w-[372px]" />
             <span className="ml-2">분</span>
           </div>
         </div>
@@ -182,32 +164,29 @@ export default function CreateStudy() {
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">기본횟수*</p>
           <div>
-            <input type="number" className="border p-2 rounded-lg w-[372px]"
-            value={defaultCount}
-            onChange={(e)=> setDefaultCount(e.target.value)}
-            />
-            <span className="ml-2">회</span>
+          <input type="text" className="border p-2 rounded-lg w-[372px]" />
+          <span className="ml-2">회</span>
           </div>
         </div>
         {/* 슬라이드 토글 버튼 */}
         <div className="flex justify-end  mb-4">
-          <p className='text-Gray-400 text-sm'>무제한 </p>
-          <label className="switch">
-            <input
-              type="checkbox"
-              onChange={handleToggle2} // handleToggle2를 연결
-              checked={isExhausted2} // isExhausted2를 연결
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
+            <p className='text-Gray-400 text-sm'>무제한 </p>
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={handleToggle}
+                checked={isExhausted}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
 
-
+        
 
         {/* 서비스횟수 */}
         <div className="flex items-start flex-col mb-4">
           <p className="mr-2">서비스횟수</p>
-          <p className="text-xs mb-1">
+          <p className=" text-xs mb-1">
             서비스로 부여되는 횟수를 제한하여 설정할 수 있습니다
           </p>
           <div className="flex justify-between w-[389px]">
@@ -228,7 +207,7 @@ export default function CreateStudy() {
         </div>
 
         {/* 저장버튼 */}
-        <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40" onClick={handleCreateTicket}>
+        <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40">
           저장
         </button>
          {/* 모달 */}
