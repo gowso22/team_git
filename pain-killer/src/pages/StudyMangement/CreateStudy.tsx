@@ -1,12 +1,96 @@
 import CreateStudyHeader from '../../components/CreateStudyHeader';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import ConfirmationModal from './ConfirmationModal'
+
+
+const TOKEN ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzAzNDM0LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzA0MzM0fQ.Ody8LLj9K4H_1P3fMrrj92iWJ5HNBI9Daam2pxuI5GE'
+// 수강권 생성 요청 데이터의 타입
+interface NewTicketData {
+  lessonType: string;
+  title: string;
+  duration: number;
+  defaultCount: number;
+  serviceCount: number;
+  defaultTerm: number;
+  defaultTermUnit: string;
+  dailyCountLimit: number;
+  maxServiceCount: number;
+}
 
 export default function CreateStudy() {
-  const [isExhausted, setIsExhausted] = useState(false);
+  const [isExhausted1, setIsExhausted1] = useState(false);
+  const [isExhausted2, setIsExhausted2] = useState(false);
+  const [lessonType, setLessonType] = useState('');
+  const [title, setTitle] = useState('');
+  const [duration, setDuration] = useState(0);
+  const [defaultCount, setDefaultCount] = useState(0);
+  const [maxServiceCount, setMaxServiceCount] = useState(0);
+  const [defaultTerm, setDefaultTerm] = useState(0);
+  const [defaultTermUnit, setDefaultTermUnit] = useState('DAY');
+  const [dailyCountLimit, setDailyCountLimit] = useState(0);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 모달
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleToggle = () => {
     setIsExhausted(!isExhausted);
   };
+
+  const handleToggle2 = () => {
+    setIsExhausted2(!isExhausted2);
+  };
+
+  const handleCreateTicket = () => {
+    // 수강권 생성 요청 데이터
+    const newTicketData: NewTicketData = {
+      lessonType,
+      title,
+      duration,
+      defaultCount,
+      // serviceCount,
+      defaultTerm,
+      defaultTermUnit,
+      dailyCountLimit,
+      maxServiceCount
+    };
+    console.log('lessontype:',lessonType)
+
+    // API에 POST 요청으로 수강권 생성
+    axios.post('http://223.130.161.221/api/v1/tickets', newTicketData, {
+      headers: {
+        "Authorization": `Bearer ${TOKEN}`,
+        "Content-Type": "application/json", // JSON 형식으로 설정
+      }
+    })
+      .then((response) => {
+        // 수강권 생성 성공 시 처리할 코드
+        console.log('수강권 생성 완료:', response.data);
+        setIsModalOpen(true);
+      })
+      .catch((error) => {
+        // 오류 처리
+        console.error('수강권 생성 오류:', error);
+      });
+    console.log(newTicketData)
+  };
+
+  // 여기는 서비스 수강 카운터 입니다
+  const handleDecreaseServiceCount = () => {
+    setMaxServiceCount((prevCount) => Math.max(prevCount - 1, 0));
+  };
+
+  const handleIncreaseServiceCount = () => {
+    // 최대 횟수를 넘지 않게 해놨음
+    setMaxServiceCount((prevCount) => prevCount + 1);
+  };
+
+  
+
 
   return (
     <>
@@ -22,10 +106,14 @@ export default function CreateStudy() {
         {/* 수업유형 */}
         <div className="flex items-start flex-col mb-4">
           <p className=" mb-1">수업유형*</p>
-          <select className="border p-2 w-[389px] rounded-lg">
-            <option value="">선택 </option>
-            <option value="1:1">1:1 개인수업</option>
-            <option value="그룹">그룹 수업</option>
+          <select
+            className="border p-2 w-[389px] rounded-lg"
+            value={lessonType}
+            onChange={(e) => setLessonType(e.target.value)} // 변경된 부분
+          >
+            <option value="">선택</option>
+            <option value="SINGLE">1:1 개인수업</option>
+            <option value="GROUP">그룹 수업</option>
           </select>
         </div>
 
@@ -101,10 +189,20 @@ export default function CreateStudy() {
           <p className=" text-xs mb-1">
             서비스로 부여되는 횟수를 제한하여 설정할 수 있습니다
           </p>
-          <div className='flex justify-between w-[389px]'>
-          <button className=" flex justify-center items-center border p-1 mr-2 rounded-full w-10 h-10 text-xl bg-Gray-100">-</button>
-          <p  className="border p-2 rounded-lg text-center w-72">0회</p>
-          <button className="flex justify-center items-center border p-1 ml-2 rounded-full w-10 h-10 text-xl bg-Gray-100">+</button>
+          <div className="flex justify-between w-[389px]">
+            <button
+              className="flex justify-center items-center border p-1 mr-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
+              onClick={handleDecreaseServiceCount}
+            >
+              -
+            </button>
+            <p className="border p-2 rounded-lg text-center w-72">{maxServiceCount}회</p>
+            <button
+              className="flex justify-center items-center border p-1 ml-2 rounded-full w-10 h-10 text-xl bg-Gray-100"
+              onClick={handleIncreaseServiceCount}
+            >
+              +
+            </button>
           </div>
         </div>
 
@@ -112,6 +210,9 @@ export default function CreateStudy() {
         <button className="bg-Pri-500 text-white px-4 py-2 rounded w-full mt-40">
           저장
         </button>
+         {/* 모달 */}
+        {/* 모달 */}
+        {isModalOpen && <ConfirmationModal onClose={handleModalClose} />}
       </div>
     </>
   );
