@@ -35,9 +35,10 @@ export default function StudyList() {
     const sellingTickets = ticketData.filter((ticket) => ticket.isActive);
     // 판매종료된 수강권 필터링
     const deactivatedTickets = ticketData.filter((ticket) => !ticket.isActive);
-    setCount(sellingTickets.length);
+  
     setSellingTickets(sellingTickets);
     setDeactivatedTickets(deactivatedTickets);
+    setCount(sellingTickets.length); 
     setDeactivatedCount(deactivatedTickets.length); // 판매 종료된 수강권 개수 업데이트
   }, [ticketData]);
 
@@ -269,4 +270,3 @@ export default function StudyList() {
 
 
 };
-

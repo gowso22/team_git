@@ -5,12 +5,13 @@ import { useState } from 'react';
 interface StudyDetailsHeaderProps {
   onDeleteTicket: () => void;
   onEditTicket: () => void;
-
+  onDeactivateTicket: () => void;
 }
 
 export default function StudyDetailsHeader({
   onDeleteTicket,
   onEditTicket,
+  onDeactivateTicket,
 }: StudyDetailsHeaderProps) {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -36,7 +37,8 @@ export default function StudyDetailsHeader({
                   <button onClick={onEditTicket} >편집</button>
                 </li>
                 <li className="px-6 py-4 text-left">
-                  <button>판매 종료</button>
+  
+                  <button onClick={onDeactivateTicket }>판매 종료</button>
                 </li>
                 <li className="px-6 py-4 text-left">
                   <button onClick={onDeleteTicket}>수강권 삭제</button>

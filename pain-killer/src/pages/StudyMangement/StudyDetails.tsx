@@ -267,11 +267,6 @@ useEffect(() => {
   }
 }, []);
 
-// 수강권 상태에 따라 글자색깔 변경하는 함수
-const getStatusTextColor = (isActive: boolean) => {
-  return isActive ? '' : 'red-text';
-};
-
 
 
   return (
