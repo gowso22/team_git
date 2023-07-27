@@ -15,20 +15,6 @@ import StudyDetails from './pages/StudyMangement/StudyDetails';
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
-import ChangePassword from './components/changePassword';
-import LoginTsx from './components/Login';
-import SearchResult from './components/searchResult';
-import ModEmpInfo from './pages/center/ModEmpInfo';
-import ModRole from './pages/center/ModRole';
-import ChangePwd from './pages/Manager_login/ChangePwd';
-import EditTicketPage from './pages/Member_Management/editTicket';
-import MemberManagementPage from './pages/Member_Management/memberManage';
-import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
-import TicketDetailPage from './pages/Member_Management/ticketDetail';
-import TicketPage from './pages/Member_Management/ticketPage';
-import MyPage from './pages/mypage/myPage1';
-import SimpleLoginPage from './pages/simple_login/simpleLogin';
-import UserDetailPage from './pages/simple_login/userDetail';
 
 function App() {
   return (
