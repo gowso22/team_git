@@ -29,6 +29,7 @@ import TicketPage from './pages/Member_Management/ticketPage';
 import MyPage from './pages/mypage/myPage1';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
+import CreateMember from './pages/member/CrearteMember';
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
 
           {/* 직원 역할 수정 페이지*/}
           <Route path="/modrole/:userId" element={<ModRole />} />
+           {/*회원 등록 페이지*/}
+           <Route path="/addmember" element={<CreateMember/>} />
 
           <Route path="/search" element={<SearchResult />} />
 
