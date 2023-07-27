@@ -5,13 +5,16 @@ import { useState } from 'react';
 interface StudyDetailsHeaderProps {
   onDeleteTicket: () => void;
   onEditTicket: () => void;
-  onDeactivateTicket: () => void;
+  onToggleActivation: () => void; // 수강권 활성화/비활성화를 처리하는 새로운 함수
+  isTicketActive: boolean;
+  
 }
 
 export default function StudyDetailsHeader({
   onDeleteTicket,
   onEditTicket,
-  onDeactivateTicket,
+  onToggleActivation,
+  isTicketActive,
 }: StudyDetailsHeaderProps) {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -37,8 +40,12 @@ export default function StudyDetailsHeader({
                   <button onClick={onEditTicket} >편집</button>
                 </li>
                 <li className="px-6 py-4 text-left">
-  
-                  <button onClick={onDeactivateTicket }>판매 종료</button>
+                  {/* "isTicketActive" 값을 기준으로 "수강권 활성화" 또는 "판매종료" 버튼을 렌더링합니다. */}
+                  {isTicketActive ? (
+                    <button onClick={() => onToggleActivation(false)}>판매종료</button>
+                  ) : (
+                    <button onClick={() => onToggleActivation(true)}>수강권 활성화</button>
+                  )}
                 </li>
                 <li className="px-6 py-4 text-left">
                   <button onClick={onDeleteTicket}>수강권 삭제</button>
