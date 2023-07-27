@@ -2,8 +2,8 @@ import GrantHeader from '../../components/GrantHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import instance from '../../api/axios_interceptors';
-// 수강권 부여내역
+
+const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzM0MTczLCJzdWIiOiI0IiwiZXhwIjoxNjkwMzM1MDczfQ._42mBJfSdhbAUeiCjBH5o3LBLGZTM7BZ9XuIsrZPmu8';
 
 interface Owner {
   id: number;
@@ -38,11 +38,11 @@ const GrantList: React.FC = () => {
 
   const fetchIssuedTickets = async (ticketId: string) => {
     try {
-      const response = await instance.get<IssuedTicket[]>(
-        `/tickets/${ticketId}/issued-tickets`,
+      const response = await axios.get<IssuedTicket[]>(
+        `http://223.130.161.221/api/v1/tickets/${ticketId}/issued-tickets`,
         {
           headers: {
-            
+            Authorization: `Bearer ${TOKEN}`,
             'Content-Type': 'application/json',
           },
         }

@@ -1,31 +1,27 @@
 // 토큰 관리와 갱신
 import axios from 'axios'
 
-// 토큰 갱신 함수 (변경)
+// 토큰 갱신 항수
 const tokenRefresh = async () => {
-  const refreshToken = localStorage.getItem('refresh_token');
+  const refreshToken = localStorage.getItem('refresh_token')
 
   try {
-    const response = await fetch("http://223.130.161.221/api/v1/tokens", {
+      
+    await fetch("http://223.130.161.221/api/v1/tokens", {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${refreshToken}`,
+       Authorization : `Bearer ${refreshToken}`,
       },
-    });
-
-    if (!response.ok) {
-      throw new Error('토큰 갱신에 실패했습니다.');
-    }
-
-    const result = await response.json();
-    localStorage.setItem('access_token', result.accessToken);
-    localStorage.setItem('refresh_token', result.refreshToken);
-    localStorage.setItem('message', result.message);
-  } catch (error) {
-    console.error('토큰 갱신 오류:', error);
-    // 에러 처리를 하거나 사용자에게 알리는 것이 좋음
-  }
-};
+    }).then((response) => response.json())
+    .then((result) => {
+      localStorage.setItem('access_token', result.accessToken)
+      localStorage.setItem('refresh_token', result.refreshToken)
+      localStorage.setItem('message', result.message);
+    })
+} catch (error : any) {
+  alert(error);
+}
+}
 
 
 const instance = axios.create({
