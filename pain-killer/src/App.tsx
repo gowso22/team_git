@@ -31,6 +31,7 @@ import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
 import CreateMember from './pages/member/CrearteMember';
 import CenterInfo from './pages/center/CenterInfo';
+import MemDetail from './pages/member/MemDetail';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
           <Route path="/studydetails/:ticketId" element={<StudyDetails />} />
           <Route path="/centerInfo/:userId" element={<EmpDetail />} />
           <Route path="/modemp/:userId" element={<ModEmpInfo />} />
+          <Route path="/memberInfo/:useData" element={<MemDetail />} />
           <Route path="/addemp" element={<CreateEmp />} />
           <Route path="/changepwd" element={<ChangePwd />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}

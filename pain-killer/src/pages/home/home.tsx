@@ -89,14 +89,14 @@ export default function Home() {
           </p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
-              <div className="flex-1 ">
+              {/* <div className="flex-1 ">
                 <p className="text-[#1d1d1d] text-base/[24px] font-extrabold">
                   총 8건의 일정
                 </p>
                 <p className="text-[#1d1d1d] text-base font-normal">
                   수업 7건, 상담 1건
                 </p>
-              </div>
+              </div> */}
               <div className="w-10 h-10 bg-[#f4f4f4] rounded-full px-3 py-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

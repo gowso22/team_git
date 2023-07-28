@@ -2,6 +2,7 @@ import SearchBar from '../../components/search';
 import Profile from '../../assets/Profile_24px.svg';
 import { useEffect, useState } from 'react';
 import instance from '../../api/axios_interceptors';
+import { Link } from "react-router-dom";
 
 interface IEmpMembersManageList {
   id: number;
@@ -26,6 +27,7 @@ const MemberManage = () => {
       setEmpTotalCount(res.data.meta.totalCount);
       setEmpMembersManageList(res.data.datas);
       console.log(res.data.message);
+      console.log(res);
     } catch (error: any) {
       alert(error);
     }
@@ -52,8 +54,10 @@ const MemberManage = () => {
           <div className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2" key={emp.id}>
             <div className="flex justify-between">
               <div className="flex gap-3">
-                <img src={Profile} alt="프사" />
-                <span className="font-bold">{emp.name}</span>
+                <Link to={`${emp.id}`}>
+                  <img src={Profile} alt="프사" />
+                  <span className="font-bold">{emp.name}</span>
+                </Link>
               </div>
               <span>{emp.sex === 'MALE' ? '남' : '여'}</span>
             </div>
