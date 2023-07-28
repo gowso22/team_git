@@ -1,17 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-
-
+import instance from "../../api/axios_interceptors";
 const CreateMember = () => {
-
-    
     const [name, setName] = useState('');
     const [gender, setGender] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [job, setJob] = useState('')
     const [path, setPath] = useState('')
-
-    
     const getGender = (e : any) => {
         setGender(e.target.value)
     }
@@ -21,23 +16,33 @@ const CreateMember = () => {
     const handlePathSelect = (e : ChangeEvent<HTMLSelectElement>) => {
         setPath(e.target.value);
     }
-    
-    const onRegMemberHandler = ( e : FormEvent) => {
+    const onRegMemberHandler = async( e : FormEvent) => {
         e.preventDefault();
-
-        console.log(gender)
-        console.log(job)
-        console.log(path)
+        try{
+            const res = await instance.post(`/members`, {
+                name : name,
+                birthDate : birthDate,
+                phone : phoneNum,
+                sex : gender,
+                job: job,
+                acqusitionFunnel :  path,
+                acquisitionFunnel : path,
+                toss : []
+              });
+              console.log(res);
+        }
+        catch(error){
+            alert(error);
+        }
     }
-
     return(
         <div className="flex flex-col">
             <h1>회원 등록</h1>
             <form
-                onSubmit={onRegMemberHandler} 
+                onSubmit={onRegMemberHandler}
                 className="flex flex-col">
                 <span>이름</span>
-                <input 
+                <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}/>
@@ -70,7 +75,6 @@ const CreateMember = () => {
                     type="text"
                     value={phoneNum}
                     onChange={(e) => setPhoneNum(e.target.value)}/>
-
                 <span>직업</span>
                 <select onChange={handleJobSelect}>
                     <option value="사무직">사무직</option>
@@ -80,7 +84,6 @@ const CreateMember = () => {
                     <option value="무직">무직</option>
                     <option value="기타">기타 - 직접입력</option>
                 </select>
-
                 <span>방문 경로</span>
                 <select onChange={handlePathSelect}>
                     <option value="주변 추천">주변 추천</option>
@@ -93,8 +96,5 @@ const CreateMember = () => {
             </form>
         </div>
     )
-
-
 }
-
 export default CreateMember;

@@ -30,6 +30,7 @@ import MyPage from './pages/mypage/myPage1';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
 import CreateMember from './pages/member/CrearteMember';
+import CenterInfo from './pages/center/CenterInfo';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Route path="/scheduleInfo" element={<CalendarManager />} />
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
+            <Route path="/centreInforma" element={<CenterInfo />} />
             <Route path="/myPage" element={<Mypage />} />
             <Route path="/studylist" element={<StudyList />} />
             <Route path="/create" element={<CreateStudy />} />
@@ -54,9 +56,9 @@ function App() {
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
-          <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
-          <Route path = "/addemp" element={<CreateEmp/>}/>
-          <Route path = "/studydetails/:ticketId" element={<StudyDetails/>}/>
+          <Route path="/centerInfo/:userId" element={<EmpDetail />} />
+          <Route path="/addemp" element={<CreateEmp />} />
+          <Route path="/studydetails/:ticketId" element={<StudyDetails />} />
           <Route path="/centerInfo/:userId" element={<EmpDetail />} />
           <Route path="/modemp/:userId" element={<ModEmpInfo />} />
           <Route path="/addemp" element={<CreateEmp />} />
@@ -65,8 +67,8 @@ function App() {
 
           {/* 직원 역할 수정 페이지*/}
           <Route path="/modrole/:userId" element={<ModRole />} />
-           {/*회원 등록 페이지*/}
-           <Route path="/addmember" element={<CreateMember/>} />
+          {/*회원 등록 페이지*/}
+          <Route path="/addmember" element={<CreateMember />} />
 
           <Route path="/search" element={<SearchResult />} />
 
