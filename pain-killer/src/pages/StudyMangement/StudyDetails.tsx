@@ -87,7 +87,7 @@ export default function StudyDetails() {
         defaultTerm: defaultTerm,
         defaultTermUnit: defaultTermUnit,
         isActive : isActive
-        // 필요한 다른 수정된 필드들도 추가해주세요.
+        
       },
       {
         headers: {
@@ -98,10 +98,10 @@ export default function StudyDetails() {
     );
 
     console.log('수강권 수정이 성공적으로 저장되었습니다.');
-    // 서버로부터 응답을 받아 추가적인 처리가 필요한 경우 이곳에 작성해주세요.
+    
   } catch (error) {
     console.error('수강권 수정 저장 오류:', error);
-    // 오류 처리가 필요한 경우 이곳에 작성해주세요.
+    
   }
 
   // 수정 후 편집 모드 종료
@@ -266,7 +266,6 @@ useEffect(() => {
   if (storedStatus) {
     setTicketStatus(JSON.parse(storedStatus));
   } else {
-    // LocalStorage에 상태가 없는 경우 서버에서 수강권 상태를 가져옵니다.
     // fetchTicketStatus();
   }
 }, []);
