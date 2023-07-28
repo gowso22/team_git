@@ -20,12 +20,42 @@ interface Home {
 
 
 export default function Home() {
+
+  const [usedata, setUsedata] = useState<Home>()
+
+
+  const access_Token = localStorage.getItem('access_token')
+
+
+  const inquiryAPI = async () => {
+    try{
+      const ref = await fetch("/summary", {
+        method: "GET",
+        headers: {
+          'Authorization' : `Bearer ${access_Token}`,
+          'Content-Type' : 'application/json'
+        },
+      });
+
+     const data = await ref.json();
+     setUsedata(data);
+     console.log(data);
+
+    } catch (error) {
+      console.log("Error fetching user data.", error);
+    }
+  }
+
+  useEffect(() => {
+    inquiryAPI();
+  }, []);
+
+
+  
+
   return (
     <div className="flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto">
       <SearchBar />
-      <div onClick={tokenRefresh}>
-        토큰 갱신
-      </div>
       <div className="w-[21rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
         <div className="text-white text-left pr-3">
           <p className="font-normal">시리어스 근적외선</p>
@@ -66,7 +96,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              {usedata?.mySchedule.counselingCount}, {usedata?.mySchedule.lessonCount};
+              
             </p>
           </div>
         </div>
@@ -95,7 +125,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              {usedata?.center.myMemberCount};
+              
             </p>
           </div>
         </div>
@@ -124,7 +154,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              {usedata?.center.memberCount};
+              
             </p>
           </div>
         </div>
