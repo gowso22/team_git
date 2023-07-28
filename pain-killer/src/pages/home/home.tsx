@@ -6,13 +6,13 @@ import bannerImg from '../../assets/img/banner-img.png';
 interface Home {
   
     center: {
-        staffCount: string
-        memberCount: string,
-        myMemberCount: string
+        staffCount: number,
+        memberCount: number,
+        myMemberCount: number
     },
     mySchedule: {
-        counselingCount: string,
-        lessonCount: string
+        counselingCount: number,
+        lessonCount: number
     },
     message: string
 
@@ -24,7 +24,7 @@ export default function Home() {
   const [usedata, setUsedata] = useState<Home>()
 
 
-  const access_Token = localStorage.getItem('access_Token')
+  const access_Token = localStorage.getItem('access_token')
 
 
   const inquiryAPI = async () => {
