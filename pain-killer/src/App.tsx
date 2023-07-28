@@ -54,9 +54,9 @@ function App() {
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
-          <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
-          <Route path = "/addemp" element={<CreateEmp/>}/>
-          <Route path = "/studydetails/:ticketId" element={<StudyDetails/>}/>
+          <Route path="/centerInfo/:userId" element={<EmpDetail />} />
+          <Route path="/addemp" element={<CreateEmp />} />
+          <Route path="/studydetails/:ticketId" element={<StudyDetails />} />
           <Route path="/centerInfo/:userId" element={<EmpDetail />} />
           <Route path="/modemp/:userId" element={<ModEmpInfo />} />
           <Route path="/addemp" element={<CreateEmp />} />
@@ -65,8 +65,8 @@ function App() {
 
           {/* 직원 역할 수정 페이지*/}
           <Route path="/modrole/:userId" element={<ModRole />} />
-           {/*회원 등록 페이지*/}
-           <Route path="/addmember" element={<CreateMember/>} />
+          {/*회원 등록 페이지*/}
+          <Route path="/addmember" element={<CreateMember />} />
 
           <Route path="/search" element={<SearchResult />} />
 

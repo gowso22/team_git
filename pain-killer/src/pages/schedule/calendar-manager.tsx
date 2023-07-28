@@ -1,10 +1,30 @@
-import { useState } from 'react';
-import Dropdown from 'react-dropdown';
+import { Fragment, useState } from 'react';
+
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+
 import Calendar from 'react-calendar';
 import SchedulModal from '../../components/schedulModal';
 
-import '../../assets/style/dropdown.css';
 import '../../assets/style/calendar.css';
+
+const selectSchedule = [
+  {
+    id: 1,
+    option: '월',
+  },
+  {
+    id: 2,
+    option: '주',
+  },
+  {
+    id: 3,
+    option: '일',
+  },
+];
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 
 export default function CalendarManager(this: any) {
   const [value, onChange] = useState(new Date());
@@ -13,9 +33,7 @@ export default function CalendarManager(this: any) {
   const scheduleHandle = () => {
     setSchedule(true);
   };
-
-  const options = ['월', '주', '일'];
-  const defaultOption = options[0];
+  const [selected, setSelected] = useState(selectSchedule[2]);
 
   const week = ['일', '월', '화', '수', '목', '금', '토'];
   const year = value.getFullYear();
@@ -29,7 +47,7 @@ export default function CalendarManager(this: any) {
   const current_date = `${month}.${date}(${day})`;
 
   return (
-    <div className='bg-[#F4F4F4] h-[900px] overflow-y-auto p-2'>
+    <div className="bg-[#F4F4F4] h-[900px] overflow-y-auto p-2">
       <div className="mb-4 flex items-center">
         <div className="flex justify-between w-20 h-8 mr-2 px-3 py-1 text-left font-black bg-white rounded-[10px] flex-1">
           <p>
@@ -55,14 +73,81 @@ export default function CalendarManager(this: any) {
             </defs>
           </svg>
         </div>
+        <Listbox value={selected} onChange={setSelected}>
+          {({ open }) => (
+            <>
+              <div className="relative z-0">
+                <Listbox.Button className="relative w-full cursor-default rounded-[10px] bg-white py-1.5 pl-3 pr-10 text-left  focus:outline-none focus:ring-2 focus:ring-[#6691FF] sm:text-sm sm:leading-6">
+                  <span className="flex items-center">
+                    <span className="ml-3 block truncate">
+                      {selected.option}
+                    </span>
+                  </span>
+                  <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                    <ChevronUpDownIcon
+                      className="h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Listbox.Button>
 
-        <Dropdown
-          className="mr-2"
-          options={options}
-          value={defaultOption}
-          placeholder="Select an option"
-        />
+                <Transition
+                  show={open}
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-[10px] bg-white py-1 text-base focus:outline-none sm:text-sm">
+                    {selectSchedule.map((options) => (
+                      <Listbox.Option
+                        key={options.id}
+                        className={({ active }) =>
+                          classNames(
+                            active
+                              ? 'bg-[#BFD1FF] text-white'
+                              : 'text-gray-900',
+                            'relative cursor-default select-none py-2 pl-3 pr-9',
+                          )
+                        }
+                        value={options}
+                      >
+                        {({ selected, active }) => (
+                          <>
+                            <div className="flex items-center">
+                              <span
+                                className={classNames(
+                                  selected ? 'font-semibold' : 'font-normal',
+                                  'ml-3 block truncate',
+                                )}
+                              >
+                                {options.option}
+                              </span>
+                            </div>
 
+                            {selected ? (
+                              <span
+                                className={classNames(
+                                  active ? 'text-white' : 'text-[#BFD1FF]',
+                                  'absolute inset-y-0 right-0 flex items-center pr-4',
+                                )}
+                              >
+                                <CheckIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </Transition>
+              </div>
+            </>
+          )}
+        </Listbox>
         <button className="mr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -52,7 +52,7 @@ export default function SearchResult() {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result)
+          console.log(result);
           setEmpMembersList(result.members);
           setEmpUserList(result.users);
         });
@@ -68,40 +68,40 @@ export default function SearchResult() {
   return (
     <>
       {/* 삼항연산자 부분 and연산자(&&)로 수정  */}
-      {empMembersList
-        && empMembersList.map((emp) => (
-            <div
-              key={emp.id}
-              className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
-            >
-              <div className="flex justify-between">
-                <div className="flex gap-3">
-                  <img src={Profile} alt="프사" />
-                  <span className="font-bold">{emp.name}</span>
-                </div>
-                <span>{emp.phone}</span>
-                <span>{emp.sex}</span>
+      {empMembersList &&
+        empMembersList.map((emp) => (
+          <div
+            key={emp.id}
+            className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
+          >
+            <div className="flex justify-between">
+              <div className="flex gap-3">
+                <img src={Profile} alt="프사" />
+                <span className="font-bold">{emp.name}</span>
               </div>
+              <span>{emp.phone}</span>
+              <span>{emp.sex === 'MALE' ? '남' : '여'}</span>
             </div>
-          ))
-        }
+          </div>
+        ))}
 
-        {empUserList && empUserList.map((emp) => (
-            <div
-              key={emp.id}
-              className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
-            >
-              <div className="flex justify-between">
-                <div className="flex gap-3">
-                  <img src={Profile} alt="프사" />
-                  <span className="font-bold">{emp.name}</span>
-                </div>
-                <span>{emp.phone}</span>
-                <span>{emp.type}</span>
-                <span>{emp.loginId}</span>
+      {empUserList &&
+        empUserList.map((emp) => (
+          <div
+            key={emp.id}
+            className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2"
+          >
+            <div className="flex justify-between">
+              <div className="flex gap-3">
+                <img src={Profile} alt="프사" />
+                <span className="font-bold">{emp.name}</span>
               </div>
+              <span>{emp.phone}</span>
+              <span>{emp.type}</span>
+              <span>{emp.loginId}</span>
             </div>
-          ))}
+          </div>
+        ))}
       <div>검색 결과: {location.state.value}</div>
     </>
   );
