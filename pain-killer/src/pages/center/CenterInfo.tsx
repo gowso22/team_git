@@ -1,6 +1,12 @@
-
 import profileEdit from '../../assets/Profile edit_48px.png';
 import regCertificate from '../../assets/image 28.png';
+import instance from '../../api/axios_interceptors';
+
+interface CentreInfo {
+    id: string,
+    name: string,
+    centerCode: number
+}
 
 const CenterInfo = () => {
 

@@ -27,6 +27,8 @@ const CenterManage = () => {
       setEmpList(res.data.datas);
       setEmpCount(res.data.meta.totalCount);
 
+      console.log(res)
+
       console.log(res.data.message);
 
     } catch (error: any) {

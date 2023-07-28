@@ -1,6 +1,7 @@
 import React , { useState, useEffect }from 'react';
 import SearchBar from '../../components/search';
 import bannerImg from '../../assets/img/banner-img.png';
+import instance from '../../api/axios_interceptors';
 //import bannerImg from '../../assets/img/banner-img.png';
 
 interface Home {
@@ -15,7 +16,6 @@ interface Home {
         lessonCount: number
     },
     message: string
-
 }
 
 
@@ -23,31 +23,20 @@ export default function Home() {
 
   const [usedata, setUsedata] = useState<Home>()
 
-
-  const access_Token = localStorage.getItem('access_token')
-
-
-  const inquiryAPI = async () => {
+  const inquiry = async () => {
     try{
-      const ref = await fetch("/summary", {
-        method: "GET",
-        headers: {
-          'Authorization' : `Bearer ${access_Token}`,
-          'Content-Type' : 'application/json'
-        },
-      });
+      const ref = await instance.get('/me/summary')
 
-     const data = await ref.json();
-     setUsedata(data);
-     console.log(data);
-
-    } catch (error) {
-      console.log("Error fetching user data.", error);
+      setUsedata(ref.data)
+      console.log(ref.data.center.staffCount)
+      console.log(ref);
+    } catch(error : any){
+      alert(error);
     }
   }
 
   useEffect(() => {
-    inquiryAPI();
+    inquiry();
   }, []);
 
 
@@ -154,7 +143,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-['Roboto'] text-[#0833a0] text-right text-3xl ">
-              
+              {usedata?.center.staffCount}
             </p>
           </div>
         </div>
