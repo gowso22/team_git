@@ -9,10 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import GrantList from './GrantList';
 import instance from '../../api/axios_interceptors';
 
-// 수강권 상세페이지
 
-const TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMzYzMzU2LCJzdWIiOiI0IiwiZXhwIjoxNjkwMzY0MjU2fQ.ikEG_GpWNusJ7NES1XWU-daKJMArvNYqmTFkIqWHZ0w';
+// 수강권 상세페이지
 
 interface Ticket {
   id: number;
@@ -49,6 +47,8 @@ export default function StudyDetails() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const [isActive ,setIsActive] = useState(false);
+  const [ticketStatus, setTicketStatus] = useState<boolean>(false); //
 
   const handleToggle1 = () => {
     setIsExhausted1(!isExhausted1);
@@ -86,6 +86,7 @@ export default function StudyDetails() {
         defaultCount: defaultCount,
         defaultTerm: defaultTerm,
         defaultTermUnit: defaultTermUnit,
+        isActive : isActive
         // 필요한 다른 수정된 필드들도 추가해주세요.
       },
       {
@@ -110,13 +111,17 @@ export default function StudyDetails() {
 };
 
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+ // 수정 모달이 닫힐 때 호출되는 함수
+ const closeModal = () => {
+  setShowModal(false);
+  // 로컬 스토리지를 지워 수강권 상태를 초기화
+  localStorage.removeItem('ticketStatus');
+};
 
   useEffect(() => {
     fetchTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
   }, []);
+
   useEffect(() => {
     // 수정 모드일 때만 실행
     if (isEditing && ticketData) {
@@ -129,6 +134,9 @@ export default function StudyDetails() {
     }
   }, [isEditing, ticketData]);
 
+
+
+
   // 서버로부터 ticket 데이터를 가져오는 함수
   const fetchTicketData = async () => {
     try {
@@ -136,10 +144,9 @@ export default function StudyDetails() {
         `/tickets/${ticketId}`,
         {
           headers: {
-          
             'Content-Type': 'application/json',
           },
-        },
+        }
       );
       setTicketData(response.data); // 가져온 데이터를 상태 변수에 저장
       setLoading(false);
@@ -156,11 +163,13 @@ export default function StudyDetails() {
     }
   
     try {
+    
       const response = await instance.delete(
         `/tickets/${ticketData.id}`,
         {
           headers: {
             'Content-Type': 'application/json',
+
           },
         }
       );
@@ -171,10 +180,17 @@ export default function StudyDetails() {
       console.error('수강권 삭제 오류:', error);
     }
   };
-  
 
   useEffect(() => {
-    fetchTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
+    const fetchAndSetTicketData = async () => {
+      const data = await fetchTicketData();
+      if (data) {
+        setTicketData(data);
+        setLoading(false);
+      }
+    };
+  
+    fetchAndSetTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
   }, [ticketId]);
 
   // 영어값을 한글로 변환하는 함수
@@ -206,6 +222,60 @@ export default function StudyDetails() {
     }
   };
 
+
+
+  // 컴포넌트가 마운트될 때 LocalStorage에서 ticketData를 불러와 ticketData 상태를 설정
+useEffect(() => {
+  const storedTicketData = localStorage.getItem('ticketData');
+  if (storedTicketData) {
+    setTicketData(JSON.parse(storedTicketData));
+    setLoading(false);
+  } else {
+    // LocalStorage에 ticketData가 없을 경우 서버에서 데이터를 가져옴
+    fetchTicketData();
+  }
+}, []);
+
+const handleToggleActivation = async (isActive: boolean) => {
+  try {
+    await instance.post(`/tickets/${ticketId}/${isActive ? 'activate' : 'deactivate'}`, {}, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    setTicketData((prevData) => {
+      if (prevData) {
+        const updatedData = {
+          ...prevData,
+          isActive: isActive,
+        };
+        return updatedData;
+      }
+      return prevData;
+    });
+
+    console.log('수강권이 성공적으로 변경되었습니다.');
+  } catch (error) {
+    console.error('수강권 변경 오류:', error);
+    alert('판매 상태 변경에 실패했습니다. 다시 시도해주세요.');
+  }
+};
+
+
+useEffect(() => {
+  const storedStatus = localStorage.getItem('ticketStatus');
+  if (storedStatus) {
+    setTicketStatus(JSON.parse(storedStatus));
+  } else {
+    // LocalStorage에 상태가 없는 경우 서버에서 수강권 상태를 가져옵니다.
+    // fetchTicketStatus();
+  }
+}, []);
+const isTicketActive = ticketData ? ticketStatus : false;
+
+
+
+
+
   return (
     <>
       {isEditing ? (
@@ -214,6 +284,8 @@ export default function StudyDetails() {
         <StudyDetailsHeader
           onDeleteTicket={handleDeleteTicket}
           onEditTicket={handleEditTicket}
+          onToggleActivation={handleToggleActivation}
+          isTicketActive={ticketData ? ticketData.isActive : false}
         />
       )}
       {/* ticketData가 로드되기 전에 렌더링 되는 상황을 처리 */}
@@ -408,7 +480,7 @@ export default function StudyDetails() {
                     </p>
                     <p className="text-left mb-3 text-Gray-400">
                       수강권 상태
-                      <span className="text-Pri-300 font-semibold ml-3">
+                      <span className={`font-semibold ml-3 text-Pri-300 ${ticketData.isActive ? '' : 'text-error'}`}>
                         {ticketData.isActive ? '판매중' : '판매종료'}
                       </span>
                     </p>
