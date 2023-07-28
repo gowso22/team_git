@@ -1,46 +1,135 @@
+import React, {useState, useEffect} from 'react';
 import ManagerFindHeader from '../../components/ManagerFindAccount';
+import { useNavigate } from 'react-router-dom';
+
+
+//아래의 모든 코드들은 임시비밀번호 변경을 구현하기 위해 쓴 코드들입니다. 
 
 export default function PwReset(){
+  const navigate = useNavigate();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const acceess_Token = localStorage.getItem('access_token')
+
+  const [hashKey, setHashKey] = useState('');
+  const [loginId, setLoginId] = useState('');
+
+
+  const onPasswordChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  }
+  const onConfirmPasswordChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(event?.target.value);
+  }
+
+  const gethashKeyOthers = async () => {
+    try {
+      // Perform the API call using fetch or any other library (e.g., axios)
+      const response = await fetch("http://223.130.161.221/api/v1/me", {
+        method: "GET",
+        headers: {
+          // Add any required headers (e.g., authorization token) here
+          'Authorization' : `Bearer ${acceess_Token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      const data = await response.json();
+
+      setHashKey(data.hashKey);
+      setLoginId(data.loginId);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+
+    }
+  };
+
+  useEffect(() => {
+    gethashKeyOthers();
+  }, []);
+
+ 
+
+ const onPasswordChangeHandler = async (event : React.FormEvent) =>{
+   event.preventDefault();
+   try {
+    // 비밀번호 변경 api
+    const pwdchange = await fetch("http://223.130.161.221/api/v1/me/change-password", {
+      method: "POST", 
+      headers: {
+        "Authorization": `Bearer ${acceess_Token}`,
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify({
+        hashKey : hashKey,
+        password : password,
+        confirmPassword : confirmPassword
+      })
+    });
+
+    const result = await pwdchange.json();
+
+    console.log(result);
+
+
+    if(pwdchange.ok){
+      console.log("비밀번호 변경 성공!");
+      navigate("/");
+    } else{
+      console.log("비밀번호 변경 실패!");
+    }
+
+    
+   } catch (error) {
+     alert(error);
+   }
+ }
+
+
   return(
     <>
-    <ManagerFindHeader/>
-    <div className="flex  justify-center ">
-      <div className=" p-8 ">
-        <div className="text-center mb-10">
-          {/* 비밀번호 재설정 메시지 */}
-          <p className="text-center text-xl font-extrabold text-Gray-800">비밀번호 재설정</p>
-          <p className="text-center text-Gray-400 text-sm mt-1">비밀번호 재설정 후 새로운 비밀번호로 로그인 할 수 있습니다.</p>
+      <ManagerFindHeader/>
+        <div className="flex  justify-center ">
+          <div className=" p-8 ">
+            <div className="text-center mb-10">
+              loginId : {loginId}
+            </div>
+            <form className="space-y-2 text-left mb-2" onSubmit={onPasswordChangeHandler}>
+              <span className="block font-medium">변경할 비밀번호(pin)</span>
+              <input
+                type="password"
+                value={password}
+                onChange={onPasswordChange}
+                className="block w-full rounded border px-4 py-3 border-Gray-300 "
+              />
+              <p className='text-xs text-Gray-400'>4~6자리 숫자로 구성해 주세요.</p>
+            
+              <div className="space-y-2 text-left mb-52">
+                {/* 왼쪽 정렬된 비밀번호 확인 */}
+                <span className="block font-medium">변경할 비밀번호 재확인 (pin)</span>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={onConfirmPasswordChange}
+                  className="block w-full rounded border px-4 py-3 border-Gray-300"
+                />
+              </div>
+              {/* 취소와 확인 버튼 */}
+              <div className="flex justify-between mt-52">
+                <button className="hover:bg-Pri-500 hover:text-white bg-gray-100  text-Gray-400 py-3 px-4 rounded  w-full">
+                  확인
+                </button>
+              </div>
+            </form>
+          </div>
+          
         </div>
-        <div className="space-y-2 text-left mb-2">
-          {/* 왼쪽 정렬된 새로운 비밀번호 */}
-          <label className="block font-medium">새로운 비밀번호</label>
-          <input
-            type="password"
-            className="block w-full rounded border px-4 py-3 border-Gray-300 "
-          />
-          <p className='text-xs text-Gray-400'>8~15자의 영문 소문자, 숫자, 기호(!,@,#,$,%,^,&,*) 조합</p>
-        </div>
-        <div className="space-y-2 text-left mb-52">
-          {/* 왼쪽 정렬된 비밀번호 확인 */}
-          <label className="block font-medium">비밀번호 확인</label>
-          <input
-            type="password"
-            className="block w-full rounded border px-4 py-3 border-Gray-300"
-            placeholder="비밀번호를 다시 입력하세요."
-          />
-        </div>
-        {/* 취소와 확인 버튼 */}
-        <div className="flex justify-between mt-52">
-          <button className="mr-2 bg-gray-100 text-Gray-900 py-2 px-4 rounded w-full">
-            취소
-          </button>
-          <button className="hover:bg-Pri-500 hover:text-white bg-gray-100  text-Gray-400 py-3 px-4 rounded  w-full">
-            확인
-          </button>
-        </div>
-      </div>
-      
-    </div>
 
     </>
   )

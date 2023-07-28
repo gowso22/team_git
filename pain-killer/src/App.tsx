@@ -30,6 +30,7 @@ import MyPage from './pages/mypage/myPage1';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
 import CreateMember from './pages/member/CrearteMember';
+import CenterInfo from './pages/center/CenterInfo';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Route path="/scheduleInfo" element={<CalendarManager />} />
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
+            <Route path="/centreInforma" element={<CenterInfo />} />
             <Route path="/myPage" element={<Mypage />} />
             <Route path="/studylist" element={<StudyList />} />
             <Route path="/create" element={<CreateStudy />} />

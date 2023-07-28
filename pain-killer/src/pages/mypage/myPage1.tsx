@@ -31,6 +31,8 @@ function MyPage() {
 
       const data = await response.json();
       setUserData(data);
+
+      localStorage.setItem('hashKey', data.hashKey);
       console.log(data);
 
       setIsLoading(false);

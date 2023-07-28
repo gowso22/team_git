@@ -40,8 +40,8 @@ const MemberManage = () => {
       <SearchBar />
       <div className="flex justify-between items-center w-full">
         <span>
-          나의 회원
-          <span className="text-[#2D62EA]"> 20</span>
+          전체 회원
+          <span className="text-[#2D62EA]"> {empTotalCount}</span>
         </span>
         <button className="border rounded-[10px] py-1 px-[10px] text-[12px]">
           등록하기
@@ -49,7 +49,7 @@ const MemberManage = () => {
       </div>
       {empMembersManageList &&
         empMembersManageList.map((emp) => (
-          <div className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2">
+          <div className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2" key={emp.id}>
             <div className="flex justify-between">
               <div className="flex gap-3">
                 <img src={Profile} alt="프사" />
