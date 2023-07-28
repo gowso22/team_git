@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackImage from '../../img/Back_24px.svg'
 import InfoEdit from '../../assets/Edit_24px.svg';
+import instance from '../../api/axios_interceptors';
 
 interface IEmpContent {
   
@@ -59,7 +60,6 @@ interface IReview {
 const EmpDetail = () => {
 
     const {userId} = useParams();
-    const access_Token = localStorage.getItem('access_token');
 
     const navigate = useNavigate();
 
@@ -70,25 +70,18 @@ const EmpDetail = () => {
     }
 
     // 
-    const getEmpDetail = () => {
-    
-    try{
-          fetch(`http://223.130.161.221/api/v1/staffs/${userId}`, {
-            method: 'GET',
-            headers: {
-              "Authorization" : `Bearer ${access_Token}`,
-            },
-            
-          }).then((response) => response.json())
-            .then((result) => {
-              
-              setEmpContent(result);
-              
-             }
-          )
-      } catch (error : any) {
+    const getEmpDetail = async () => {
+
+
+      try {
+          const res = await instance.get(`/staffs/${userId}`);
+
+          setEmpContent(res.data);
+
+      } catch (error) {
         alert(error);
       }
+    
   }
 
   useEffect(()=> {
@@ -96,6 +89,8 @@ const EmpDetail = () => {
     getEmpDetail();
 
   }, [])
+
+
 
     
 
@@ -114,6 +109,9 @@ const EmpDetail = () => {
               empContent &&
               <>
                 <div>{empContent.id}</div>
+                <Link to = {`/modrole/${empContent.id}`}>
+                  <span className='text-[12px] font-bold hover:text-[#2D62EA] cursor-pointer'>권한(역할) 수정</span>
+                </Link>
                 <Link to = {`/modemp/${empContent.id}`}>
                   <img src={InfoEdit} alt = "정보수정 아이콘"/>
                 </Link> 
@@ -134,7 +132,6 @@ const EmpDetail = () => {
                 })}
               </>
             }
-
         </>
     )
 }

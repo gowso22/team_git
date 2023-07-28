@@ -20,41 +20,13 @@ interface Home {
 
 
 export default function Home() {
-
-  const [usedata, setUsedata] = useState<Home>()
-
-
-  const access_Token = localStorage.getItem('access_token')
-
-
-  const inquiryAPI = async () => {
-    try{
-      const ref = await fetch("http://223.130.161.221/api/v1/me/summary", {
-        method: "GET",
-        headers: {
-          'Authorization' : `Bearer ${access_Token}`,
-          'Content-Type' : 'application/json'
-        },
-      });
-
-     const data = await ref.json();
-     setUsedata(data);
-     console.log(data);
-
-    } catch (error) {
-      console.log("Error fetching user data.", error);
-    }
-  }
-
-  useEffect(() => {
-    inquiryAPI();
-  }, []);
-
-
   return (
     <div className="flex flex-col items-center bg-[#f4f4f4] p-2 h-[900px] overflow-y-auto">
       <SearchBar />
-      <div className="w-[20rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
+      <div onClick={tokenRefresh}>
+        토큰 갱신
+      </div>
+      <div className="w-[21rem] h-[5rem] text-xs my-7 pl-6 pr-4 py-px bg-[#2d62ea] rounded-[10px] flex justify-end items-center">
         <div className="text-white text-left pr-3">
           <p className="font-normal">시리어스 근적외선</p>
           <p className="font-bold">대량구매 특별할인 최대 40%</p>
@@ -64,7 +36,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">
             나의 오늘 일정
           </p>
@@ -98,7 +70,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">나의 회원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">
@@ -127,7 +99,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[20rem] text-left mb-4">
+        <div className="w-[21rem] text-left mb-4">
           <p className="text-[#505050] mb-1 text-base font-light">전체 직원</p>
           <div className="bg-white rounded-[10px] px-5 pt-5 pb-3">
             <div className="mb-5 flex">

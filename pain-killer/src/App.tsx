@@ -8,23 +8,28 @@ import CalendarManager from './pages/schedule/calendar-manager';
 import MemberManage from './pages/member/MemberManage';
 import Mypage from './pages/mypage/mypage';
 import CenterManage from './pages/center/CenterManage';
+import StudyList from './pages/StudyMangement/StudyList';
+import CreateStudy from './pages/StudyMangement/CreateStudy';
+import StudyDetails from './pages/StudyMangement/StudyDetails';
 
 import WeekCalendar from './components/week-calendar';
 import EmpDetail from './pages/center/EmpDetail';
 import CreateEmp from './pages/center/CreateEmp';
-import ModEmpInfo from './pages/center/ModEmpInfo';
-import LoginTsx from './components/Login';
 import ChangePassword from './components/changePassword';
+import LoginTsx from './components/Login';
+import SearchResult from './components/searchResult';
+import ModEmpInfo from './pages/center/ModEmpInfo';
+import ModRole from './pages/center/ModRole';
+import ChangePwd from './pages/Manager_login/ChangePwd';
+import EditTicketPage from './pages/Member_Management/editTicket';
+import MemberManagementPage from './pages/Member_Management/memberManage';
+import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
+import TicketDetailPage from './pages/Member_Management/ticketDetail';
+import TicketPage from './pages/Member_Management/ticketPage';
+import MyPage from './pages/mypage/myPage1';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
-import MemberManagementPage from './pages/Member_Management/memberManage';
-import TicketPage from './pages/Member_Management/ticketPage';
-import TicketDetailPage from './pages/Member_Management/ticketDetail';
-import TicketAllocationPage from './pages/Member_Management/ticketAllocation';
-import EditTicketPage from './pages/Member_Management/editTicket';
-import MyPage from './pages/mypage/myPage1';
-import PwReset from './pages/Manager_login/ContactPwReset';
-import ChangePwd from './pages/Manager_login/ChangePwd';
+import CreateMember from './pages/member/CrearteMember';
 
 function App() {
   return (
@@ -43,20 +48,32 @@ function App() {
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
             <Route path="/myPage" element={<Mypage />} />
+            <Route path="/studylist" element={<StudyList />} />
+            <Route path="/create" element={<CreateStudy />} />
           </Route>
 
           {/*nav, footer 포함하지 않는 컴포넌트는 여기 */}
           <Route path="/" element={<LoginPage />} />
           <Route path = "/centerInfo/:userId" element={<EmpDetail/>}/>
-          <Route path = "/modemp/:userId" element={<ModEmpInfo/>}/>
           <Route path = "/addemp" element={<CreateEmp/>}/>
+          <Route path = "/studydetails/:ticketId" element={<StudyDetails/>}/>
+          <Route path="/centerInfo/:userId" element={<EmpDetail />} />
+          <Route path="/modemp/:userId" element={<ModEmpInfo />} />
+          <Route path="/addemp" element={<CreateEmp />} />
+          <Route path="/changepwd" element={<ChangePwd />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
+          {/* 직원 역할 수정 페이지*/}
+          <Route path="/modrole/:userId" element={<ModRole />} />
+           {/*회원 등록 페이지*/}
+           <Route path="/addmember" element={<CreateMember/>} />
+
+          <Route path="/search" element={<SearchResult />} />
 
           {/* 박재형 : 어디 둬야 할지 몰라서 여기에 두었음, 디자인만 약소하게 구현되어 있으며 아직 데이터 넣는 것은 못해봄*/}
           {/* 직원로그인 */}
           <Route path="/login" element={<LoginTsx />} />
-        
+
           {/* 비밀번호변경 페이지 */}
           <Route path="/change" element={<ChangePassword />} />
 
@@ -81,14 +98,7 @@ function App() {
           {/* 수강권수정 */}
           <Route path="/edit" element={<EditTicketPage />} />
 
-
           <Route path="/mPage" element={<MyPage />} />
-
-
-          <Route path="/dPassword" element={<PwReset />} />
-
-          <Route path="/cPassword" element={<ChangePwd />} />
-
         </Routes>
       </Router>
     </div>

@@ -1,5 +1,6 @@
-import React, { ErrorInfo, useEffect, useState } from "react"
+import React, {useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import instance from "../../api/axios_interceptors"
 
 interface IEmpContent {
   
@@ -63,27 +64,39 @@ const ModEmpInfo = () => {
     const [empName, setEmpName] = useState("");
     const [phoneNum, setPhoneNum] = useState("");
 
-    const getEmpDetail = () => {
+    const getEmpDetail = async () => {
+
+      try {
+        const res = await instance.get(`/staffs/${userId}`);
+
+        setEmpContent(res.data);
+                  
+        setEmpName(res.data.name);
+        setPhoneNum(res.data.phone);
+
+        } catch (error) {
+          alert(error);
+        }
     
-        try{
-              fetch(`http://223.130.161.221/api/v1/staffs/${userId}`, {
-                method: 'GET',
-                headers: {
-                  "Authorization" : `Bearer ${access_Token}`,
-                },
+        // try{
+        //       fetch(`http://223.130.161.221/api/v1/staffs/${userId}`, {
+        //         method: 'GET',
+        //         headers: {
+        //           "Authorization" : `Bearer ${access_Token}`,
+        //         },
                 
-              }).then((response) => response.json())
-                .then((result) => {
+        //       }).then((response) => response.json())
+        //         .then((result) => {
                   
-                  setEmpContent(result);
+        //           setEmpContent(result);
                   
-                  setEmpName(result.name);
-                  setPhoneNum(result.phone);
-                 }
-              )
-          } catch (error) {
-            alert(error);
-          }
+        //           setEmpName(result.name);
+        //           setPhoneNum(result.phone);
+        //          }
+        //       )
+        //   } catch (error) {
+        //     alert(error);
+        //   }
       }
     
       useEffect(()=> {
@@ -101,35 +114,48 @@ const ModEmpInfo = () => {
     
 
       
-      const onModEmpInfoHandler = (e : React.FormEvent) => {
+      const onModEmpInfoHandler = async(e : React.FormEvent) => {
         e.preventDefault();
 
-        try{
+        
+       try {
+        const res = await instance.put(`/staffs/${userId}`, {
+          name : empName,
+          phone : phoneNum,
+        });
 
-            fetch(`http://223.130.161.221/api/v1/staffs/${userId}`, {
-              method: 'PUT',
-              headers: {
-                "Authorization" : `Bearer ${access_Token}`,
-                "Content-Type"  : "application/json",
-              },
-              body: JSON.stringify({
-                name : empName,
-                phone : phoneNum,
-              }),
-            }).then((response) => response.json())
-              .then((result) => {
-                
-                setEmpContent(result);
+        console.log(res);
 
-                navigate(`/centerInfo`);
-
-                alert(result.message);
-          
-               }
-            )
         } catch (error) {
           alert(error);
         }
+
+        // try{
+
+        //     fetch(`http://223.130.161.221/api/v1/staffs/${userId}`, {
+        //       method: 'PUT',
+        //       headers: {
+        //         "Authorization" : `Bearer ${access_Token}`,
+        //         "Content-Type"  : "application/json",
+        //       },
+        //       body: JSON.stringify({
+        //         name : empName,
+        //         phone : phoneNum,
+        //       }),
+        //     }).then((response) => response.json())
+        //       .then((result) => {
+                
+        //         setEmpContent(result);
+
+        //         navigate(`/centerInfo`);
+
+        //         alert(result.message);
+          
+        //        }
+        //     )
+        // } catch (error) {
+        //   alert(error);
+        // }
 
       }
 

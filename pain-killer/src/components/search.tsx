@@ -1,10 +1,26 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 export default function SearchBar() {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState('');
+
+  const handleSearchEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      navigate(`/search`, { state: { value: search } });
+    }
+  };
+
   return (
     <>
       <form className="w-[20rem] px-4 py-1 bg-white rounded-[10px] flex">
         <input
           className="flex-1 placeholder:text-xs placeholder:font-normal"
           placeholder="회원/멤버 이름, 연락처로 검색하세요"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyUp={(e) => handleSearchEnter(e)}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
