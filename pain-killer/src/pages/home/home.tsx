@@ -25,6 +25,7 @@ export default function Home() {
       alert(error);
     }
   };
+
   return (
     <div className="w-full flex flex-col items-center bg-[#f4f4f4] p-5 h-[900px] overflow-y-auto">
       <SearchBar />
