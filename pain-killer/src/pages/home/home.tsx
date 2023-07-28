@@ -39,7 +39,7 @@ export default function Home() {
     inquiry();
   }, []);
 
-
+//merge 함
   
 
   return (
