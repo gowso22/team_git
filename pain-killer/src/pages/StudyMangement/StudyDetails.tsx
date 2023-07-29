@@ -98,10 +98,10 @@ export default function StudyDetails() {
     );
 
     console.log('수강권 수정이 성공적으로 저장되었습니다.');
-    
+
   } catch (error) {
     console.error('수강권 수정 저장 오류:', error);
-    
+
   }
 
   // 수정 후 편집 모드 종료
