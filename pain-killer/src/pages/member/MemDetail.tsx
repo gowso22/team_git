@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackImage from '../../img/Back_24px.svg'
 import instance from '../../api/axios_interceptors';
 
 interface Memdetail {
@@ -44,7 +45,32 @@ const MemDetail = () => {
   }, [])
 
   return(
-    <h1>{memContent?.name}</h1>
+    <React.Fragment>
+
+      <header className="bg-white border-b border-t-neutral-100">
+        <nav className="flex p-5">
+            <div className="flex justify-between items-center cursor-pointer" onClick={onPrevious}>
+              <img src={BackImage} alt="Back" />
+              <p className="text-lg ml-2">회원 목록</p>
+            </div>
+        </nav>
+      </header>
+
+      <h1>회원상세조회
+        <p>
+          이름 : {memContent?.name}
+        </p>
+        <p>
+          성별 : {memContent?.sex}
+        </p>
+        <p>
+          휴대전화번호: {memContent?.phone}
+        </p>
+        <p>
+          직업: {memContent?.job}
+        </p>
+      </h1>
+    </React.Fragment>
   )
 }
 
