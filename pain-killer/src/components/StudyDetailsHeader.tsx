@@ -1,13 +1,14 @@
 import BackImage from '../img/Back_24px.svg';
 import More from '../img/More vert.svg';
 import { useState } from 'react';
+import SalesEndModal from '../pages/StudyMangement/SalesEndModal'
 
 interface StudyDetailsHeaderProps {
   onDeleteTicket: () => void;
   onEditTicket: () => void;
   onToggleActivation: () => void; // 수강권 활성화/비활성화를 처리하는 새로운 함수
   isTicketActive: boolean;
-  
+
 }
 
 export default function StudyDetailsHeader({
@@ -17,10 +18,26 @@ export default function StudyDetailsHeader({
   isTicketActive,
 }: StudyDetailsHeaderProps) {
   const [showOptions, setShowOptions] = useState(false);
+  const [showSalesEndModal, setShowSalesEndModal] = useState(false);
 
   const handleMoreClick = () => {
     setShowOptions(!showOptions);
   };
+
+
+
+  const handleToggleActivation = () => {
+    setShowSalesEndModal(true);
+  };
+
+  const handleSalesEndModalClose = (confirmed: boolean) => {
+    if (confirmed && isTicketActive) {
+      onToggleActivation(false);
+    }
+    setShowSalesEndModal(false);
+  };
+
+
 
   return (
     <header className="bg-white border-b border-t-neutral-100">
@@ -40,9 +57,9 @@ export default function StudyDetailsHeader({
                   <button onClick={onEditTicket} >편집</button>
                 </li>
                 <li className="px-6 py-4 text-left">
-                  {/* "isTicketActive" 값을 기준으로 "수강권 활성화" 또는 "판매종료" 버튼을 렌더링합니다. */}
+                  {/* "isTicketActive" 값을 기준으로 "수강권 활성화" 또는 "판매종료" 버튼을 렌더링 */}
                   {isTicketActive ? (
-                    <button onClick={() => onToggleActivation(false)}>판매종료</button>
+                    <button onClick={handleToggleActivation}>판매종료</button>
                   ) : (
                     <button onClick={() => onToggleActivation(true)}>수강권 활성화</button>
                   )}
@@ -55,6 +72,12 @@ export default function StudyDetailsHeader({
           )}
         </div>
       </nav>
+      {showSalesEndModal && (
+        <SalesEndModal
+          isOpen={showSalesEndModal}
+          onClose={handleSalesEndModalClose}
+        />
+      )}
     </header>
   );
 }
