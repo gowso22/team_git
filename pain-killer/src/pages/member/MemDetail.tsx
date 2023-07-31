@@ -58,6 +58,9 @@ const MemDetail = () => {
 
       <h1>회원상세조회
         <p>
+          아이디: {memContent?.id}
+        </p>
+        <p>
           이름 : {memContent?.name}
         </p>
         <p>
@@ -68,6 +71,9 @@ const MemDetail = () => {
         </p>
         <p>
           직업: {memContent?.job}
+        </p>
+        <p>
+          생년월일 :  {memContent?.birthDate}
         </p>
       </h1>
     </React.Fragment>

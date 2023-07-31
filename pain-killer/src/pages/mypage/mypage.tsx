@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import profileEdit from '../../assets/svg/profile-edit-48px.svg';
 import LogoutModal from '../../components/logoutModal';
 
@@ -70,7 +71,7 @@ export default function Mypage() {
               className="text-xl font-extrabold text-[#2D62EA]"
               onClick={LogoutButtonHandle}
             >
-              {userData?.name};
+              {userData?.name}
             </p>
           </div>
 
@@ -105,7 +106,7 @@ export default function Mypage() {
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">휴대폰 번호 </p>
           <p className="text-sm font-extrabold text-[#1D1D1D]">
-            {userData?.phone};
+            {userData?.phone}
           </p>
         </div>
         <div className="flex mb-2">
