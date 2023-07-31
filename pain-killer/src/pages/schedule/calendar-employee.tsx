@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import Table from '../../components/table';
 import SchedulModal from '../../components/schedulModal';
 
-import '../../assets/style/dropdown.css';
+// import '../../assets/style/dropdown.css';
 import '../../assets/style/calendar.css';
 
 export default function CalendarEmployee(this: any) {
