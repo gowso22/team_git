@@ -31,7 +31,7 @@ const selectJob = [
   },
   {
     id: 6,
-    option: '기타 -  직접 입력',
+    option: '기타',
   },
 ];
 
@@ -58,7 +58,7 @@ const selectPath = [
   },
   {
     id: 5,
-    option: '기타 -  직접 입력',
+    option: '기타',
   },
 ];
 
@@ -71,20 +71,20 @@ const CreateMember = () => {
   const [gender, setGender] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [phoneNum, setPhoneNum] = useState('');
-  const [job, setJob] = useState('');
+  //const [job, setJob] = useState('');
   const [jobSelected, setJobSelected] = useState(selectJob[0]);
-  const [path, setPath] = useState('');
+  //const [path, setPath] = useState('');
   const [pathSelected, setPathSelected] = useState(selectPath[0]);
 
   const getGender = (e: any) => {
     setGender(e.target.value);
   };
-  const handleJobSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setJob(e.target.value);
-  };
-  const handlePathSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setPath(e.target.value);
-  };
+  // const handleJobSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   setJob(e.target.value);
+  // };
+  // const handlePathSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   setPath(e.target.value);
+  // };
 
   const onRegMemberHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -94,9 +94,9 @@ const CreateMember = () => {
         birthDate: birthDate,
         phone: phoneNum,
         sex: gender,
-        job: job,
-        acqusitionFunnel: path,
-        acquisitionFunnel: path,
+        job: jobSelected.option,
+        acqusitionFunnel: pathSelected.option,
+        acquisitionFunnel: pathSelected.option,
         toss: [],
       });
       console.log(res);
