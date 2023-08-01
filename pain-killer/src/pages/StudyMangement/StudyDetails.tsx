@@ -48,6 +48,7 @@ export default function StudyDetails() {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const [isActive ,setIsActive] = useState(false);
+  const [ticketStatus, setTicketStatus] = useState<boolean>(false); //
 
   const handleToggle1 = () => {
     setIsExhausted1(!isExhausted1);
@@ -97,10 +98,10 @@ export default function StudyDetails() {
     );
 
     console.log('수강권 수정이 성공적으로 저장되었습니다.');
-    // 서버로부터 응답을 받아 추가적인 처리가 필요한 경우 이곳에 작성해주세요.
+
   } catch (error) {
     console.error('수강권 수정 저장 오류:', error);
-    // 오류 처리가 필요한 경우 이곳에 작성해주세요.
+
   }
 
   // 수정 후 편집 모드 종료
@@ -110,9 +111,12 @@ export default function StudyDetails() {
 };
 
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+ // 수정 모달이 닫힐 때 호출되는 함수
+ const closeModal = () => {
+  setShowModal(false);
+  // 로컬 스토리지를 지워 수강권 상태를 초기화
+  localStorage.removeItem('ticketStatus');
+};
 
   useEffect(() => {
     fetchTicketData(); // 컴포넌트가 마운트되면 ticket 데이터를 가져옴
@@ -218,42 +222,7 @@ export default function StudyDetails() {
     }
   };
 
-  const handleDeactivateTicket = async () => {
-    try {
-      // 판매 종료 요청을 보낼 API 엔드포인트와 데이터 설정
-      await instance.post(
-        `/tickets/${ticketId}/deactivate`,
-        {
-          isActive: false, // isActive 값을 false로 설정하여 판매 종료로 변경
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-  
-      // 요청이 성공하면, ticketData의 isActive 값을 false로 업데이트
-      setTicketData((prevTicketData) => {
-        if (prevTicketData) {
-          // 상태 업데이트 후 LocalStorage에도 저장
-          const updatedTicketData = {
-            ...prevTicketData,
-            isActive: false,
-          };
-          localStorage.setItem('ticketData', JSON.stringify(updatedTicketData));
-          return updatedTicketData;
-        }
-        return prevTicketData;
-      });
-  
-      console.log('수강권이 성공적으로 판매 종료되었습니다.');
-      // 서버로부터 응답을 받아 추가적인 처리가 필요한 경우 이곳에 작성해주세요.
-    } catch (error) {
-      console.error('판매 종료 오류:', error);
-      // 오류 처리가 필요한 경우 이곳에 작성해주세요.
-    }
-  };
+
 
   // 컴포넌트가 마운트될 때 LocalStorage에서 ticketData를 불러와 ticketData 상태를 설정
 useEffect(() => {
@@ -267,6 +236,44 @@ useEffect(() => {
   }
 }, []);
 
+const handleToggleActivation = async (isActive: boolean) => {
+  try {
+    await instance.post(`/tickets/${ticketId}/${isActive ? 'activate' : 'deactivate'}`, {}, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    setTicketData((prevData) => {
+      if (prevData) {
+        const updatedData = {
+          ...prevData,
+          isActive: isActive,
+        };
+        return updatedData;
+      }
+      return prevData;
+    });
+
+    console.log('수강권이 성공적으로 변경되었습니다.');
+  } catch (error) {
+    console.error('수강권 변경 오류:', error);
+    alert('판매 상태 변경에 실패했습니다. 다시 시도해주세요.');
+  }
+};
+
+
+useEffect(() => {
+  const storedStatus = localStorage.getItem('ticketStatus');
+  if (storedStatus) {
+    setTicketStatus(JSON.parse(storedStatus));
+  } else {
+    // LocalStorage에 상태가 없는 경우 서버에서 수강권 상태를 가져옵니다.
+    // fetchTicketStatus();
+  }
+}, []);
+const isTicketActive = ticketData ? ticketStatus : false;
+
+
+
 
 
   return (
@@ -277,7 +284,8 @@ useEffect(() => {
         <StudyDetailsHeader
           onDeleteTicket={handleDeleteTicket}
           onEditTicket={handleEditTicket}
-          onDeactivateTicket={handleDeactivateTicket}
+          onToggleActivation={handleToggleActivation}
+          isTicketActive={ticketData ? ticketData.isActive : false}
         />
       )}
       {/* ticketData가 로드되기 전에 렌더링 되는 상황을 처리 */}
