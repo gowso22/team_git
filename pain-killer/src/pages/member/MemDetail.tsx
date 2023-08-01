@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackImage from '../../img/Back_24px.svg'
 import instance from '../../api/axios_interceptors';
+import InfoEdit from '../../assets/Edit_24px.svg';
 
 interface Memdetail {
     id: number,
@@ -51,17 +52,25 @@ const MemDetail = () => {
         <nav className="flex p-5">
             <div className="flex justify-between items-center cursor-pointer" onClick={onPrevious}>
               <img src={BackImage} alt="Back" />
-              <p className="text-lg ml-2">회원 목록</p>
+              <p className="text-lg ml-2">회원 정보</p>
             </div>
         </nav>
       </header>
 
+      <div className="flex justify-end">
+        <Link to={`/modmem/${memContent?.id}`}>
+          <img src={InfoEdit} alt = "정보수정 아이콘"/>
+        </Link>
+      </div>
       <h1>회원상세조회
         <p>
-          아이디: {memContent?.id}
+          이름 : {memContent?.name}
         </p>
         <p>
-          이름 : {memContent?.name}
+          생년월일 :  {memContent?.birthDate}
+        </p>
+        <p>
+          등록일 : {memContent?.createdAt}
         </p>
         <p>
           성별 : {memContent?.sex}
@@ -70,11 +79,9 @@ const MemDetail = () => {
           휴대전화번호: {memContent?.phone}
         </p>
         <p>
-          직업: {memContent?.job}
+          직업형태: {memContent?.job}
         </p>
-        <p>
-          생년월일 :  {memContent?.birthDate}
-        </p>
+        
       </h1>
     </React.Fragment>
   )
