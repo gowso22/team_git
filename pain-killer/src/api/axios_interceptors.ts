@@ -52,7 +52,7 @@ instance.interceptors.request.use(
     */
 
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Authorization'] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwaWVoZWFsdGhjYXJlLmtyIiwiaWF0IjoxNjkwMjk0ODE3LCJzdWIiOiI0IiwiZXhwIjoxNjkwMjk1NzE3fQ.yahj4HNAYhwL4E3Tz7H1TqPn9BRK6Bjvp8hZcoeBxkM`;
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
 
     return config;
   },

@@ -53,12 +53,12 @@ const MemberManage = () => {
         empMembersManageList.map((emp) => (
           <div className="flex flex-col bg-[#FFFFFF] rounded-[4px] w-full px-[10px] py-3 gap-2" key={emp.id}>
             <div className="flex justify-between">
-              <div className="flex gap-3">
-                <Link to={`${emp.id}`}>
+              
+                <Link to={`${emp.id}`} className='flex gap-3'>
                   <img src={Profile} alt="프사" />
                   <span className="font-bold">{emp.name}</span>
                 </Link>
-              </div>
+             
               <span>{emp.sex === 'MALE' ? '남' : '여'}</span>
             </div>
             <div className="flex justify-between ">
