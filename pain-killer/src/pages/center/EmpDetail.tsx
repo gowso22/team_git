@@ -3,6 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackImage from '../../img/Back_24px.svg'
 import InfoEdit from '../../assets/Edit_24px.svg';
 import instance from '../../api/axios_interceptors';
+import Profile from '../../assets/Profile edit_48px.png';
+import profileImg from '../../assets/Profile_24px.svg';
+import EmptyPerson from '../../assets/Empty_person.svg'
 
 interface IEmpContent {
   
@@ -100,37 +103,75 @@ const EmpDetail = () => {
                 <nav className="flex p-5">
                     <div className="flex justify-between items-center cursor-pointer" onClick={onPrevPage}>
                       <img src={BackImage} alt="Back" />
-                      <p className="text-lg ml-2">직원 목록</p>
+                      <p className="text-lg ml-2">직원 상세</p>
                     </div>
                 </nav>
             </header>
            
             {
               empContent &&
-              <>
-                <div>{empContent.id}</div>
-                <Link to = {`/modrole/${empContent.id}`}>
-                  <span className='text-[12px] font-bold hover:text-[#2D62EA] cursor-pointer'>권한(역할) 수정</span>
-                </Link>
-                <Link to = {`/modemp/${empContent.id}`}>
-                  <img src={InfoEdit} alt = "정보수정 아이콘"/>
-                </Link> 
-                <div>{empContent.name}</div>
-                <div>{empContent.active}</div>
-                <div>{empContent.phone}</div>
-                <div>{empContent.loginId}</div>
-                <div>{empContent.memo}</div>
-                <div>나의 회원</div>
-                {empContent.members.length === 0 && <div>배정된 회원이 없습니다.</div>}
-                {empContent.members.map((member) => {
-                  <div key={member.id}>{member.name}</div>
-                })}
-                <div>만족도 후기</div>
-                {empContent.prescriptionReviews.length === 0 && <div>등록된 후기가 없습니다.</div>}
-                {empContent.prescriptionReviews.map((review)=> {
-                  <div key={review.id}>{review.privateTutor.name}</div>
-                })}
-              </>
+              <div className='p-2 gap-5'>
+                <div className='flex justify-between'>
+                  <div className='flex gap-2 items-center'>
+                    <span>직원 정보</span>
+                    <span className='text-[10px] text-[#AEAEAE]'>{empContent.createdAt.slice(0,10)} 등록(재직중)</span>
+                  </div>
+                  <div className='flex gap-2 items-center'>
+                    <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>권한 설정</span>
+                    {empContent.pwdChangeRequired && <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>비밀번호 변경</span>}
+                    <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>직원 퇴사</span>
+                  </div>
+                </div>
+                <div className='border rounded flex items-center p-2 justify-between'>
+                  <div className='flex items-center gap-2'>
+                    <img src={Profile} alt='프사'/>
+                    <span className='text-[#2D62EA]'>{empContent.name}</span>
+                    <span className='text-[10px]'>{empContent.phone}</span>
+                    <span className='text-[10px]'>{empContent.loginId}</span>
+                  </div>
+                  <img src={InfoEdit} alt = '내정보 수정'/>
+                </div>
+                <div className='flex justify-start'>
+                  <span>나의 회원 리스트 <span className='text-[#2D62EA]'>{empContent.members.length}</span></span>
+                </div>
+                <div className='flex flex-col justify-center items-center'>
+                  <img className='w-[48px] h-[48px]' src={EmptyPerson} alt = '빈회원'/>
+                  <span>배정된 회원이 없습니다.</span>
+                </div>
+                <div className='border rounded flex flex-col p-2 gap-2 mb-5'>
+                  <div className='flex justify-between'>
+                    <div className='flex gap-2'>
+                      <img src={profileImg} alt='프사'/>
+                      <span>김회원(회원이 있다면)</span>
+                    </div>
+                    <div>
+                      <span>여</span>
+                    </div>
+                  </div>
+                  <div className='flex justify-between'>
+                    <span>22.00.00~22.00.00</span>
+                    <span>100/100회 </span>
+                  </div>
+                  <div className='flex justify-between'>
+                    <div className='flex items-center gap-2'>
+                      <span>담담 강사</span>
+                      <div className='bg-[#F4F4F4] text-[#505050] rounded p-1'>김파이</div>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <span>최근 방문일</span>
+                      <span className='text-[10px] text-[#AEAEAE]'> 2022.00.00</span>
+                    </div>  
+                  </div>
+                </div>
+                <div className='flex justify-between'>
+                  <span>메모</span>
+                  <span className='text-[#AEAEAE] text-[10px]'>최근 업데이트 {empContent.updatedAt.slice(0, 10)}</span>
+                </div>
+                
+                <div className='flex border rounded bg-[#F4F4F4] text-[#505050] h-[100px] p-2 items-left'>
+                  <span>{empContent.memo}</span>
+                </div>
+              </div>
             }
         </>
     )
