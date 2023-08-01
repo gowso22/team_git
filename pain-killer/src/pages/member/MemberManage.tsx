@@ -45,9 +45,9 @@ const MemberManage = () => {
           전체 회원
           <span className="text-[#2D62EA]"> {empTotalCount}</span>
         </span>
-        <button className="border rounded-[10px] py-1 px-[10px] text-[12px]">
-          등록하기
-        </button>
+        <Link to = '/addmember'>
+          <div className="border rounded-[10px] py-1 px-[10px] text-[12px]">등록하기</div>
+        </Link>
       </div>
       {empMembersManageList &&
         empMembersManageList.map((emp) => (

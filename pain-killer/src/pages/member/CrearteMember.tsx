@@ -181,7 +181,7 @@ const CreateMember = () => {
             type="text"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
-            placeholder="0000.00.00"
+            placeholder="0000-00-00"
             required
           />
         </div>
