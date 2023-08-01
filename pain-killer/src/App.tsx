@@ -29,8 +29,9 @@ import TicketPage from './pages/Member_Management/ticketPage';
 import MyPage from './pages/mypage/myPage1';
 import SimpleLoginPage from './pages/simple_login/simpleLogin';
 import UserDetailPage from './pages/simple_login/userDetail';
-import MemberDetails from './pages/StudyMangement/Member/MemberDetails';
+import CreateStudyTicket from './pages/StudyMangement/StudyTicket/CreateStudyTicket';
 import StudyTicket from './pages/StudyMangement/StudyTicket/StudyTicket';
+import StudyTicketList from './pages/StudyMangement/StudyTicket/StudyTicketList';
 
 function App() {
   return (
@@ -62,8 +63,9 @@ function App() {
           <Route path="/modemp/:userId" element={<ModEmpInfo />} />
           <Route path="/addemp" element={<CreateEmp />} />
           <Route path="/changepwd" element={<ChangePwd />} />
-          <Route path="/memberdetails" element={<MemberDetails />} />
-          <Route path="/studyTicket" element={<StudyTicket />} />
+          <Route path="/createstudyticket/:ticketId" element={<CreateStudyTicket />} />
+          <Route path="/studyticket" element={<StudyTicket />} />
+          <Route path="/studyticketlist" element={<StudyTicketList />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
           {/* 직원 역할 수정 페이지*/}
