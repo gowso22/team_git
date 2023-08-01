@@ -2,7 +2,7 @@ import StudyTicketListHeader from './StudyTicketListHeader';
 import Tiket from '../../../img/Tiket_ac.svg';
 import React, { useState, useEffect } from 'react';
 import instance from '../../../api/axios_interceptors';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 interface Ticket {
   id: number;
@@ -35,7 +35,6 @@ export default function StudyTicketList(StudyTicketListProps) {
   const [ticketData, setTicketData] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchTicketData = async () => {
       try {
@@ -63,7 +62,12 @@ export default function StudyTicketList(StudyTicketListProps) {
     fetchTicketData();
   }, []);
 
-  if (loading) {
+  const handleTicketClick = (ticketId: number) => {
+    // 페이지 이동 및 선택한 수강권 ID 전달
+    navigate(`/createticketlist/${ticketId}`);
+  };
+
+  if (!ticketData) {
     return <div>Loading...</div>;
   }
 
@@ -79,8 +83,9 @@ export default function StudyTicketList(StudyTicketListProps) {
         OO센터 수강권
       </p>
       {ticketData.map((ticket) => (
-        <div key={ticket.id} onClick={() => navigate(`/createstudyticket/${ticket.id}`)}>
-          <div className="border border-Gray-200 rounded-xl p-6 mb-3">
+        <div key={ticket.id} >
+          <Link to={`/createstudyticket/${ticket.id}`}>
+          <div className="border border-Gray-200 rounded-xl p-6 mb-3" >
             {/* ticket 정보를 이용하여 동적으로 렌더링 */}
             <div>
               <div className="flex justify-between items-end">
@@ -106,7 +111,7 @@ export default function StudyTicketList(StudyTicketListProps) {
                 </p>
                 <p className="text-left">
                   <span className="text-Gray-400 mr-6">수업시간</span>{' '}
-                  {ticket.duration}분
+                  {ticket.bookableLessons[0].duration}분
                 </p>
                 <p className="text-left">
                   <span className="text-Gray-400 mr-2">수강권 기간</span>{' '}
@@ -117,6 +122,7 @@ export default function StudyTicketList(StudyTicketListProps) {
               <img src={Tiket} alt="티켓 아이콘" />
             </div>
           </div>
+          </Link>
         </div>
       ))}
     </>

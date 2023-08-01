@@ -32,6 +32,7 @@ import UserDetailPage from './pages/simple_login/userDetail';
 import CreateStudyTicket from './pages/StudyMangement/StudyTicket/CreateStudyTicket';
 import StudyTicket from './pages/StudyMangement/StudyTicket/StudyTicket';
 import StudyTicketList from './pages/StudyMangement/StudyTicket/StudyTicketList';
+import SearchPrivateCharge from './pages/StudyMangement/StudyTicket/SearchPrivateCharge';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route path="/createstudyticket/:ticketId" element={<CreateStudyTicket />} />
           <Route path="/studyticket" element={<StudyTicket />} />
           <Route path="/studyticketlist" element={<StudyTicketList />} />
+          <Route path="/searchprivatecharge" element={<SearchPrivateCharge />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
           {/* 직원 역할 수정 페이지*/}
