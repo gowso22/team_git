@@ -3,7 +3,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useEffect } from 'react';
 import instance from '../../../api/axios_interceptors';
-import { useParams,Navigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import profile from '../../../img/Profile_32px.svg'
+
 
 interface TicketParams {
   ticketId: string;
@@ -28,27 +30,27 @@ export default function CreateStudyTicket() {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [ServiceCount, setServiceCount] = useState(0);
-  const [privateTutorId, setPrivateTutorId] = useState(0);
+  const [privateTutorId, setPrivateTutorId] = useState<number | null>(null); // 담당강사 ID를 상태로 관리
   const [memberIds, setMemberIds] = useState<number[]>([]);
-  const handleMemberIdsChange = (ids: number[]) => {
-    setMemberIds(ids);
-  };
-  
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
+  const navigate = useNavigate();
+  const [selectedMemberName, setSelectedMemberName] = useState<string>(''); // 선택한 직원 이름 상태 추가
 
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
-
-  const handleSelectPrivateCharge = () => {
-    // 담당강사 선택하기 버튼을 누르면 SearchPrivateCharge 페이지로 이동
-    // ticketId를 URL 파라미터로 전달하여 다시 CreateStudyTicket 페이지로 돌아올 때 사용
-    return <Navigate to={`/search-private-charge?ticketId=${ticketId}`} />;
-  };
 
   useEffect(() => {
+    // URL 파라미터에서 선택한 직원 ID와 이름 가져오기
+    const searchParams = new URLSearchParams(window.location.search);
+    const selectedMemberId = searchParams.get('selectedMember');
+    const selectedMemberName = searchParams.get('selectedMemberName');
+
+    if (selectedMemberName) {
+      // 선택한 직원의 이름을 상태로 설정합니다.
+      setSelectedMemberName(decodeURIComponent(selectedMemberName));
+    }
+
+    if (selectedMemberId && !memberIds.includes(parseInt(selectedMemberId))) {
+      setMemberIds((prevIds) => [...prevIds, parseInt(selectedMemberId)]);
+    }
+
     // 선택한 수강권의 정보를 서버에서 가져옵니다.
     const fetchTicketData = async () => {
       try {
@@ -60,6 +62,15 @@ export default function CreateStudyTicket() {
 
         setTicketData(response.data);
         console.log(response.data); // 최신 ticketData를 콘솔에 출력
+
+        if (response.data.privateTutorId) {
+          setPrivateTutorId(response.data.privateTutorId);
+        }
+        if (response.data.memberIds) {
+          setMemberIds(response.data.memberIds);
+        }
+
+
       } catch (error) {
         console.error('수강권 정보 오류:', error);
       }
@@ -68,31 +79,55 @@ export default function CreateStudyTicket() {
     fetchTicketData();
   }, [ticketId]);
 
+  // "선택하기" 버튼을 클릭하면 검색 페이지로 이동하는 함수
+  const handleSelectMember = async () => {
+    // "선택하기" 버튼을 클릭하면 검색 페이지로 이동
+    const selectedMemberId = await navigate(`/searchprivatecharge/${ticketId}`);
+
+    if (selectedMemberId && !memberIds.includes(parseInt(selectedMemberId))) {
+      setPrivateTutorId(parseInt(selectedMemberId)); // 담당강사 ID를 업데이트
+    }
+  };
+
+  const handleStartDateChange = (date: Date | null) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date: Date | null) => {
+    setEndDate(date);
+  };
+
   const handleSave = async () => {
     const data = {
-      memberIds: [],
+      memberIds,
       ServiceCount,
       privateTutorId,
       startAt: startDate?.toISOString(),
       endAt: endDate?.toISOString(),
     };
 
-    console.log(data)
+    console.log(data);
+    console.log(memberIds)
 
     try {
       // POST API 호출
       const response = await instance.post(`/tickets/${ticketId}/issue`, data);
       console.log('수강권 생성 완료:', response.data);
       // 성공 시 처리할 코드 추가
+      alert('수강권이 성공적으로 생성되었습니다.');
     } catch (error) {
       // 오류 처리
       console.error('수강권 생성 오류:', error);
+      alert('수강권 생성에 실패하였습니다.');
     }
   };
 
   if (!ticketData) {
     return <div>Loading...</div>;
   }
+
+
+
 
   return (
     <>
@@ -210,9 +245,16 @@ export default function CreateStudyTicket() {
         {/* 담당강사 */}
         <div>
           <p>담당강사</p>
-        <button className="bg-Gray-100 py-2 px-4 rounded-xl border border-Gray-300" onClick={handleSelectPrivateCharge}>
-          선택하기 +
-        </button>
+          <div className="flex flex-wrap items-end">
+            <button className="bg-Gray-100 py-3 px-3 rounded-xl border border-Gray-300"
+              onClick={handleSelectMember}>
+              선택하기 +
+            </button>
+            {selectedMemberName && ( // 선택한 직원 이름이 있을 때만 표시
+              <div className="border border-Gray-300 rounded-xl px-3 py-2  flex items-center mt-2 ml-2">
+                <img src={profile} /><span className="ml-1">{selectedMemberName}</span></div>
+            )}
+          </div>
         </div>
 
         {/* 저장버튼 */}
