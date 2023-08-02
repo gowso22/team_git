@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import instance from '../../api/axios_interceptors';
 
+
+
+
 //수강권 조회페이지
 
 interface Ticket {
@@ -29,6 +32,7 @@ export default function StudyList() {
   const [sellingTickets, setSellingTickets] = useState<Ticket[]>([]);
   // 현재 눌린 버튼 상태
   const [activeButton, setActiveButton] = useState('selling');
+  
 
   useEffect(() => {
     // 판매중인 수강권 필터링
@@ -186,7 +190,7 @@ export default function StudyList() {
 
         {/* 수강권 목록 렌더링 */}
         {activeButton === 'selling' && sellingTickets.length > 0 && (
-
+            
           <>
             {ticketData.map((ticket) => (
               ticket.isActive && (
@@ -264,6 +268,7 @@ export default function StudyList() {
           </>
         )}
       </div>
+
     </>
   );
 

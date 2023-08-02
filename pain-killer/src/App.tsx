@@ -32,6 +32,10 @@ import UserDetailPage from './pages/simple_login/userDetail';
 import CreateMember from './pages/member/CrearteMember';
 import CenterInfo from './pages/center/CenterInfo';
 import MemDetail from './pages/member/MemDetail';
+import CreateStudyTicket from './pages/StudyMangement/StudyTicket/CreateStudyTicket';
+import StudyTicket from './pages/StudyMangement/StudyTicket/StudyTicket';
+import StudyTicketList from './pages/StudyMangement/StudyTicket/StudyTicketList';
+import SearchPrivateCharge from './pages/StudyMangement/StudyTicket/SearchPrivateCharge';
 
 function App() {
   return (
@@ -65,6 +69,10 @@ function App() {
           <Route path="/memberInfo/:useData" element={<MemDetail />} />
           <Route path="/addemp" element={<CreateEmp />} />
           <Route path="/changepwd" element={<ChangePwd />} />
+          <Route path="/createstudyticket/:ticketId" element={<CreateStudyTicket />} />
+          <Route path="/studyticket" element={<StudyTicket />} />
+          <Route path="/studyticketlist" element={<StudyTicketList />} />
+          <Route path="/searchprivatecharge/:ticketId" element={<SearchPrivateCharge />} />
           {/* <Route path="/test" element={<WeekCalendar />} /> */}
 
           {/* 직원 역할 수정 페이지*/}
