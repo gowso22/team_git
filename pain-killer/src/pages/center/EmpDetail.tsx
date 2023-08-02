@@ -117,7 +117,9 @@ const EmpDetail = () => {
                     <span className='text-[10px] text-[#AEAEAE]'>{empContent.createdAt.slice(0,10)} 등록(재직중)</span>
                   </div>
                   <div className='flex gap-2 items-center'>
-                    <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>권한 설정</span>
+                    <Link to = {`/modrole/${userId}`}>
+                      <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>권한 설정</span>
+                    </Link>
                     {empContent.pwdChangeRequired && <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>비밀번호 변경</span>}
                     <span className='text-[10px] text-[#AEAEAE] cursor-pointer'>직원 퇴사</span>
                   </div>
@@ -199,8 +201,16 @@ const EmpDetail = () => {
                   <span className='text-[#AEAEAE] text-[10px]'>최근 업데이트 {empContent.updatedAt.slice(0, 10)}</span>
                 </div>
                 
-                <div className='flex border rounded bg-[#F4F4F4] text-[#505050] h-[100px] p-2 items-left'>
-                  <span>{empContent.memo}</span>
+                <div className='flex flex-col items-start border rounded bg-[#F4F4F4] text-[#505050] h-[100px] p-2 items-left'>
+                  { empContent.roles.length === 0 ?
+                    <div>일반 직원(기본)</div>
+                    :
+                    empContent.roles.map((role) => (
+                      <div>
+                        <div> {role.name} </div>
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
             }
