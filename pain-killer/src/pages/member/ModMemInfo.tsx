@@ -79,7 +79,7 @@ const ModMemInfo = () => {
       setMemPhone(show.data.phone);
       setMemSex(show.data.sex);
       setMemJob(show.data.job);
-      setMemPath(show.data.acquisitionFunnel);
+      // setMemPath(show.data.acquisitionFunnel);
     } catch (error) {
       alert(error);
     }
@@ -128,6 +128,7 @@ const ModMemInfo = () => {
       alert(error);
     }
   };
+
   return (
     <div className="flex flex-col">
       <header className="bg-white border-b border-t-neutral-100">
@@ -323,7 +324,6 @@ const ModMemInfo = () => {
 
             <button
               className="mt-10 py-3 px-4 rounded disabled:text-[#aeaeae] disabled:bg-[#f4f4f4] enabled:text-white enabled:bg-[#2d62ea]/75 enabled:hover:bg-[#2d62ea]"
-              onChange={setMemPath}
               disabled={
                 memName === '' || memBirthdate === '' || memPhone === ''
                   ? true
