@@ -206,7 +206,7 @@ const EmpDetail = () => {
                     <div>일반 직원(기본)</div>
                     :
                     empContent.roles.map((role) => (
-                      <div>
+                      <div key={role.id}>
                         <div> {role.name} </div>
                       </div>
                     ))
