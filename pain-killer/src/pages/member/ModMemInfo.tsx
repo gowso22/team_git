@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { Link , useNavigate, useParams } from 'react-router-dom';
 import instance from "../../api/axios_interceptors"
 import BackImage from '../../img/Back_24px.svg'
+//박재형 작업한 부분
 
 interface Modificate_mem {
   
