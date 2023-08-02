@@ -110,7 +110,7 @@ const EmpDetail = () => {
            
             {
               empContent &&
-              <div className='p-2 gap-5'>
+              <div className='flex flex-col gap-5 p-2'>
                 <div className='flex justify-between'>
                   <div className='flex gap-2 items-center'>
                     <span>직원 정보</span>
@@ -129,41 +129,72 @@ const EmpDetail = () => {
                     <span className='text-[10px]'>{empContent.phone}</span>
                     <span className='text-[10px]'>{empContent.loginId}</span>
                   </div>
+                  <Link to={`/modemp/${empContent.id}`}>
                   <img src={InfoEdit} alt = '내정보 수정'/>
+                  </Link>                  
                 </div>
                 <div className='flex justify-start'>
                   <span>나의 회원 리스트 <span className='text-[#2D62EA]'>{empContent.members.length}</span></span>
                 </div>
-                <div className='flex flex-col justify-center items-center'>
+                <div className='flex flex-col justify-center items-center h-[350px]'>
                   <img className='w-[48px] h-[48px]' src={EmptyPerson} alt = '빈회원'/>
                   <span>배정된 회원이 없습니다.</span>
                 </div>
-                <div className='border rounded flex flex-col p-2 gap-2 mb-5'>
-                  <div className='flex justify-between'>
-                    <div className='flex gap-2'>
-                      <img src={profileImg} alt='프사'/>
-                      <span>김회원(회원이 있다면)</span>
+                <div className='flex flex-col h-[575px]'>
+                  <div className='border rounded flex flex-col p-2 gap-2 mb-5'>
+                    <div className='flex justify-between'>
+                      <div className='flex gap-2'>
+                        <img src={profileImg} alt='프사'/>
+                        <span>김회원(회원이 있다면)</span>
+                      </div>
+                      <div>
+                        <span>여</span>
+                      </div>
                     </div>
-                    <div>
-                      <span>여</span>
+                    <div className='flex justify-between'>
+                      <span>22.00.00~22.00.00</span>
+                      <span>100/100회 </span>
+                    </div>
+                    <div className='flex justify-between'>
+                      <div className='flex items-center gap-2'>
+                        <span>담담 강사</span>
+                        <div className='bg-[#F4F4F4] text-[#505050] rounded p-1'>김파이</div>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <span>최근 방문일</span>
+                        <span className='text-[10px] text-[#AEAEAE]'> 2022.00.00</span>
+                      </div>  
                     </div>
                   </div>
-                  <div className='flex justify-between'>
-                    <span>22.00.00~22.00.00</span>
-                    <span>100/100회 </span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <div className='flex items-center gap-2'>
-                      <span>담담 강사</span>
-                      <div className='bg-[#F4F4F4] text-[#505050] rounded p-1'>김파이</div>
+
+                  <div className='border rounded flex flex-col p-2 gap-2 mb-5'>
+                    <div className='flex justify-between'>
+                      <div className='flex gap-2'>
+                        <img src={profileImg} alt='프사'/>
+                        <span>김회원(회원이 있다면)</span>
+                      </div>
+                      <div>
+                        <span>여</span>
+                      </div>
                     </div>
-                    <div className='flex items-center gap-2'>
-                      <span>최근 방문일</span>
-                      <span className='text-[10px] text-[#AEAEAE]'> 2022.00.00</span>
-                    </div>  
+                    <div className='flex justify-between'>
+                      <span>22.00.00~22.00.00</span>
+                      <span>100/100회 </span>
+                    </div>
+                    <div className='flex justify-between'>
+                      <div className='flex items-center gap-2'>
+                        <span>담담 강사</span>
+                        <div className='bg-[#F4F4F4] text-[#505050] rounded p-1'>김파이</div>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <span>최근 방문일</span>
+                        <span className='text-[10px] text-[#AEAEAE]'> 2022.00.00</span>
+                      </div>  
+                    </div>
                   </div>
                 </div>
-                <div className='flex justify-between'>
+
+                <div className='flex justify-between items-center'>
                   <span>메모</span>
                   <span className='text-[#AEAEAE] text-[10px]'>최근 업데이트 {empContent.updatedAt.slice(0, 10)}</span>
                 </div>

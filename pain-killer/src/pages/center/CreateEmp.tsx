@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "../../api/axios_interceptors";
+import RegOutHeader from "../../components/RegOutHeader";
+import EmpImg from '../../img/Graphic_Employee_registered.svg';
 
  // 역할 리스트
  const roleList = [
@@ -9,6 +11,9 @@ import instance from "../../api/axios_interceptors";
 ];
 
 const CreateEmp = () => {
+
+    const [step, setStep] = useState(1);
+    const [isRegistrationComplete, setIsRegistrationComplete] = useState(false);
 
     const navigate = useNavigate();
    
@@ -113,6 +118,26 @@ const CreateEmp = () => {
 
     return(
         <>
+        {isRegistrationComplete &&
+          <>
+            <div className="flex flex-col items-center justify-center">
+              <h2 className="text-3xl mb-4 font-bold text-center">
+                직원 등록 완료
+              </h2>
+              <p className="text-center">직원 등록이 완료되었습니다.</p>
+              <img
+                src={EmpImg}
+                alt="직원 아이디 전달 이미지"
+                className="mt-4 w-80 h-80"
+              />
+              <div className="flex justify-center mt-4">
+                <button className="w-80 h-12 bg-Pri-500 hover:bg-Pri-700 text-white py-3 px-3 rounded">
+                  홈으로
+                </button>
+              </div>
+            </div>
+          </>
+        }
             <div>직원등록</div>
             <form className="flex flex-col" onSubmit={onSubmit}>
                 <label>이름 *</label>
@@ -141,26 +166,6 @@ const CreateEmp = () => {
                     value={pwd}
                     onChange={onPwdChange}
                     placeholder="비밀번호를 입력해주세요"/>
-                <span>역할 선택(중복선택가능)</span>
-
-                <div>
-                  <input id ='basic' type="checkbox" checked readOnly/>
-                  <label htmlFor="basic">기본</label>
-                </div>
-                {
-                    roleList.map((role) => (
-                        <div key={role.id}>
-                            <input
-                                id = {role.id}
-                                type="checkbox"
-                                
-                                value={role.role_value}
-                                onChange={(e) => oncheckHandler(e, role.role_value)}
-                            />
-                            <label htmlFor={role.id}>{role.name}</label>
-                        </div>
-                    ))
-                }
                 
                 <button>완료</button>             
             </form>
