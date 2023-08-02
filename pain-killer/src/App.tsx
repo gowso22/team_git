@@ -36,6 +36,7 @@ import CreateStudyTicket from './pages/StudyMangement/StudyTicket/CreateStudyTic
 import StudyTicket from './pages/StudyMangement/StudyTicket/StudyTicket';
 import StudyTicketList from './pages/StudyMangement/StudyTicket/StudyTicketList';
 import SearchPrivateCharge from './pages/StudyMangement/StudyTicket/SearchPrivateCharge';
+import ModMemInfo from './pages/member/ModMemInfo';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route path="/studydetails/:ticketId" element={<StudyDetails />} />
           <Route path="/centerInfo/:userId" element={<EmpDetail />} />
           <Route path="/modemp/:userId" element={<ModEmpInfo />} />
+          <Route path="/modmem/:userId" element={<ModMemInfo />} />
           <Route path="/memberInfo/:useData" element={<MemDetail />} />
           <Route path="/addemp" element={<CreateEmp />} />
           <Route path="/changepwd" element={<ChangePwd />} />
