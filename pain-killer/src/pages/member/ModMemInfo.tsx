@@ -130,7 +130,7 @@ const ModMemInfo = () => {
                         type="text"
                         onChange={onMemJobChange}/>
                     
-                    <button>수정</button>
+                    <button>수정완료</button>
                 </form>
             </>}
             

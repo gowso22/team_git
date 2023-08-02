@@ -37,6 +37,7 @@ import StudyTicket from './pages/StudyMangement/StudyTicket/StudyTicket';
 import StudyTicketList from './pages/StudyMangement/StudyTicket/StudyTicketList';
 import SearchPrivateCharge from './pages/StudyMangement/StudyTicket/SearchPrivateCharge';
 import ModMemInfo from './pages/member/ModMemInfo';
+import PwReset from './pages/Manager_login/ContactPwReset';
 
 function App() {
   return (
@@ -89,7 +90,7 @@ function App() {
           <Route path="/login" element={<LoginTsx />} />
 
           {/* 비밀번호변경 페이지 */}
-          <Route path="/change" element={<ChangePassword />} />
+          <Route path="/change" element={<PwReset />} />
 
           {/*  간편로그인 페이지 */}
           <Route path="/simple" element={<SimpleLoginPage />} />
