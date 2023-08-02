@@ -5,8 +5,8 @@ import BackImage from '../../img/Back_24px.svg'
 
 
 const roleList = [
-    {id : 'info', name : '인포 직원', role_value : 7},
-    {id : 'manager', name : '총괄', role_value : 8}
+    {id : 'info', name : '인포 직원', desc : '직원 관리, 수업/수강권 관리, 일정 관리 권한을 소유하고 있습니다.', role_value : 7},
+    {id : 'manager', name : '총괄', desc : '모든 권한을 소유하고 있습니다.', role_value : 8}
 ];
 
 const ModRole = () => {
@@ -53,6 +53,10 @@ const ModRole = () => {
 
             console.log(res);
 
+            alert('권한이 변경 되었습니다.');
+
+            navigate(`/centerInfo/${userId}`);
+
         } catch(error){
             alert(error);
         }
@@ -86,26 +90,56 @@ const ModRole = () => {
                 <form className='flex flex-col gap-5' onSubmit={onModRoleHandler}>
                     <div>
                         
-                        
-                            <label htmlFor="basic" className='border checked:bg-[#000000]'>
-                                <input className='hidden' id ='basic' type="checkbox" checked readOnly/>
-                                    기본
-                            </label>
+                        <input type="checkbox" id="basic" className="hidden peer" checked readOnly/>
+                        <label htmlFor="basic" 
+                                className="
+                                flex
+                                items-center
+                                justify-left 
+                                p-3  
+                                border
+                                rounded 
+                                cursor-pointer 
+                                peer-checked:border-[#2D62EA]
+                                peer-checked:bg-[#EBF1FF] 
+                                ">                           
+                            <div className="flex flex-col">
+                                <div className='font-bold text-left'>일반직원(기본)</div>
+                                <div className='text-left text-[13px]'>가장 기존적인 권한만 소유하고 있습니다.</div>
+                            </div>
+                        </label>
                         
                     </div>
                     {roleList.map((role) => (
                         <div key={role.id}>
                             <input
+                                className='hidden peer'
                                 id = {role.id}
                                 type="checkbox"
                                 value={role.role_value}
                                 onChange={(e) => oncheckHandler(e, role.role_value)}
                                 />
-                                    <label htmlFor={role.id}>{role.name}</label>
+                            <label htmlFor={role.id} 
+                                className="
+                                flex
+                                items-center
+                                justify-left 
+                                p-3  
+                                border
+                                rounded 
+                                cursor-pointer 
+                                peer-checked:border-[#2D62EA]
+                                peer-checked:bg-[#EBF1FF] 
+                                ">                           
+                            <div className="flex flex-col">
+                                <div className='font-bold text-left'>{role.name}</div>
+                                <div className='text-left text-[13px]'>{role.desc}</div>
+                            </div>
+                        </label>
                         </div>
                         ))
                     }
-                    <button>완료</button>
+                    <button className='bg-[#2D62EA] p-3 rounded text-white'>완료</button>
                 </form>
             </div>
         </>
