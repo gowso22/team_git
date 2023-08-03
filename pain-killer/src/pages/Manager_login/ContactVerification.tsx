@@ -149,7 +149,7 @@ const ContactVerification = () => {
       {/* 첫 번째 모달: 등록되지 않은 개인정보 */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60">
-          <div className="bg-white rounded-lg p-6 w-80 relative rounded">
+          <div className="bg-white rounded-lg p-6 w-80 relative">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
               onClick={() => setModalOpen(false)}
