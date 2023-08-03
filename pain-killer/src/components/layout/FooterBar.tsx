@@ -19,7 +19,7 @@ import { Link, useMatch } from 'react-router-dom';
 
 const FooterBar = () => {
 
-    const homeMatch = useMatch("/home");
+    const homeMatch = useMatch("/");
     const scheduleMatch = useMatch("/scheduleInfo");
     const memberMatch = useMatch("/memberInfo");
     const centerMatch = useMatch("/centerInfo");
@@ -31,7 +31,7 @@ const FooterBar = () => {
         <div className="p-3 flex justify-between">
             {/* 홈으로 */}
             <div className='flex flex-col justify-center items-center'>
-                <Link to = "/home">
+                <Link to = "/">
                     <img 
                         src={homeMatch ? homeIcon_active : homeIcon}
                         alt="홈"
