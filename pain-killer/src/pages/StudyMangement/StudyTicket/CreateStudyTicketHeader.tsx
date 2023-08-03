@@ -7,7 +7,7 @@ export default function CreateStudyTicketHeader() {
         <div className="flex justify-between items-center">
           <img src={BackImage} alt="Back" />
           <p className="text-lg ml-2">수강권상세 </p>
-          <p className="text-lg ml-2">완료 </p>
+          {/* <p className="text-lg ml-2">완료 </p> */}
         </div>
       </nav>
     </header>
