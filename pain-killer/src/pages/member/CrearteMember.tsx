@@ -131,6 +131,7 @@ const CreateMember = () => {
           성별
           <span className="text-[#2D62EA]">*</span>
         </p>
+
         <ul className="flex mb-2">
           <li className="mr-1">
             <input
@@ -159,7 +160,6 @@ const CreateMember = () => {
               value="MALE"
               className="hidden peer"
               onClick={getGender}
-              checked
               required
             />
             <label
@@ -181,7 +181,7 @@ const CreateMember = () => {
             type="text"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
-            placeholder="0000.00.00"
+            placeholder="0000-00-00"
             required
           />
         </div>

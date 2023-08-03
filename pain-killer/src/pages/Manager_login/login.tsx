@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import VisibilityON from '../../img/Visibility_24px.svg'; // 아이콘 이미지 경로
 import VisibilityOFF from '../../assets/Hide_password.svg';
 import { useNavigate } from 'react-router-dom';
+import Home from '../home/home';
+import NavBar from '../../components/layout/NavBar';
+import FooterBar from '../../components/layout/FooterBar';
 
 const LoginPage = () => {
 
@@ -67,7 +70,7 @@ const LoginPage = () => {
 
               alert(result.message);
 
-              navigate("/home");
+              navigate('/')
 
             }else{
               alert(result.message);
@@ -110,7 +113,7 @@ const LoginPage = () => {
 
               alert(result.message);
 
-              navigate("/home");
+              navigate('/')
 
             }else{
               alert(result.message);
@@ -127,10 +130,22 @@ const LoginPage = () => {
     }
   }
 
+  const accessToken = localStorage.getItem('access_token');
 
 
   return (
-    <div className="flex flex-col items-center p-5">
+    <>
+    {accessToken ?  
+    (
+      <>
+        <NavBar/>
+        <Home/>
+        <FooterBar/>
+      </>
+    )
+      :
+    (
+      <div className="flex flex-col items-center p-5">
 
       <div className="my-10 font-bold text-3xl text-Pri-500">Point T</div>
 
@@ -214,6 +229,10 @@ const LoginPage = () => {
       </form>
         
     </div>
+      )
+    }
+    </>
+    
   );
 };
 

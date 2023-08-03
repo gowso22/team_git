@@ -51,7 +51,6 @@ function App() {
         <Routes>
           {/*nav, footer 포함하는 컴포넌트는 여기 */}
           <Route element={<Layout />}>
-            <Route path="/home" element={<Home />} />
             <Route path="/scheduleInfo" element={<CalendarManager />} />
             <Route path="/memberInfo" element={<MemberManage />} />
             <Route path="/centerInfo" element={<CenterManage />} />
