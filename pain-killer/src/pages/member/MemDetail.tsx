@@ -145,7 +145,6 @@ const MemDetail = () => {
               </div>
             </div>
           </div>
-          {/* tab기능을 이용하여 넘어가게 하는 부분 기능을 아래에 구현하면 될 것 같은데 일단 해보자 */}
         </div>
       }
       <Tabs value={activeTab}>
