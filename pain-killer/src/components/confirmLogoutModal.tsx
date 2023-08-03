@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ConfirmLogoutModal({ setModalShow }: PropsType) {
+
+  const navigate = useNavigate();
+
   const closeModal = () => {
+
     setModalShow(false);
+    navigate('/');
+    
   };
 
   return (
@@ -25,7 +33,7 @@ export default function ConfirmLogoutModal({ setModalShow }: PropsType) {
           </button>
         </div>
         <p className="mb-7 text-base font-extrabold">로그아웃 완료</p>
-        <button className="w-36 text-sm px-2 py-3 bg-[#F4F4F4] rounded-[4px]">
+        <button className="w-36 text-sm px-2 py-3 bg-[#F4F4F4] rounded-[4px]" onClick={closeModal}>
           확인
         </button>
       </div>

@@ -15,7 +15,7 @@ const NavBar = () => {
     console.log('알림 표시');
   };
 
-  const homeMatch = useMatch('/home');
+  const homeMatch = useMatch('/');
   const scheduleMatch = useMatch('/scheduleInfo');
   const memberMatch = useMatch('/memberInfo');
   const centerMatch = useMatch('/centerInfo');
