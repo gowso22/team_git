@@ -9,16 +9,16 @@ interface MyPage {
   id: string;
   loginId: string;
   hashKey: string;
-  center : {
+  center: {
     code: string;
-  }
+  };
 }
 
 export default function Mypage() {
   const [logoutButton, setLogoutButton] = useState(false);
-  const [userData, setUserData] = useState<MyPage>()
+  const [userData, setUserData] = useState<MyPage>();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const TOKEN = localStorage.getItem('access_token');
 
   const LogoutButtonHandle = () => {
@@ -28,17 +28,17 @@ export default function Mypage() {
   const fetchUserDataFromAPI = async () => {
     try {
       // Perform the API call using fetch or any other library (e.g., axios)
-      const response = await fetch("http://223.130.161.221/api/v1/me", {
-        method: "GET",
+      const response = await fetch('http://223.130.161.221/api/v1/me', {
+        method: 'GET',
         headers: {
           // Add any required headers (e.g., authorization token) here
-          'Authorization' : `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${TOKEN}`,
           'Content-Type': 'application/json',
         },
       });
 
       if (!response.ok) {
-        throw new Error("Network response was not ok.");
+        throw new Error('Network response was not ok.');
       }
 
       const data = await response.json();
@@ -47,7 +47,7 @@ export default function Mypage() {
 
       setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error('Error fetching user data:', error);
       setIsLoading(false);
     }
   };
@@ -60,10 +60,9 @@ export default function Mypage() {
     return <div>Loading...</div>;
   }
 
-
   return (
-    <div className='bg-[#F4F4F4] p-2 h-[900px] overflow-y-auto'>
-      <div className="mb-5 px-6 py-2 bg-white rounded-[10px]">
+    <div className="bg-[#F4F4F4] p-2 h-[900px] overflow-y-auto">
+      <div className="mb-3 px-6 py-2 bg-white rounded-[10px]">
         <div className="mb-2 flex justify-between items-center">
           <div className="flex items-center">
             <object className="mr-2" data={profileEdit}></object>
@@ -88,8 +87,17 @@ export default function Mypage() {
           </p>
           <div className="flex">
             <span className="mr-1 text-sm text-[#505050]">센터코드</span>
-            <p className="text-sm font-extrabold text-[#2D62EA]">{userData?.center.code}</p>
+            <p className="text-sm font-extrabold text-[#2D62EA]">
+              {userData?.center.code}
+            </p>
           </div>
+        </div>
+        <div className="flex justify-end">
+          <Link to="/studylist">
+            <button className="px-2 py-1 text-sm bg-white rounded-[10px] border-solid border border-[#E7E7E7] mt-2">
+              수강권 관리
+            </button>
+          </Link>
         </div>
       </div>
       <div className="text-left px-5 py-4 bg-white rounded-[10px]">
@@ -101,7 +109,9 @@ export default function Mypage() {
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">이름 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.name}</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">
+            {userData?.name}
+          </p>
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">휴대폰 번호 </p>
@@ -111,11 +121,15 @@ export default function Mypage() {
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">아이디 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.loginId}</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">
+            {userData?.loginId}
+          </p>
         </div>
         <div className="flex mb-2">
           <p className="w-24 text-sm text-[#505050]">비밀번호 </p>
-          <p className="text-sm font-extrabold text-[#1D1D1D]">{userData?.hashKey}</p>
+          <p className="text-sm font-extrabold text-[#1D1D1D]">
+            {userData?.hashKey}
+          </p>
         </div>
       </div>
       {logoutButton && <LogoutModal />}
