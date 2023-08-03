@@ -118,7 +118,7 @@ const MemDetail = () => {
               </div>
               <div className='flex items-center justify-end'>
                 <div>
-                  <Link to={`modmem/${memContent.id}`}>
+                  <Link to={`/modmem/${memContent.id}`}>
                     <img src={InfoEdit} alt = "정보수정 아이콘"/>
                   </Link>
                 </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import profileEdit from '../../assets/svg/profile-edit-48px.svg';
 import LogoutModal from '../../components/logoutModal';
+import instance from '../../api/axios_interceptors';
 
 interface MyPage {
   name: string;
@@ -11,6 +12,7 @@ interface MyPage {
   hashKey: string;
   center: {
     code: string;
+    name : string;
   };
 }
 
@@ -19,7 +21,6 @@ export default function Mypage() {
   const [userData, setUserData] = useState<MyPage>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const TOKEN = localStorage.getItem('access_token');
 
   const LogoutButtonHandle = () => {
     setLogoutButton(true);
@@ -27,25 +28,12 @@ export default function Mypage() {
 
   const fetchUserDataFromAPI = async () => {
     try {
-      // Perform the API call using fetch or any other library (e.g., axios)
-      const response = await fetch('http://223.130.161.221/api/v1/me', {
-        method: 'GET',
-        headers: {
-          // Add any required headers (e.g., authorization token) here
-          Authorization: `Bearer ${TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok.');
-      }
-
-      const data = await response.json();
-      setUserData(data);
-      console.log(data);
+      const data = await instance.get(`/me`)
+      
+      setUserData(data.data);
 
       setIsLoading(false);
+
     } catch (error) {
       console.error('Error fetching user data:', error);
       setIsLoading(false);
@@ -83,7 +71,7 @@ export default function Mypage() {
         </div>
         <div className="flex">
           <p className="flex-1 text-sm font-extrabold text-[#505050] text-left">
-            좋은 관절 센터
+            {userData?.center.name}
           </p>
           <div className="flex">
             <span className="mr-1 text-sm text-[#505050]">센터코드</span>
